@@ -1,11 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import styles from "./PartnersSection.module.css";
-import pr1 from "../../assets/partners/pr1.png";
-import pr2 from "../../assets/partners/pr2.png";
-import pr3 from "../../assets/partners/pr3.png";
-import pr4 from "../../assets/partners/pr4.png";
-import pr5 from "../../assets/partners/pr5.png";
 
 const PartnersSection: React.FC = () => {
   const sliderRef = useRef<HTMLDivElement | null>(null);
