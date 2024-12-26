@@ -1,0 +1,125 @@
+/* components/Header.module.css */
+
+.header {
+  position: fixed; /* Фиксированное положение */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px; /* Задайте фиксированную высоту заголовка */
+  background: #0c0c0d3f; /* Полупрозрачный фон */
+  backdrop-filter: blur(10px); /* Эффект размытия */
+  -webkit-backdrop-filter: blur(10px); /* Для поддержки Safari */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px; /* Уменьшено, чтобы соответствовать фиксированной высоте */
+  z-index: 1000;
+}
+
+.logo a {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff; /* Белый цвет текста для контраста */
+}
+
+.logoImage {
+  height: 40px;
+  width: auto;
+}
+
+.nav {
+  display: flex;
+  isolation: isolate; /* Создание нового контекстного стека */
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  margin: 0 15px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #ffffff; /* Белый цвет текста для контраста */
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #dddddd; /* Светлее при наведении */
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 1200; /* Повышенный z-index для поверхности над меню */
+}
+
+.line {
+  width: 25px;
+  height: 3px;
+  background: #ffffff;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+/* Анимация для бургер-меню при открытии */
+.open:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.open:nth-child(2) {
+  opacity: 0;
+}
+
+.open:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+  .nav {
+    isolation: isolate;
+    position: fixed;
+    top: 60px; /* Высота заголовка */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px); /* Заполнение всего экрана под заголовком */
+    background: #0c0c0d;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(-110%); /* Скрыть меню за пределами экрана */
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для навигационного меню */
+    z-index: 1100; /* Ниже, чем бургер-меню */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    /* Создание нового контекстного стека */
+  }
+
+  .nav.active {
+    transform: translateY(0); /* Показать меню */
+  }
+
+  .nav ul {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin-top: 100px;
+    align-items: center;
+  }
+
+  .nav li {
+    margin: 20px 0;
+  }
+
+  .burger {
+    display: flex;
+  }
+}

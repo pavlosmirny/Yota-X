@@ -1,0 +1,380 @@
+/* FeatureSection.module.css */
+
+/* Keyframes for animations */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.featureSection {
+  margin-top: 800px; /* Adjusted margin for better display */
+  width: 80%;
+  padding: 60px 20px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content */
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.featureGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Increased gap between cards */
+  justify-content: center; /* Center the cards */
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.card1,
+.card4 {
+  background-color: #141414;
+  border-radius: 12px;
+  border: 1px solid #f0f0f054;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px 0 20px 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0; /* Initial hidden state */
+}
+
+.card2,
+.card3 {
+  background-color: #141414;
+  border-radius: 12px;
+  border: 1px solid #f0f0f054;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0; /* Initial hidden state */
+  overflow: hidden;
+}
+
+/* Animations for the cards with delays */
+.card1 {
+  flex: 1;
+  animation: slideInLeft 1s ease-out forwards;
+  animation-delay: 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.textWrapper {
+  padding-right: 20px;
+}
+
+.card2 {
+  flex: 2;
+  animation: slideInRight 1s ease-out forwards;
+  animation-delay: 0.4s;
+  padding: 20px;
+  /* Radial Gradient Background */
+  background-image: radial-gradient(
+    ellipse farthest-side at right top,
+    hsl(193, 95%, 68%) 0%,
+    hsla(0, 0%, 0%, 0) 70%
+  );
+  background-size: 200% 200%;
+  transition: transform 0.3s, background-position 2s;
+}
+
+.card2:hover {
+  background-position: 70% 50%;
+}
+
+.card3 {
+  flex: 2;
+  animation: slideInLeft 1s ease-out forwards;
+  animation-delay: 0.6s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card4 {
+  flex: 1;
+  animation: slideInRight 1s ease-out forwards;
+  animation-delay: 0.8s;
+}
+
+/* Existing styles for card1Card */
+.card1Card {
+  background: rgb(27, 27, 31);
+  background: linear-gradient(175deg, rgba(27, 27, 31, 1) 61%, #13b351 120%);
+  border-radius: 12px 0 0 12px;
+  border-left: 1px solid #13b351;
+  border-bottom: 1px solid #13b351;
+  border-top: 1px solid #13b351;
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card1Card p {
+  color: #13b351;
+}
+
+.card2Card {
+  transition: transform 0.3s, box-shadow 0.3s, background-position 0.5s;
+  position: relative;
+}
+
+.card2Card2 {
+  width: 250px;
+  height: 250px;
+  background: #222222;
+  box-shadow: 0 4px 6px #0000001a;
+  border-radius: 12px;
+  position: absolute;
+  right: -100px;
+  top: -50px;
+  padding: 20px 20px 0 20px;
+  border: 2px solid #404040;
+}
+
+.card2Card p {
+  color: #13b351;
+}
+
+.dividerWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.divider1 {
+  height: 10px;
+  width: 170px;
+  border-radius: 3px;
+  /* opacity: 0.6; */
+  background: #61dafb;
+}
+
+.dividerCard2 {
+  height: 100px;
+  width: 170px;
+  border-radius: 3px;
+  background: #61dafb;
+  box-shadow: #61dafb 0px 0px 10px;
+  margin-left: 20px;
+}
+
+.divider2Card2 {
+  height: 10px;
+  width: 70px;
+  margin-left: 100px;
+  margin-top: 10px;
+  border-radius: 3px;
+  background: #c063ed;
+  box-shadow: #c063ed 0px 0px 10px;
+}
+
+.divider1Card2 {
+  height: 10px;
+  width: 170px;
+  margin-left: 50px;
+  margin-top: 10px;
+  border-radius: 3px;
+  background: #61dafb;
+  box-shadow: #61dafb 0px 0px 10px;
+}
+
+.dividerCard2Container {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.divider3Card2 {
+  width: 70px;
+  height: 50px;
+  border-radius: 3px;
+  background: #1b1b1f;
+  background: linear-gradient(
+    0deg,
+    rgba(27, 27, 31, 0) 0%,
+    rgba(62, 62, 62, 1) 100%
+  );
+}
+
+.divider2 {
+  height: 10px;
+  width: 230px;
+  border-radius: 20px;
+  opacity: 0.6;
+  background: #404040;
+}
+
+.title {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.4px;
+}
+
+.text {
+  color: #a3a3a3;
+}
+
+.iconsContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.iconGroup {
+  display: flex;
+  gap: 10px; /* Added 'px' for proper spacing */
+  margin: 10px;
+}
+
+.iconGroup2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+/* Icon Colors for Full-Stack Development */
+.html5 {
+  color: #e34c26;
+}
+
+.css3 {
+  color: #264de4;
+}
+
+.react {
+  color: #61dafb;
+}
+
+.nextjs {
+  color: #000000; /* Next.js official color is black */
+}
+
+.reactnative {
+  color: #61dafb; /* Same as React */
+}
+
+.nodejs {
+  color: #68a063;
+}
+
+.database {
+  color: #f0db4f;
+}
+
+.mongodb {
+  color: #4db33d; /* MongoDB official green */
+}
+
+.python {
+  color: #306998; /* Python official blue */
+}
+
+/* Styles for DevOps & Infrastructure Card */
+
+/* Icon Colors for DevOps & Infrastructure */
+.docker {
+  color: #0db7ed; /* Docker blue */
+}
+
+.kubernetes {
+  color: #326ce5; /* Kubernetes blue */
+}
+
+.jenkins {
+  color: #d24939; /* Jenkins red */
+}
+
+.githubactions {
+  color: #2088ff; /* GitHub Actions blue */
+}
+
+.aws {
+  color: #ff9900; /* AWS orange */
+}
+
+.azure {
+  color: #007fff; /* Azure blue */
+}
+
+.ansible {
+  color: #ee0000; /* Ansible red */
+}
+
+.terraform {
+  color: #623ce4; /* Terraform purple */
+}
+
+.prometheus {
+  color: #e6522c; /* Prometheus red */
+}
+
+.grafana {
+  color: #f46800; /* Grafana orange */
+}
+
+/* New Styles for SecureScan™ */
+.card3 {
+  flex: 2;
+  animation: slideInLeft 1s ease-out forwards;
+  animation-delay: 0.6s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #141414;
+  border-radius: 12px;
+  border: 1px solid #f0f0f054;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px 0 20px 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0; /* Initial hidden state */
+}
+
+.securityIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+/* Ensure textWrapper has appropriate padding */
+.textWrapper {
+  padding: 20px;
+}
+
+/* Optional: Add hover effects or additional styles for card3 if needed */

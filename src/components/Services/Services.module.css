@@ -1,0 +1,170 @@
+/* components/Services.module.css */
+
+.servicesSection {
+  margin-top: 100px; /* Adjusted for better visibility */
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.servicesContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(200px); /* Increased distance for starting position */
+  opacity: 0;
+  transition: all 1.5s ease-out;
+}
+
+.animate {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.serviceBlock {
+  width: 200px;
+  height: 250px;
+  background-color: #1b1b1f;
+  border-radius: 12px;
+  border: 1px solid #f0f0f054;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  padding-right: 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: transform 1.5s ease-out, opacity 1.5s ease-out;
+  opacity: 0;
+  will-change: transform, opacity;
+  position: relative;
+  padding-top: 10px; /* Increased padding for header */
+}
+
+.animate .serviceBlock {
+  opacity: 1;
+}
+
+/* Specific Animations for Each Service Block */
+.nextjs {
+  transform: translateX(-300px); /* Further left */
+  animation: slideInLeft 5s forwards;
+}
+
+.docker {
+  transform: translateY(300px); /* Further down */
+  animation: slideInBottom 5s forwards;
+}
+
+.aws {
+  transform: translateX(300px); /* Further right */
+  animation: slideInRight 5s forwards;
+}
+
+.serviceHeader {
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.controlButton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.red {
+  background-color: #ff5f56;
+}
+
+.yellow {
+  background-color: #ffbd2e;
+}
+
+.green {
+  background-color: #27c93f;
+}
+
+.serviceTitle {
+  margin-top: 20px;
+  font-size: 1.8rem;
+  color: #333333;
+  text-align: center;
+}
+
+.message {
+  text-align: center;
+  margin-top: 50px;
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: slideDown 1s forwards 2s; /* Delayed to appear after blocks */
+}
+
+.message h2 {
+  font-size: 2.5rem;
+  color: #333333;
+}
+
+/* Keyframes for Animations */
+@keyframes slideInLeft {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInBottom {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover Effects */
+.serviceBlock:hover,
+.serviceBlock:focus-within {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .servicesContainer {
+    flex-direction: column;
+    transform: translateY(100px); /* Adjust starting position for mobile */
+  }
+
+  .serviceBlock {
+    width: 80%;
+    max-width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .nextjs,
+  .docker,
+  .aws {
+    transform: translateY(300px); /* Slide in from bottom on mobile */
+    animation: slideInBottom 1.5s forwards;
+  }
+
+  .message {
+    animation: slideDown 1s forwards 1s; /* Shorter delay on mobile */
+  }
+}

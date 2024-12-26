@@ -1,0 +1,107 @@
+.sliderContainer {
+  margin-top: 700px;
+
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  height: 500px;
+  /* overflow: hidden; */
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(100%);
+  /* Более длительные и плавные анимации */
+  transition-property: opacity, transform;
+  /* Увеличили время анимаций */
+  transition-duration: 1.5s, 2s;
+  /* Небольшая задержка между opacity и transform */
+  transition-delay: 0s, 0.3s;
+  /* Более плавная функция времени */
+  transition-timing-function: cubic-bezier(0.6, 0, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slideContent {
+  text-align: center;
+  padding: 20px;
+  max-width: 800px;
+}
+
+.slideImage {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.slideTitle {
+  font-size: 32px;
+  color: white;
+
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.slideText {
+  font-size: 18px;
+  color: white;
+  line-height: 1.6;
+}
+
+/* Состояния слайдов */
+.active {
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 2;
+  /* Настройка задержек для активного слайда */
+  transition-delay: 0.3s, 0s;
+}
+
+.next {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.prev {
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 1;
+  /* Настройка задержек для исчезающего слайда */
+  transition-delay: 0s, 0.3s;
+}
+
+.hidden {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .slideContent {
+    padding: 15px;
+  }
+
+  .slideImage {
+    max-width: 90%;
+  }
+
+  .slideTitle {
+    font-size: 24px;
+  }
+
+  .slideText {
+    font-size: 16px;
+  }
+}

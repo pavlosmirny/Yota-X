@@ -1,0 +1,39 @@
+/* components/FeatureCard.module.css */
+
+.featureCard {
+  /* Базовые стили для карточки */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.featureCard.active {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.visualization {
+  /* Стили для визуализации */
+  margin-bottom: 20px;
+}
+
+.meta {
+  /* Стили для метаданных */
+}
+
+.centerMeta {
+  text-align: center;
+}
+
+.metaTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.metaDescription {
+  font-size: 1rem;
+  color: #555;
+}
