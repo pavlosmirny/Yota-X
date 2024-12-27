@@ -1,18 +1,16 @@
-/* components/Header.module.css */
-
 .header {
-  position: fixed; /* Фиксированное положение */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px; /* Задайте фиксированную высоту заголовка */
-  background: #0c0c0d3f; /* Полупрозрачный фон */
-  backdrop-filter: blur(10px); /* Эффект размытия */
-  -webkit-backdrop-filter: blur(10px); /* Для поддержки Safari */
+  height: 60px;
+  background: #0c0c0d3f;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px; /* Уменьшено, чтобы соответствовать фиксированной высоте */
+  padding: 0 20px;
   z-index: 1000;
 }
 
@@ -20,17 +18,14 @@
   font-size: 24px;
   font-weight: bold;
   text-decoration: none;
-  color: #ffffff; /* Белый цвет текста для контраста */
-}
-
-.logoImage {
-  height: 40px;
-  width: auto;
+  color: #ffffff;
 }
 
 .nav {
   display: flex;
-  isolation: isolate; /* Создание нового контекстного стека */
+  align-items: center;
+  gap: 20px;
+  margin-left: auto;
 }
 
 .nav ul {
@@ -46,20 +41,49 @@
 
 .nav a {
   text-decoration: none;
-  color: #ffffff; /* Белый цвет текста для контраста */
+  color: #ffffff;
   font-size: 18px;
   transition: color 0.3s ease;
 }
 
 .nav a:hover {
-  color: #dddddd; /* Светлее при наведении */
+  color: #dddddd;
 }
 
+/* Социальные иконки для десктопной версии */
+.desktopIcons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 15px;
+}
+
+.socialIcon {
+  color: #ffffff;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialIcon:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* Бургер-меню */
 .burger {
   display: none;
   flex-direction: column;
   cursor: pointer;
-  z-index: 1200; /* Повышенный z-index для поверхности над меню */
+  z-index: 1200;
 }
 
 .line {
@@ -70,7 +94,6 @@
   transition: all 0.3s ease;
 }
 
-/* Анимация для бургер-меню при открытии */
 .open:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -83,35 +106,37 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Мобильная версия */
+/* Мобильные стили */
+.mobileIcons {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .nav {
-    isolation: isolate;
     position: fixed;
-    top: 60px; /* Высота заголовка */
+    top: 60px;
     left: 0;
     width: 100%;
-    height: calc(100vh - 60px); /* Заполнение всего экрана под заголовком */
+    height: calc(100vh - 60px);
     background: #0c0c0d;
     flex-direction: column;
     align-items: center;
-    transform: translateY(-110%); /* Скрыть меню за пределами экрана */
+    transform: translateY(-110%);
     transition: transform 0.3s ease-in-out;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для навигационного меню */
-    z-index: 1100; /* Ниже, чем бургер-меню */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1100;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    /* Создание нового контекстного стека */
   }
 
   .nav.active {
-    transform: translateY(0); /* Показать меню */
+    transform: translateY(0);
   }
 
   .nav ul {
     flex-direction: column;
     width: 100%;
-    height: 100%;
-    margin-top: 100px;
+    height: auto;
+    margin-top: 40px;
     align-items: center;
   }
 
@@ -119,7 +144,71 @@
     margin: 20px 0;
   }
 
+  .desktopIcons {
+    display: none;
+  }
+
+  .mobileIcons {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+
+  .nav.active .socialIcon {
+    animation: slideIn 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .mobileIcons .socialIcon {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobileIcons .socialIcon:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
   .burger {
     display: flex;
+  }
+}
+
+/* Анимация появления */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Большие экраны */
+@media (min-width: 1200px) {
+  .header {
+    padding: 0 40px;
+  }
+
+  .nav li {
+    margin: 0 20px;
+  }
+
+  .desktopIcons {
+    gap: 20px;
+  }
+
+  .divider {
+    margin: 0 20px;
   }
 }

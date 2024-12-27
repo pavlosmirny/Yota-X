@@ -4,6 +4,10 @@
   max-width: 100%;
   margin: 0 auto;
   background-color: transparent;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sectionTitle {
@@ -79,20 +83,37 @@
   );
 }
 
+.gridWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
 .grid {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 2rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+
+.grid::-webkit-scrollbar {
+  display: none;
 }
 
 .row {
   display: grid;
   grid-template-columns: repeat(13, 96px);
   gap: 0.5rem;
+  min-width: max-content;
+  margin: 0 auto;
 }
 
-/* Смещение для четных рядов */
 .row:nth-child(even) {
   padding-left: 3rem;
 }
@@ -136,4 +157,126 @@
   transform: scale(1.1);
   transition-duration: 0.3s;
   transition-timing-function: ease-in;
+}
+
+/* Планшеты */
+@media (max-width: 1024px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .grid {
+    padding: 1.5rem;
+  }
+
+  .row {
+    grid-template-columns: repeat(13, 80px);
+    gap: 0.4rem;
+  }
+
+  .cell {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .leftOverlay,
+  .rightOverlay {
+    width: 8rem;
+  }
+
+  .topOverlay,
+  .bottomOverlay {
+    height: 8rem;
+  }
+
+  .row:nth-child(even) {
+    padding-left: 2rem;
+  }
+
+  .iconWrapper svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 1.5rem;
+    top: -15px;
+  }
+
+  .grid {
+    padding: 1rem;
+  }
+
+  .row {
+    grid-template-columns: repeat(13, 64px);
+    gap: 0.3rem;
+  }
+
+  .cell {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .leftOverlay,
+  .rightOverlay {
+    width: 6rem;
+  }
+
+  .topOverlay,
+  .bottomOverlay {
+    height: 6rem;
+  }
+
+  .row:nth-child(even) {
+    padding-left: 1.5rem;
+  }
+
+  .iconWrapper svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Маленькие мобильные устройства */
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 1.2rem;
+    top: -12px;
+  }
+
+  .grid {
+    padding: 0.5rem;
+  }
+
+  .row {
+    grid-template-columns: repeat(13, 48px);
+    gap: 0.2rem;
+  }
+
+  .cell {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .leftOverlay,
+  .rightOverlay {
+    width: 4rem;
+  }
+
+  .topOverlay,
+  .bottomOverlay {
+    height: 4rem;
+  }
+
+  .row:nth-child(even) {
+    padding-left: 1rem;
+  }
+
+  .iconWrapper svg {
+    width: 24px;
+    height: 24px;
+  }
 }

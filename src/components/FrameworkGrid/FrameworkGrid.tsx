@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import { JSX, useEffect, useRef } from "react";
 import { IconType } from "react-icons";
 import {
   FaReact,
@@ -46,7 +47,7 @@ interface CellProps {
   icon?: IconConfig;
 }
 
-const Cell: React.FC<CellProps> = ({ icon }) => {
+const Cell = ({ icon }: CellProps): JSX.Element => {
   return (
     <div
       className={`${styles.cell} ${icon ? styles.iconCell : ""}`}
@@ -65,7 +66,19 @@ const Cell: React.FC<CellProps> = ({ icon }) => {
   );
 };
 
-const FrameworkGrid: React.FC = () => {
+const FrameworkGrid = (): JSX.Element => {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (gridRef.current) {
+      const scrollWidth = gridRef.current.scrollWidth;
+      const clientWidth = gridRef.current.clientWidth;
+      const scrollTo = (scrollWidth - clientWidth) / 2;
+
+      gridRef.current.scrollLeft = scrollTo;
+    }
+  }, []);
+
   const grid: null[][] = Array(7)
     .fill(null)
     .map(() => Array(13).fill(null));
@@ -254,8 +267,6 @@ const FrameworkGrid: React.FC = () => {
       color: "#FFEC6E",
       name: "Vault",
     },
-
-    // Cloud & Services Row (Row 6)
   ];
 
   return (
@@ -267,17 +278,20 @@ const FrameworkGrid: React.FC = () => {
         <div className={styles.topOverlay} />
         <div className={styles.bottomOverlay} />
       </div>
-      <div className={styles.grid}>
-        {grid.map((row, rowIndex) => (
-          <div key={rowIndex} className={styles.row}>
-            {row.map((_, colIndex) => {
-              const icon = icons.find(
-                (i) => i.position[0] === rowIndex && i.position[1] === colIndex
-              );
-              return <Cell key={colIndex} icon={icon} />;
-            })}
-          </div>
-        ))}
+      <div className={styles.gridWrapper}>
+        <div className={styles.grid} ref={gridRef}>
+          {grid.map((row, rowIndex) => (
+            <div key={rowIndex} className={styles.row}>
+              {row.map((_, colIndex) => {
+                const icon = icons.find(
+                  (i) =>
+                    i.position[0] === rowIndex && i.position[1] === colIndex
+                );
+                return <Cell key={colIndex} icon={icon} />;
+              })}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
