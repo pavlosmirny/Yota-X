@@ -1,0 +1,139 @@
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: transparent;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  z-index: 2;
+}
+
+.overlays {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.leftOverlay {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 12rem;
+  background: linear-gradient(
+    to right,
+    rgba(12, 12, 13, 0.95) 0%,
+    rgba(12, 12, 13, 0.8) 30%,
+    rgba(12, 12, 13, 0.4) 60%,
+    transparent 100%
+  );
+}
+
+.rightOverlay {
+  position: absolute;
+  inset-block: 0;
+  right: 0;
+  width: 12rem;
+  background: linear-gradient(
+    to left,
+    rgba(12, 12, 13, 0.95) 0%,
+    rgba(12, 12, 13, 0.8) 30%,
+    rgba(12, 12, 13, 0.4) 60%,
+    transparent 100%
+  );
+}
+
+.topOverlay {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 12rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(12, 12, 13, 0.95) 0%,
+    rgba(12, 12, 13, 0.8) 30%,
+    rgba(12, 12, 13, 0.4) 60%,
+    transparent 100%
+  );
+}
+
+.bottomOverlay {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 12rem;
+  background: linear-gradient(
+    to top,
+    rgba(12, 12, 13, 0.95) 0%,
+    rgba(12, 12, 13, 0.8) 30%,
+    rgba(12, 12, 13, 0.4) 60%,
+    transparent 100%
+  );
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(13, 96px);
+  gap: 0.5rem;
+}
+
+/* Смещение для четных рядов */
+.row:nth-child(even) {
+  padding-left: 3rem;
+}
+
+.cell {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(31, 31, 31, 0.5);
+  transition: all 0.3s ease-in-out;
+  transition-duration: 0.3s, 3s;
+  transition-property: transform, box-shadow;
+  transition-timing-function: ease-out;
+}
+
+.cell:hover {
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in;
+}
+
+.iconCell {
+  background-color: rgb(31, 31, 31);
+}
+
+.iconCell:hover {
+  box-shadow: 0 0 20px var(--icon-color);
+}
+
+.iconWrapper {
+  transition: transform 0.3s ease-in-out;
+  transition-duration: 0.3s, 3s;
+  transition-property: transform, opacity;
+  transition-timing-function: ease-out;
+}
+
+.iconCell:hover .iconWrapper {
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in;
+}
