@@ -1,6 +1,5 @@
-// components/FeatureSection.tsx
+"use client";
 import React from "react";
-import styles from "./FeatureSection.module.css";
 import {
   FaReact,
   FaHtml5,
@@ -24,9 +23,53 @@ import {
   SiKubernetes,
 } from "react-icons/si";
 import { TbBrandReactNative } from "react-icons/tb";
-import { MdSecurity } from "react-icons/md"; // Importing Security Icon
+import { MdSecurity } from "react-icons/md";
+import styles from "./FeatureSection.module.css";
 
-const FeatureSection = () => {
+interface IconWithTooltipProps {
+  Icon: React.ElementType;
+  name: string;
+  color: string;
+  className?: string;
+}
+
+const IconWithTooltip: React.FC<IconWithTooltipProps> = ({
+  Icon,
+  name,
+  color,
+  className,
+}) => {
+  return (
+    <div className={styles.iconContainer}>
+      <Icon className={`${styles.icon} ${className}`} style={{ color }} />
+      <div className={styles.tooltip}>
+        <span className={styles.tooltipText}>{name}</span>
+        <div className={styles.tooltipArrow} />
+      </div>
+    </div>
+  );
+};
+
+const ParticlesBackground: React.FC = () => {
+  return (
+    <div className={styles.particles}>
+      {[...Array(20)].map((_, i) => (
+        <div
+          key={i}
+          className={styles.particle}
+          style={
+            {
+              "--delay": `${Math.random() * 4}s`,
+              "--size": `${Math.random() * 4 + 2}px`,
+            } as React.CSSProperties
+          }
+        />
+      ))}
+    </div>
+  );
+};
+
+const FeatureSection: React.FC = () => {
   return (
     <div className={styles.featureSection}>
       <h2 className={styles.sectionTitle}>Our Capabilities</h2>
@@ -34,29 +77,72 @@ const FeatureSection = () => {
       <div className={styles.featureGrid}>
         {/* Card 1: Full-Stack Development */}
         <div className={styles.card1}>
+          <ParticlesBackground />
           <div className={styles.card1Card}>
             <div className={styles.iconsContainer}>
-              <p style={{ fontSize: 24 }}>Frontend</p>
+              <p className={styles.cardLabel}>Frontend</p>
               <div className={styles.iconGroup}>
-                <FaHtml5 className={`${styles.icon} ${styles.html5}`} />
-                <FaCss3Alt className={`${styles.icon} ${styles.css3}`} />
-                <FaReact className={`${styles.icon} ${styles.react}`} />
-                <SiNextdotjs className={`${styles.icon} ${styles.nextjs}`} />
-                <TbBrandReactNative
-                  className={`${styles.icon} ${styles.reactnative}`}
+                <IconWithTooltip
+                  Icon={FaHtml5}
+                  name="HTML5"
+                  color="#e34c26"
+                  className={styles.html5}
+                />
+                <IconWithTooltip
+                  Icon={FaCss3Alt}
+                  name="CSS3"
+                  color="#264de4"
+                  className={styles.css3}
+                />
+                <IconWithTooltip
+                  Icon={FaReact}
+                  name="React"
+                  color="#61dafb"
+                  className={styles.react}
+                />
+                <IconWithTooltip
+                  Icon={SiNextdotjs}
+                  name="Next.js"
+                  color="#ffffff"
+                  className={styles.nextjs}
+                />
+                <IconWithTooltip
+                  Icon={TbBrandReactNative}
+                  name="React Native"
+                  color="#61dafb"
+                  className={styles.reactnative}
                 />
               </div>
 
-              {/* Backend Icons */}
-              <p style={{ fontSize: 24 }}>Backend</p>
+              <p className={styles.cardLabel}>Backend</p>
               <div className={styles.iconGroup}>
-                <FaNodeJs className={`${styles.icon} ${styles.nodejs}`} />
-                <FaDatabase className={`${styles.icon} ${styles.database}`} />
-                <SiMongodb className={`${styles.icon} ${styles.mongodb}`} />
-                <SiPython className={`${styles.icon} ${styles.python}`} />
+                <IconWithTooltip
+                  Icon={FaNodeJs}
+                  name="Node.js"
+                  color="#68a063"
+                  className={styles.nodejs}
+                />
+                <IconWithTooltip
+                  Icon={FaDatabase}
+                  name="Database"
+                  color="#f0db4f"
+                  className={styles.database}
+                />
+                <IconWithTooltip
+                  Icon={SiMongodb}
+                  name="MongoDB"
+                  color="#4db33d"
+                  className={styles.mongodb}
+                />
+                <IconWithTooltip
+                  Icon={SiPython}
+                  name="Python"
+                  color="#306998"
+                  className={styles.python}
+                />
               </div>
             </div>
-            <p style={{ color: "white" }}>Expert Team</p>
+            <p className={styles.cardFooter}>Expert Team</p>
           </div>
           <div className={styles.textWrapper}>
             <h4 className={styles.title}>Full-Stack Development</h4>
@@ -69,40 +155,81 @@ const FeatureSection = () => {
 
         {/* Card 2: DevOps & Infrastructure */}
         <div className={styles.card2}>
+          <ParticlesBackground />
           <div className={styles.card2Card}>
             <div className={styles.iconGroup2}>
-              <p style={{ fontSize: 20 }}>Containerization</p>
+              <p className={styles.cardLabel}>Containerization</p>
               <div className={styles.iconGroup}>
-                <FaDocker className={`${styles.icon} ${styles.docker}`} />
-                <SiKubernetes
-                  className={`${styles.icon} ${styles.kubernetes}`}
+                <IconWithTooltip
+                  Icon={FaDocker}
+                  name="Docker"
+                  color="#0db7ed"
+                  className={styles.docker}
                 />
-              </div>
-            </div>
-            <div className={styles.iconGroup2}>
-              <p style={{ fontSize: 20 }}>Cloud Platforms</p>
-              <div className={styles.iconGroup}>
-                <FaAws className={`${styles.icon} ${styles.aws}`} />
-                <VscAzure className={`${styles.icon} ${styles.azure}`} />
-              </div>
-            </div>
-            <div className={styles.iconGroup2}>
-              <p style={{ fontSize: 20 }}>Configuration Management</p>
-              <div className={styles.iconGroup}>
-                <SiAnsible className={`${styles.icon} ${styles.ansible}`} />
-                <SiTerraform className={`${styles.icon} ${styles.terraform}`} />
-              </div>
-            </div>
-            <div className={styles.iconGroup2}>
-              <p style={{ fontSize: 20 }}>Monitoring</p>
-              <div className={styles.iconGroup}>
-                <SiPrometheus
-                  className={`${styles.icon} ${styles.prometheus}`}
+                <IconWithTooltip
+                  Icon={SiKubernetes}
+                  name="Kubernetes"
+                  color="#326ce5"
+                  className={styles.kubernetes}
                 />
-                <SiGrafana className={`${styles.icon} ${styles.grafana}`} />
               </div>
             </div>
 
+            <div className={styles.iconGroup2}>
+              <p className={styles.cardLabel}>Cloud Platforms</p>
+              <div className={styles.iconGroup}>
+                <IconWithTooltip
+                  Icon={FaAws}
+                  name="AWS"
+                  color="#ff9900"
+                  className={styles.aws}
+                />
+                <IconWithTooltip
+                  Icon={VscAzure}
+                  name="Azure"
+                  color="#007fff"
+                  className={styles.azure}
+                />
+              </div>
+            </div>
+
+            <div className={styles.iconGroup2}>
+              <p className={styles.cardLabel}>Configuration Management</p>
+              <div className={styles.iconGroup}>
+                <IconWithTooltip
+                  Icon={SiAnsible}
+                  name="Ansible"
+                  color="#ee0000"
+                  className={styles.ansible}
+                />
+                <IconWithTooltip
+                  Icon={SiTerraform}
+                  name="Terraform"
+                  color="#623ce4"
+                  className={styles.terraform}
+                />
+              </div>
+            </div>
+
+            <div className={styles.iconGroup2}>
+              <p className={styles.cardLabel}>Monitoring</p>
+              <div className={styles.iconGroup}>
+                <IconWithTooltip
+                  Icon={SiPrometheus}
+                  name="Prometheus"
+                  color="#e6522c"
+                  className={styles.prometheus}
+                />
+                <IconWithTooltip
+                  Icon={SiGrafana}
+                  name="Grafana"
+                  color="#f46800"
+                  className={styles.grafana}
+                />
+              </div>
+            </div>
+
+            <div className={styles.progressLine} />
             <div className={styles.card2Card2}>
               <div className={styles.dividerCard2}></div>
               <div className={styles.divider1Card2}></div>
@@ -115,7 +242,6 @@ const FeatureSection = () => {
           </div>
 
           <h4 className={styles.title}>DevOps & Infrastructure</h4>
-
           <p className={styles.text}>
             Efficient DevOps practices and cloud infrastructure management to
             ensure robust and scalable applications.
@@ -126,15 +252,16 @@ const FeatureSection = () => {
       <div className={styles.featureGrid}>
         {/* Card 3: SecureScan™ */}
         <div className={styles.card3}>
+          <ParticlesBackground />
           <div className={styles.card1Card}>
             <div className={styles.dividerWrapper}>
               <div className={styles.divider1}></div>
               <div className={styles.divider2}></div>
             </div>
             <div className={styles.securityIcon}>
-              <MdSecurity size={40} color="#c063ed" /> {/* Security Icon */}
+              <MdSecurity size={40} color="#c063ed" />
             </div>
-            <p>Secure Systems</p>
+            <p className={styles.cardFooter}>Secure Systems</p>
           </div>
           <div className={styles.textWrapper}>
             <h4 className={styles.title}>SecureScan™</h4>
@@ -148,15 +275,24 @@ const FeatureSection = () => {
 
         {/* Card 4: Continuous Integration & Deployment */}
         <div className={styles.card4}>
+          <ParticlesBackground />
           <div className={styles.card1Card}>
-            <p style={{ fontSize: 24 }}>CI/CD</p>
+            <p className={styles.cardLabel}>CI/CD</p>
             <div className={styles.iconGroup}>
-              <SiJenkins className={`${styles.icon} ${styles.jenkins}`} />
-              <SiGithubactions
-                className={`${styles.icon} ${styles.githubactions}`}
+              <IconWithTooltip
+                Icon={SiJenkins}
+                name="Jenkins"
+                color="#d24939"
+                className={styles.jenkins}
+              />
+              <IconWithTooltip
+                Icon={SiGithubactions}
+                name="GitHub Actions"
+                color="#2088ff"
+                className={styles.githubactions}
               />
             </div>
-            <p>Automated Deployments</p>
+            <p className={styles.cardFooter}>Automated Deployments</p>
           </div>
           <div className={styles.textWrapper}>
             <h4 className={styles.title}>

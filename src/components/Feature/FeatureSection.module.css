@@ -1,28 +1,3 @@
-/* FeatureSection.module.css */
-
-/* Keyframes for animations */
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
 .featureSection {
   margin-top: 50px;
   width: 80%;
@@ -30,7 +5,8 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center the content */
+  align-items: center;
+  position: relative;
 }
 
 .sectionTitle {
@@ -38,343 +14,397 @@
   font-size: 2.5rem;
   margin-bottom: 40px;
   color: white;
+  position: relative;
+}
+
+.sectionTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, #03a9f4, #f441a5);
 }
 
 .featureGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Increased gap between cards */
-  justify-content: center; /* Center the cards */
+  gap: 20px;
+  justify-content: center;
   width: 100%;
   margin-bottom: 20px;
 }
 
+/* Cards */
+.card1,
+.card2,
+.card3,
+.card4 {
+  border-radius: 12px;
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  padding: 20px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.card1::after,
+.card2::after,
+.card3::after,
+.card4::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #03a9f4, #f441a5);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.4s ease;
+}
+
+.card1:hover::after,
+.card2:hover::after,
+.card3:hover::after,
+.card4:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.card1:hover,
+.card2:hover,
+.card3:hover,
+.card4:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(3, 169, 244, 0.1),
+    0 0 0 1px rgba(244, 65, 165, 0.1);
+}
+
 .card1,
 .card4 {
-  background-color: #141414;
-  border-radius: 12px;
-  border: 1px solid #f0f0f054;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px 0 20px 20px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  opacity: 0; /* Initial hidden state */
+  flex: 1;
 }
 
 .card2,
 .card3 {
-  background-color: #141414;
-  border-radius: 12px;
-  border: 1px solid #f0f0f054;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  opacity: 0; /* Initial hidden state */
-  overflow: hidden;
-}
-
-/* Animations for the cards with delays */
-.card1 {
-  flex: 1;
-  animation: slideInLeft 1s ease-out forwards;
-  animation-delay: 0.2s;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.textWrapper {
-  padding-right: 20px;
-}
-
-.card2 {
   flex: 2;
-  animation: slideInRight 1s ease-out forwards;
-  animation-delay: 0.4s;
-  padding: 20px;
-  /* Radial Gradient Background */
-  background-image: radial-gradient(
-    ellipse farthest-side at right top,
-    hsl(193, 95%, 68%) 0%,
-    hsla(0, 0%, 0%, 0) 70%
-  );
-  background-size: 200% 200%;
-  transition: transform 0.3s, background-position 2s;
 }
 
-.card2:hover {
-  background-position: 70% 50%;
-}
-
-.card3 {
-  flex: 2;
-  animation: slideInLeft 1s ease-out forwards;
-  animation-delay: 0.6s;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card4 {
-  flex: 1;
-  animation: slideInRight 1s ease-out forwards;
-  animation-delay: 0.8s;
-}
-
-/* Existing styles for card1Card */
-.card1Card {
-  background: rgb(27, 27, 31);
-  background: linear-gradient(175deg, rgba(27, 27, 31, 1) 61%, #13b351 120%);
-  border-radius: 12px 0 0 12px;
-  border-left: 1px solid #13b351;
-  border-bottom: 1px solid #13b351;
-  border-top: 1px solid #13b351;
-  padding: 20px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card1Card p {
-  color: #13b351;
-}
-
+/* Inner cards */
+.card1Card,
 .card2Card {
-  transition: transform 0.3s, box-shadow 0.3s, background-position 0.5s;
+  background: rgba(31, 31, 35, 0.9);
+  border-radius: 8px;
+  padding: 20px;
   position: relative;
+  z-index: 1;
+  border: 1px solid rgba(3, 169, 244, 0.2);
+  transition: all 0.3s ease;
 }
 
-.card2Card2 {
-  width: 250px;
-  height: 250px;
-  background: #222222;
-  box-shadow: 0 4px 6px #0000001a;
-  border-radius: 12px;
-  position: absolute;
-  right: -100px;
-  top: -50px;
-  padding: 20px 20px 0 20px;
-  border: 2px solid #404040;
+.card1Card:hover,
+.card2Card:hover {
+  border-color: rgba(244, 65, 165, 0.3);
+  background: rgba(31, 31, 35, 0.95);
 }
 
-.card2Card p {
-  color: #13b351;
-}
-
-.dividerWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  gap: 10px;
-}
-
-.divider1 {
-  height: 10px;
-  width: 170px;
-  border-radius: 3px;
-  /* opacity: 0.6; */
-  background: #61dafb;
-}
-
-.dividerCard2 {
-  height: 100px;
-  width: 170px;
-  border-radius: 3px;
-  background: #61dafb;
-  box-shadow: #61dafb 0px 0px 10px;
-  margin-left: 20px;
-}
-
-.divider2Card2 {
-  height: 10px;
-  width: 70px;
-  margin-left: 100px;
-  margin-top: 10px;
-  border-radius: 3px;
-  background: #c063ed;
-  box-shadow: #c063ed 0px 0px 10px;
-}
-
-.divider1Card2 {
-  height: 10px;
-  width: 170px;
-  margin-left: 50px;
-  margin-top: 10px;
-  border-radius: 3px;
-  background: #61dafb;
-  box-shadow: #61dafb 0px 0px 10px;
-}
-
-.dividerCard2Container {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-.divider3Card2 {
-  width: 70px;
-  height: 50px;
-  border-radius: 3px;
-  background: #1b1b1f;
-  background: linear-gradient(
-    0deg,
-    rgba(27, 27, 31, 0) 0%,
-    rgba(62, 62, 62, 1) 100%
-  );
-}
-
-.divider2 {
-  height: 10px;
-  width: 230px;
-  border-radius: 20px;
-  opacity: 0.6;
-  background: #404040;
-}
-
-.title {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: -0.4px;
-}
-
-.text {
-  color: #a3a3a3;
-}
-
-.iconsContainer {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
+/* Icons */
+.iconContainer {
+  position: relative;
+  display: inline-block;
 }
 
 .iconGroup {
   display: flex;
-  gap: 10px; /* Added 'px' for proper spacing */
-  margin: 10px;
+  gap: 15px;
+  margin: 15px 0;
 }
 
 .iconGroup2 {
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .icon {
   width: 25px;
   height: 25px;
-  transition: transform 0.3s, color 0.3s;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .icon:hover {
-  transform: scale(1.1);
+  transform: translateY(-3px);
+  filter: drop-shadow(0 0 8px currentColor);
 }
 
-/* Icon Colors for Full-Stack Development */
+/* Tooltips */
+.tooltip {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: white;
+  white-space: nowrap;
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+
+.tooltipArrow {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(20, 20, 20, 0.9) transparent transparent transparent;
+}
+
+.iconContainer:hover .tooltip {
+  transform: translateX(-50%) scale(1);
+}
+
+/* Text styles */
+.cardLabel {
+  font-size: 1.2rem;
+  color: #03a9f4;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.cardFooter {
+  color: #03a9f4;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: white;
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+.text {
+  color: #a3a3a3;
+  line-height: 1.6;
+}
+
+/* Progress line */
+.progressLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #03a9f4, #f441a5);
+  width: 0;
+  transition: width 0.6s ease-out;
+}
+
+.card2:hover .progressLine {
+  width: 100%;
+}
+
+/* Particles */
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background: linear-gradient(90deg, #03a9f4, #f441a5);
+  border-radius: 50%;
+  width: var(--size);
+  height: var(--size);
+  animation: float 4s ease-in-out infinite;
+  animation-delay: var(--delay);
+  opacity: 0.2;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.4;
+  }
+}
+
+/* Dividers */
+.dividerWrapper {
+  margin: 15px 0;
+}
+
+.divider1 {
+  height: 3px;
+  width: 60%;
+  background: #03a9f4;
+  margin-bottom: 8px;
+  border-radius: 2px;
+}
+
+.divider2 {
+  height: 3px;
+  width: 40%;
+  background: rgba(244, 65, 165, 0.3);
+  border-radius: 2px;
+}
+
+/* Security icon */
+.securityIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(3, 169, 244, 0.5));
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 15px rgba(244, 65, 165, 0.5));
+  }
+}
+
+/* Icon colors */
 .html5 {
   color: #e34c26;
 }
-
 .css3 {
   color: #264de4;
 }
-
 .react {
   color: #61dafb;
 }
-
 .nextjs {
-  color: #000000; /* Next.js official color is black */
+  color: #ffffff;
 }
-
-.reactnative {
-  color: #61dafb; /* Same as React */
-}
-
 .nodejs {
   color: #68a063;
 }
-
-.database {
-  color: #f0db4f;
-}
-
 .mongodb {
-  color: #4db33d; /* MongoDB official green */
+  color: #4db33d;
 }
-
-.python {
-  color: #306998; /* Python official blue */
-}
-
-/* Styles for DevOps & Infrastructure Card */
-
-/* Icon Colors for DevOps & Infrastructure */
 .docker {
-  color: #0db7ed; /* Docker blue */
+  color: #0db7ed;
 }
-
 .kubernetes {
-  color: #326ce5; /* Kubernetes blue */
+  color: #326ce5;
 }
-
-.jenkins {
-  color: #d24939; /* Jenkins red */
-}
-
-.githubactions {
-  color: #2088ff; /* GitHub Actions blue */
-}
-
 .aws {
-  color: #ff9900; /* AWS orange */
+  color: #ff9900;
 }
-
-.azure {
-  color: #007fff; /* Azure blue */
-}
-
-.ansible {
-  color: #ee0000; /* Ansible red */
-}
-
 .terraform {
-  color: #623ce4; /* Terraform purple */
+  color: #623ce4;
 }
-
 .prometheus {
-  color: #e6522c; /* Prometheus red */
+  color: #e6522c;
 }
-
 .grafana {
-  color: #f46800; /* Grafana orange */
+  color: #f46800;
 }
 
-/* New Styles for SecureScan™ */
-.card3 {
-  flex: 2;
-  animation: slideInLeft 1s ease-out forwards;
-  animation-delay: 0.6s;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: #141414;
-  border-radius: 12px;
-  border: 1px solid #f0f0f054;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px 0 20px 20px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  opacity: 0; /* Initial hidden state */
+/* Fade in animation for icons */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.securityIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0;
+.iconGroup .icon {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
 }
 
-/* Ensure textWrapper has appropriate padding */
-.textWrapper {
-  padding: 20px;
+.iconGroup .icon:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.iconGroup .icon:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.iconGroup .icon:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.iconGroup .icon:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.iconGroup .icon:nth-child(5) {
+  animation-delay: 0.5s;
 }
 
-/* Optional: Add hover effects or additional styles for card3 if needed */
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .featureSection {
+    width: 90%;
+  }
+
+  .featureGrid {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .featureSection {
+    width: 95%;
+    padding: 40px 10px;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .card1,
+  .card2,
+  .card3,
+  .card4 {
+    flex: 100%;
+  }
+
+  .iconGroup {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .cardLabel {
+    font-size: 1rem;
+  }
+
+  .text {
+    font-size: 0.9rem;
+  }
+}

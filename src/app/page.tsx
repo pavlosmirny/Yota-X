@@ -13,10 +13,11 @@ export default function Home() {
       <Fon />
       <Hero />
       <SectionDivider />
-      {/* <Loader /> */}
       <FeatureSection />
+      {/* <Loader /> */}
       <AutoSlider />
       <FrameworkGrid />
+
       <PartnersSection />
     </div>
   );

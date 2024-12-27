@@ -1,11 +1,12 @@
 .container {
-  width: 120px;
-  height: 96px;
+  width: 150px;
+  height: 120px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   margin: 0 auto;
   position: relative;
+  z-index: 10;
 }
 
 .divider {
@@ -15,87 +16,244 @@
   height: 100%;
   padding: 10px;
   position: relative;
+  z-index: 11;
 }
 
 .line {
-  width: 3px;
+  width: 5px;
   height: 100%;
   position: relative;
-  transform-origin: top center;
+  z-index: 12;
+  transform-origin: bottom center;
 }
 
-.line:first-child {
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 0, 128, 0) 0%,
-    rgba(255, 0, 128, 0.8) 40%,
-    rgba(255, 0, 128, 0.8) 60%,
-    rgba(255, 0, 128, 0) 100%
-  );
-  box-shadow: 0 0 10px rgba(255, 0, 128, 0.5), 0 0 20px rgba(255, 0, 128, 0.3),
-    0 0 30px rgba(255, 0, 128, 0.2);
-  transform: rotate(-15deg);
+.lineContent {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: waveAnimation 3s ease-in-out infinite;
 }
 
-.line:last-child {
+.lineGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(8px);
+  opacity: 0.7;
+  animation: waveAnimation 3s ease-in-out infinite;
+}
+
+.leftLine {
+  transform: rotate(-20deg);
+}
+
+.leftLine .lineContent {
   background: linear-gradient(
-    to bottom,
-    rgba(0, 255, 255, 0) 0%,
-    rgba(0, 255, 255, 0.8) 40%,
-    rgba(0, 255, 255, 0.8) 60%,
-    rgba(0, 255, 255, 0) 100%
+    180deg,
+    rgba(3, 169, 244, 0) 0%,
+    #03a9f4 40%,
+    #03a9f4 60%,
+    rgba(3, 169, 244, 0) 100%
   );
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3),
-    0 0 30px rgba(0, 255, 255, 0.2);
-  transform: rotate(15deg);
+}
+
+.leftLine .lineGlow {
+  background: linear-gradient(
+    180deg,
+    rgba(3, 169, 244, 0) 0%,
+    #03a9f4 50%,
+    rgba(3, 169, 244, 0) 100%
+  );
+}
+
+.rightLine {
+  transform: rotate(20deg);
+}
+
+.rightLine .lineContent {
+  background: linear-gradient(
+    180deg,
+    rgba(244, 65, 165, 0) 0%,
+    #f441a5 40%,
+    #f441a5 60%,
+    rgba(244, 65, 165, 0) 100%
+  );
+}
+
+.rightLine .lineGlow {
+  background: linear-gradient(
+    180deg,
+    rgba(244, 65, 165, 0) 0%,
+    #f441a5 50%,
+    rgba(244, 65, 165, 0) 100%
+  );
 }
 
 .centerLine {
-  width: 3px;
+  width: 5px;
   height: 100%;
   background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 0, 0) 0%,
-    rgba(255, 255, 0, 0.8) 40%,
-    rgba(255, 255, 0, 0.8) 60%,
-    rgba(255, 255, 0, 0) 100%
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.8) 40%,
+    rgba(255, 255, 255, 0.8) 60%,
+    rgba(255, 255, 255, 0) 100%
   );
   position: relative;
-  overflow: visible;
-  box-shadow: 0 0 10px rgba(255, 255, 0, 0.5), 0 0 20px rgba(255, 255, 0, 0.3),
-    0 0 30px rgba(255, 255, 0, 0.2);
+  z-index: 13;
+  animation: pulseAnimation 2s ease-in-out infinite;
+}
+
+.centerGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  filter: blur(8px);
+  animation: pulseAnimation 2s ease-in-out infinite;
 }
 
 .spark {
   position: absolute;
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   background: white;
   border-radius: 50%;
   left: -1.5px;
-  filter: blur(1.5px);
+  filter: blur(2px);
   animation: sparkMove 2s ease-in-out infinite;
-  box-shadow: 0 0 6px white, 0 0 12px yellow, 0 0 18px rgba(255, 255, 0, 0.8),
-    0 0 24px rgba(255, 255, 0, 0.6);
+  box-shadow: 0 0 10px white, 0 0 20px rgba(3, 169, 244, 0.8),
+    0 0 30px rgba(244, 65, 165, 0.8);
+  z-index: 15;
+}
+
+/* Индикатор для указания на контент ниже */
+.indicator {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 14;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  border-right: 3px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+  transform: rotate(45deg);
+  animation: arrowBounce 2s ease-in-out infinite;
+}
+
+@keyframes waveAnimation {
+  0%,
+  100% {
+    transform: scaleY(1) translateX(0);
+  }
+  50% {
+    transform: scaleY(0.9) translateX(5px);
+  }
+}
+
+@keyframes pulseAnimation {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scaleX(1.2);
+    opacity: 1;
+  }
 }
 
 @keyframes sparkMove {
   0% {
     top: -8px;
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.8) translateX(0);
   }
   20% {
     opacity: 1;
-    transform: scale(1.2);
+    transform: scale(1.2) translateX(-4px);
+  }
+  40% {
+    transform: scale(1.2) translateX(4px);
+  }
+  60% {
+    transform: scale(1.2) translateX(-4px);
   }
   80% {
     opacity: 1;
-    transform: scale(1.2);
+    transform: scale(1.2) translateX(4px);
   }
   100% {
     top: 100%;
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.8) translateX(0);
+  }
+}
+
+@keyframes arrowBounce {
+  0%,
+  100% {
+    transform: rotate(45deg) translate(0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotate(45deg) translate(5px, 5px);
+    opacity: 1;
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .container {
+    width: 120px;
+    height: 100px;
+  }
+
+  .line {
+    width: 4px;
+  }
+
+  .centerLine {
+    width: 4px;
+  }
+
+  .spark {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 100px;
+    height: 80px;
+  }
+
+  .line {
+    width: 3px;
+  }
+
+  .centerLine {
+    width: 3px;
+  }
+
+  .spark {
+    width: 4px;
+    height: 4px;
   }
 }
