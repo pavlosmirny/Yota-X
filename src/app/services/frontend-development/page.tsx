@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: "YotaX",
     images: [
       {
-        url: "https://yotax.com/og-image-frontend.svg",
+        url: "https://yotax.com/Vector.png",
         width: 1200,
         height: 630,
       },
