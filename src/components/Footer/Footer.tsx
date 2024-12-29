@@ -39,7 +39,9 @@ const Footer = () => {
               <h4>Services</h4>
               <ul>
                 <li>
-                  <Link href="*">Web Development</Link>
+                  <Link href="/services/frontend-development">
+                    Web Development
+                  </Link>
                 </li>
                 <li>
                   <Link href="*">DevOps Solutions</Link>

@@ -1,44 +1,42 @@
 "use client";
 import React, { useState } from "react";
-import { FaCalendar, FaClock, FaArrowRight } from "react-icons/fa";
+import { FaRocket, FaArrowRight } from "react-icons/fa";
 import styles from "./CTASection.module.css";
 
-interface TimeSlot {
-  date: string;
-  time: string;
-  available: boolean;
-}
-
 const CTASection = () => {
-  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
 
-  // Имитация доступных слотов
-  const timeSlots: TimeSlot[] = [
-    { date: "2024-01-05", time: "10:00 AM", available: true },
-    { date: "2024-01-05", time: "2:00 PM", available: true },
-    { date: "2024-01-06", time: "11:00 AM", available: true },
-    { date: "2024-01-06", time: "4:00 PM", available: true },
-    { date: "2024-01-07", time: "1:00 PM", available: false },
-  ];
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Здесь будет логика отправки формы
-    console.log("Form submitted:", { ...formData, selectedSlot });
+    console.log("Form submitted:", formData);
   };
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-    });
-  };
+  const processSteps = [
+    {
+      number: "1",
+      title: "Initial Consultation",
+      description: "We discuss your project requirements and goals",
+    },
+    {
+      number: "2",
+      title: "Project Planning",
+      description: "Creating detailed roadmap and technical specification",
+    },
+    {
+      number: "3",
+      title: "Development",
+      description: "Agile development with regular updates",
+    },
+    {
+      number: "4",
+      title: "Launch",
+      description: "Testing, deployment and ongoing support",
+    },
+  ];
 
   return (
     <section className={styles.ctaSection}>
@@ -97,38 +95,20 @@ const CTASection = () => {
             </form>
           </div>
 
-          {/* Таймлайн */}
-          <div className={styles.timelineContainer}>
-            <h3 className={styles.timelineTitle}>
-              <FaCalendar className={styles.calendarIcon} />
-              Available Slots
+          {/* Процесс работы */}
+          <div className={styles.processContainer}>
+            <h3 className={styles.processTitle}>
+              <FaRocket className={styles.processIcon} />
+              How We Work
             </h3>
-            <div className={styles.timeline}>
-              {timeSlots.map((slot) => (
-                <div
-                  key={`${slot.date}-${slot.time}`}
-                  className={`${styles.timeSlot} ${
-                    selectedSlot === `${slot.date}-${slot.time}`
-                      ? styles.selected
-                      : ""
-                  } ${!slot.available ? styles.unavailable : ""}`}
-                  onClick={() => {
-                    if (slot.available) {
-                      setSelectedSlot(`${slot.date}-${slot.time}`);
-                    }
-                  }}
-                >
-                  <div className={styles.timeSlotContent}>
-                    <span className={styles.date}>{formatDate(slot.date)}</span>
-                    <span className={styles.time}>
-                      <FaClock className={styles.clockIcon} />
-                      {slot.time}
-                    </span>
-                    <span className={styles.status}>
-                      {slot.available ? "Available" : "Booked"}
-                    </span>
+            <div className={styles.processList}>
+              {processSteps.map((step, index) => (
+                <div key={index} className={styles.processStep}>
+                  <div className={styles.stepNumber}>{step.number}</div>
+                  <div className={styles.stepContent}>
+                    <h4>{step.title}</h4>
+                    <p>{step.description}</p>
                   </div>
-                  <div className={styles.timeSlotLine} />
                 </div>
               ))}
             </div>

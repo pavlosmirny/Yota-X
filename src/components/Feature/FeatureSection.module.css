@@ -1,106 +1,170 @@
+/* FeatureSection.module.css */
 .section {
   padding: 80px 24px;
   position: relative;
   overflow: hidden;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sectionHeader {
-  text-align: center;
-  margin-bottom: 60px;
-  position: relative;
-  z-index: 2;
+  background: rgba(12, 12, 13, 0.2);
 }
 
 .title {
+  text-align: center;
   font-size: 2.5rem;
-  color: #ffffff;
-  margin-bottom: 16px;
+  color: white;
+  margin-bottom: 60px;
   position: relative;
-  display: inline-block;
 }
 
 .title::after {
   content: "";
   position: absolute;
-  bottom: -8px;
+  bottom: -12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60%;
+  width: 120px;
   height: 2px;
   background: linear-gradient(90deg, #03a9f4, #f441a5);
 }
 
-.subtitle {
-  color: #a3a3a3;
-  font-size: 1.125rem;
-  max-width: 600px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+.card {
+  background: rgba(31, 31, 35, 0.8);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #03a9f4;
+}
+
+.cardContent {
+  padding: 24px;
   position: relative;
   z-index: 2;
 }
 
-/* Градиентное свечение на фоне */
-.section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at center,
-    rgba(3, 169, 244, 0.1) 0%,
-    rgba(244, 65, 165, 0.1) 30%,
-    transparent 70%
-  );
-  pointer-events: none;
+.cardTitle {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 12px;
 }
 
-/* Медиа запросы */
-@media (max-width: 1200px) {
-  .grid {
-    padding: 0 20px;
-  }
+.cardDescription {
+  color: #a3a3a3;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.techGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.iconWrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.iconWrapper:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.icon {
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.iconWrapper:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.featuresList {
+  margin-top: 24px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #a3a3a3;
+}
+
+.checkIcon {
+  color: #03a9f4;
+  font-size: 16px;
+}
+
+.chartContainer {
+  margin: 24px 0;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  padding: 16px;
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 60px 16px;
+    padding: 40px 16px;
   }
 
   .title {
     font-size: 2rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .grid {
-    gap: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 1.75rem;
+    margin-bottom: 40px;
   }
 
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

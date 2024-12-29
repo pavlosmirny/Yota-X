@@ -1,0 +1,34 @@
+/* AnimatedMetric.module.css */
+.metric {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.value {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #03a9f4;
+}
+
+.label {
+  font-size: 14px;
+  color: #a3a3a3;
+}
+
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: var(--progress);
+  background: var(--color, #03a9f4);
+  transition: width 0.3s ease;
+}
+
+.metric:hover .value {
+  transform: scale(1.1);
+}

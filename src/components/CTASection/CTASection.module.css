@@ -1,3 +1,4 @@
+/* CTASection.module.css */
 .ctaSection {
   position: relative;
   width: 100%;
@@ -116,8 +117,8 @@
   transform: translateX(5px);
 }
 
-/* Таймлайн */
-.timelineContainer {
+/* Процесс */
+.processContainer {
   background: rgba(31, 31, 35, 0.9);
   border-radius: 12px;
   padding: 30px;
@@ -125,7 +126,7 @@
   backdrop-filter: blur(10px);
 }
 
-.timelineTitle {
+.processTitle {
   color: white;
   font-size: 1.5rem;
   margin-bottom: 20px;
@@ -134,84 +135,73 @@
   gap: 10px;
 }
 
-.calendarIcon {
+.processIcon {
   color: #03a9f4;
 }
 
-.timeline {
+.processList {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
-.timeSlot {
+.processStep {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  padding: 15px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
-  padding: 15px;
-  cursor: pointer;
   transition: all 0.3s ease;
+  cursor: pointer;
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
 }
 
-.timeSlot:not(.unavailable):hover {
-  background: rgba(3, 169, 244, 0.1);
-  border-color: #03a9f4;
-}
-
-.timeSlotContent {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.date {
-  color: white;
-  font-weight: 500;
-}
-
-.time {
-  color: #a3a3a3;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.clockIcon {
-  font-size: 0.9rem;
-  color: #03a9f4;
-}
-
-.status {
-  color: #03a9f4;
-  font-size: 0.9rem;
-}
-
-.unavailable {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.unavailable .status {
-  color: #f44336;
-}
-
-.selected {
-  border-color: #f441a5;
-  background: rgba(244, 65, 165, 0.1);
-}
-
-.timeSlotLine {
+.processStep::after {
+  content: "";
   position: absolute;
-  bottom: -16px;
-  left: 20px;
-  width: 2px;
-  height: 16px;
-  background: rgba(255, 255, 255, 0.1);
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(3, 169, 244, 0.1),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
 }
 
-.timeSlot:last-child .timeSlotLine {
-  display: none;
+.processStep:hover::after {
+  transform: translateX(100%);
+}
+
+.processStep:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(10px);
+}
+
+.stepNumber {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #03a9f4, #f441a5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  flex-shrink: 0;
+}
+
+.stepContent h4 {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.stepContent p {
+  color: #a3a3a3;
+  font-size: 0.9rem;
 }
 
 /* Адаптивность */
@@ -233,6 +223,15 @@
   .subtitle {
     font-size: 1rem;
   }
+
+  .processContainer,
+  .formContainer {
+    padding: 20px;
+  }
+
+  .processStep {
+    padding: 10px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -244,9 +243,9 @@
     font-size: 1.75rem;
   }
 
-  .timeSlotContent {
+  .processStep {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+    align-items: center;
+    text-align: center;
   }
 }

@@ -1,0 +1,260 @@
+.hero {
+  min-height: 100vh;
+  width: 100%;
+  padding: 80px 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: rgba(12, 12, 13, 0.2);
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Текстовый контент */
+.textContent {
+  padding-right: 40px;
+}
+
+.title {
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.gradient {
+  display: block;
+  background: linear-gradient(135deg, #03a9f4, #f441a5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #a3a3a3;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+/* Технологии */
+.techStack {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.techIcon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.techIcon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Метрики */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.metric {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.metricValue {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.metricLabel {
+  font-size: 14px;
+  color: #a3a3a3;
+}
+
+/* Визуальный контент */
+.visualContent {
+  position: relative;
+}
+
+.codeContainer {
+  background: #1e1e1e;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.codeBlock {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #d4d4d4;
+  white-space: pre;
+}
+
+.codeLine {
+  color: #d4d4d4;
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* Подсветка ключевых слов */
+.codeLine {
+  color: #d4d4d4;
+}
+
+.codeLine:nth-child(1),
+.codeLine:nth-child(5) {
+  color: #569cd6; /* interface, const */
+}
+
+/* Добавим дополнительные стили для лучшей видимости */
+.codeContainer {
+  position: relative;
+  border: 1px solid rgba(3, 169, 244, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.codeContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px 16px 0 0;
+}
+
+.codeContainer::after {
+  content: "●●●";
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 2px;
+}
+
+/* Особенности */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.feature {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.feature:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.feature svg {
+  font-size: 24px;
+  color: #03a9f4;
+}
+
+/* Фоновые эффекты */
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(3, 169, 244, 0.1) 0%,
+    rgba(244, 65, 165, 0.1) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .content {
+    gap: 40px;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .textContent {
+    padding-right: 0;
+  }
+
+  .techStack {
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 60px 16px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
