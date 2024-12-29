@@ -1,0 +1,400 @@
+.workflowSection {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, #03a9f4, #f441a5);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Step styles */
+.step {
+  background: rgba(31, 31, 35, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 25px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.step:hover {
+  background: rgba(31, 31, 35, 0.95);
+  transform: translateX(10px);
+}
+
+.step.active {
+  border-color: rgba(3, 169, 244, 0.3);
+  background: rgba(31, 31, 35, 0.98);
+}
+
+.stepHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.expandIcon {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.rotated {
+  transform: rotate(180deg);
+  color: #03a9f4;
+}
+
+.stepIcon {
+  width: 50px;
+  height: 50px;
+  background: rgba(3, 169, 244, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #03a9f4;
+  margin-right: 20px;
+  transition: all 0.3s ease;
+}
+
+.step:hover .stepIcon {
+  transform: scale(1.1);
+}
+
+.stepContent {
+  flex: 1;
+}
+
+.stepTitle {
+  font-size: 1.5rem;
+  color: white;
+  margin: 0;
+}
+
+.stepDescription {
+  color: #a3a3a3;
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+/* Details section */
+.stepDetails {
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.detailsContent {
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.technology {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideIn 0.5s ease forwards;
+}
+
+.techIcon {
+  font-size: 20px;
+  color: #03a9f4;
+}
+
+.techName {
+  color: white;
+  font-size: 0.9rem;
+}
+
+.detailsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.detailsList li {
+  color: #a3a3a3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideIn 0.5s ease forwards;
+}
+
+.detailsList li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(45deg, #03a9f4, #f441a5);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Decorative elements */
+.decorativeLine {
+  position: absolute;
+  left: 50px;
+  top: 200px;
+  bottom: 100px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(3, 169, 244, 0.3),
+    rgba(244, 65, 165, 0.3),
+    transparent
+  );
+  z-index: 1;
+}
+
+.glowEffect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(3, 169, 244, 0.1) 0%,
+    rgba(244, 65, 165, 0.1) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .workflowSection {
+    padding: 60px 15px;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  .step {
+    padding: 20px;
+  }
+
+  .stepTitle {
+    font-size: 1.25rem;
+  }
+
+  .decorativeLine {
+    display: none;
+  }
+
+  .detailsList {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .technologies {
+    gap: 8px;
+  }
+
+  .technology {
+    padding: 6px 10px;
+  }
+
+  .techIcon {
+    font-size: 16px;
+  }
+
+  .techName {
+    font-size: 0.8rem;
+  }
+
+  .stepDescription {
+    font-size: 0.9rem;
+  }
+
+  .step:hover {
+    transform: translateX(5px);
+  }
+
+  .stepIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .detailsList li {
+    font-size: 0.9rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Additional hover effects */
+.step:hover .stepIcon {
+  background: rgba(3, 169, 244, 0.2);
+  transform: scale(1.1) rotate(5deg);
+}
+
+.step.active .stepIcon {
+  background: linear-gradient(
+    135deg,
+    rgba(3, 169, 244, 0.2),
+    rgba(244, 65, 165, 0.2)
+  );
+  transform: scale(1.1);
+}
+
+.technology:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.technology:hover .techIcon {
+  transform: scale(1.1);
+}
+
+/* Focus states for accessibility */
+.step:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(3, 169, 244, 0.5);
+}
+
+.step:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
+/* Enhanced transitions */
+.step {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stepDetails {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.technology {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Print styles */
+@media print {
+  .workflowSection {
+    padding: 20px;
+  }
+
+  .step {
+    break-inside: avoid;
+    border: 1px solid #ccc;
+  }
+
+  .glowEffect,
+  .decorativeLine {
+    display: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .step {
+    border: 2px solid white;
+  }
+
+  .technology {
+    border: 1px solid white;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .step,
+  .stepDetails,
+  .technology,
+  .stepIcon {
+    transition: none;
+  }
+
+  .step:hover {
+    transform: none;
+  }
+
+  .technology:hover {
+    transform: none;
+  }
+}

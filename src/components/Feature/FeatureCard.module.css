@@ -1,39 +1,160 @@
-/* components/FeatureCard.module.css */
-
-.featureCard {
-  /* Базовые стили для карточки */
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  transition: transform 0.3s, box-shadow 0.3s;
+.card {
+  background: rgba(20, 20, 20, 0.6);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-.featureCard.active {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+.cardContent {
+  position: relative;
+  z-index: 2;
 }
 
-.visualization {
-  /* Стили для визуализации */
-  margin-bottom: 20px;
+/* Размеры карточек */
+.normal {
+  min-height: 320px;
 }
 
-.meta {
-  /* Стили для метаданных */
+.large {
+  min-height: 400px;
+  grid-column: span 2;
 }
 
-.centerMeta {
-  text-align: center;
+/* Эффекты карточки */
+.cardGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(3, 169, 244, 0.1),
+    rgba(244, 65, 165, 0.1),
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
-.metaTitle {
+.card:hover .cardGlow {
+  opacity: 1;
+}
+
+.cardBorder {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(3, 169, 244, 0.3),
+    rgba(244, 65, 165, 0.3),
+    transparent
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+/* Контент */
+.category {
+  font-size: 0.875rem;
+  color: #03a9f4;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.title {
   font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 10px;
+  color: #ffffff;
+  margin-bottom: 16px;
+  font-weight: 600;
 }
 
-.metaDescription {
-  font-size: 1rem;
-  color: #555;
+.description {
+  color: #a3a3a3;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+/* Сетка технологий */
+.techGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.techIcon {
+  position: relative;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.techIcon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.techTooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+}
+
+.techTooltip.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+.footer {
+  color: #03a9f4;
+  font-size: 0.875rem;
+  margin-top: auto;
+}
+
+/* Медиа запросы */
+@media (max-width: 1024px) {
+  .large {
+    grid-column: auto;
+  }
+
+  .card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
+  }
 }
