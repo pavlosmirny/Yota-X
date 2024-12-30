@@ -1,0 +1,286 @@
+.section {
+  min-height: 100vh;
+  width: 100%;
+  padding: 120px 24px 80px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(12, 12, 13, 0.2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  color: #a3a3a3;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.contactMethods {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.contactCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.contactCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+}
+
+.cardIcon {
+  width: 60px;
+  height: 60px;
+  background: rgba(50, 108, 229, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #326ce5;
+  font-size: 28px;
+  margin: 0 auto 24px;
+}
+
+.contactCard h2 {
+  color: white;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.contactCard p {
+  color: #a3a3a3;
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+.email {
+  color: #326ce5;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.actionButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(50, 108, 229, 0.3);
+}
+
+.locationsSection {
+  text-align: center;
+}
+
+.locationsSection h2 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.locationsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.locationCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.locationCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+}
+
+.locationIcon {
+  font-size: 24px;
+  color: #326ce5;
+  margin-bottom: 16px;
+}
+
+.locationCard h3 {
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.locationCard p {
+  color: #a3a3a3;
+  margin-bottom: 20px;
+}
+
+.locationContact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #a3a3a3;
+  font-size: 0.9rem;
+}
+
+.locationContact div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mapSection {
+  width: 100%;
+  height: 400px;
+}
+
+.mapPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a3a3a3;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 108, 229, 0.05) 0%,
+    rgba(123, 66, 188, 0.05) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .contactMethods {
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 100px 20px 60px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .contactMethods {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .locationsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .mapSection {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 80px 16px 40px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .contactCard,
+  .locationCard {
+    padding: 20px;
+  }
+
+  .cardIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .actionButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .mapSection {
+    height: 250px;
+  }
+}

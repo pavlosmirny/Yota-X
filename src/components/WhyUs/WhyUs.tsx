@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FaRocket, FaCheckCircle, FaChartLine } from "react-icons/fa";
 import styles from "./WhyUs.module.css";
 

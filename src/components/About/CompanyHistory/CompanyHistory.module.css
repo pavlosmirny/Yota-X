@@ -1,0 +1,247 @@
+.section {
+  padding: 100px 24px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(12, 12, 13, 0.2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  color: #a3a3a3;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.timelineContainer {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+}
+
+.timelineItem {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.timelineItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(5px);
+}
+
+.timelineItem.active {
+  background: rgba(50, 108, 229, 0.1);
+  border-color: rgba(50, 108, 229, 0.3);
+}
+
+.timelineIcon {
+  width: 48px;
+  height: 48px;
+  background: rgba(50, 108, 229, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #326ce5;
+  font-size: 24px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.iconGlow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 108, 229, 0.2),
+    transparent 70%
+  );
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.timelineItem:hover .iconGlow {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.timelineContent {
+  position: relative;
+}
+
+.year {
+  color: #326ce5;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.timelineContent h3 {
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.timelineContent p {
+  color: #a3a3a3;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.achievementsList {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.achievement {
+  color: #d4d4d4;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.achievement::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  border-radius: 50%;
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 108, 229, 0.05) 0%,
+    rgba(123, 66, 188, 0.05) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .timeline {
+    gap: 24px;
+  }
+
+  .timelineItem {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 20px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+
+  .timeline {
+    gap: 20px;
+  }
+
+  .timelineIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .year {
+    font-size: 1.1rem;
+  }
+
+  .timelineContent h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 40px 16px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .timelineItem {
+    padding: 16px;
+  }
+
+  .timelineContent p {
+    font-size: 0.9rem;
+  }
+
+  .achievement {
+    font-size: 0.85rem;
+    padding-left: 16px;
+  }
+
+  .achievement::before {
+    width: 4px;
+    height: 4px;
+  }
+}

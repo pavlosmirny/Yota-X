@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./PartnersSection.module.css";
 
 const PartnersSection: React.FC = () => {

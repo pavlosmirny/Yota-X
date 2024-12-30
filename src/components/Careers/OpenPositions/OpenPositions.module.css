@@ -1,0 +1,346 @@
+.section {
+  padding: 100px 24px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(12, 12, 13, 0.2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  color: #a3a3a3;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.departmentFilter {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.filterButton {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 24px;
+  border-radius: 30px;
+  color: #a3a3a3;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterButton:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.filterButton.active {
+  background: rgba(50, 108, 229, 0.1);
+  border-color: rgba(50, 108, 229, 0.3);
+  color: #326ce5;
+}
+
+.buttonIcon {
+  font-size: 16px;
+}
+
+.positionsGrid {
+  display: grid;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.positionCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.positionCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(50, 108, 229, 0.3);
+  transform: translateY(-2px);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cardHeader h3 {
+  color: white;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.tags {
+  display: flex;
+  gap: 12px;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #a3a3a3;
+  font-size: 0.9rem;
+}
+
+.tag svg {
+  font-size: 14px;
+  color: #326ce5;
+}
+
+.cardDetails {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+  padding-top: 20px;
+  overflow: hidden;
+}
+
+.description {
+  color: #a3a3a3;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.requirements {
+  margin-bottom: 24px;
+}
+
+.requirements h4 {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+}
+
+.requirements ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.requirements li {
+  color: #a3a3a3;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  padding-left: 24px;
+  position: relative;
+}
+
+.requirements li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  border-radius: 50%;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.experience {
+  color: #a3a3a3;
+  font-size: 0.9rem;
+}
+
+.applyButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.applyButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(50, 108, 229, 0.3);
+}
+
+.noPositions {
+  text-align: center;
+  padding: 40px;
+  color: #a3a3a3;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 108, 229, 0.05) 0%,
+    rgba(123, 66, 188, 0.05) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .filterButton {
+    padding: 10px 20px;
+  }
+
+  .positionCard {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 20px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .departmentFilter {
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .filterButton {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cardHeader h3 {
+    font-size: 1.1rem;
+  }
+
+  .cardFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .applyButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 40px 16px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .departmentFilter {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .filterButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .positionCard {
+    padding: 16px;
+  }
+
+  .tags {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .requirements li {
+    font-size: 0.9rem;
+    padding-left: 20px;
+  }
+
+  .requirements li::before {
+    width: 4px;
+    height: 4px;
+  }
+
+  .experience {
+    font-size: 0.85rem;
+  }
+
+  .applyButton {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+}

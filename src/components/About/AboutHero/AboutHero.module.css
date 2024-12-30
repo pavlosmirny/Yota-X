@@ -1,0 +1,283 @@
+.section {
+  min-height: 100vh;
+  width: 100%;
+  padding: 120px 24px 80px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(12, 12, 13, 0.2);
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.textContent {
+  padding-right: 40px;
+}
+
+.title {
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #a3a3a3;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.achievementsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.achievementBox {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.achievementBox:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+}
+
+.achievementIcon {
+  font-size: 24px;
+  color: #326ce5;
+  margin-bottom: 16px;
+}
+
+.achievementValue {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.achievementLabel {
+  color: #a3a3a3;
+  font-size: 0.9rem;
+}
+
+.visualContent {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.expertiseCards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.expertiseCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.expertiseCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(5px);
+}
+
+.expertiseCard h3 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.expertiseCard p {
+  color: #a3a3a3;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.expertiseIcon {
+  width: 48px;
+  height: 48px;
+  background: rgba(50, 108, 229, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #326ce5;
+  font-size: 24px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.iconGlow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 108, 229, 0.2),
+    transparent 70%
+  );
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.expertiseCard:hover .iconGlow {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.valueProposition {
+  margin-top: 20px;
+}
+
+.valueCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.valueCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(50, 108, 229, 0.3);
+}
+
+.valueCard h3 {
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.valueCard p {
+  color: #a3a3a3;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 108, 229, 0.05) 0%,
+    rgba(123, 66, 188, 0.05) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    gap: 40px;
+  }
+
+  .textContent {
+    padding-right: 0;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 100px 20px 60px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .achievementsGrid {
+    max-width: 400px;
+    margin: 40px auto 0;
+  }
+
+  .expertiseCards {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .valueCard {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 80px 16px 40px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .achievementsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .achievementBox {
+    padding: 20px;
+  }
+
+  .achievementValue {
+    font-size: 1.8rem;
+  }
+
+  .expertiseCard {
+    padding: 20px;
+  }
+
+  .valueCard {
+    padding: 20px;
+  }
+}

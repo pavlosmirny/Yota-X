@@ -1,6 +1,6 @@
 // TechnologiesSection.tsx
 "use client";
-import React from "react";
+
 import { motion } from "framer-motion";
 import { FaReact, FaCode } from "react-icons/fa";
 import { SiNextdotjs, SiTypescript } from "react-icons/si";

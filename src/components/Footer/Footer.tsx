@@ -46,25 +46,17 @@ const Footer = () => {
                 <li>
                   <Link href="/services/devops-services">DevOps Solutions</Link>
                 </li>
-                <li>
-                  <Link href="*">Cloud Services</Link>
-                </li>
-                <li>
-                  <Link href="*">Consulting</Link>
-                </li>
               </ul>
             </div>
             <div className={styles.navColumn}>
               <h4>Company</h4>
               <ul>
                 <li>
-                  <Link href="*">About Us</Link>
+                  <Link href="/about">About Us</Link>
                 </li>
+
                 <li>
-                  <Link href="*">Portfolio</Link>
-                </li>
-                <li>
-                  <Link href="*">Careers</Link>
+                  <Link href="/careers">Careers</Link>
                 </li>
                 <li>
                   <Link href="*">Blog</Link>

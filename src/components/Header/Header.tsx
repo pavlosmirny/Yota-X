@@ -48,15 +48,25 @@ const Header = () => {
     setIsServicesOpen(!isServicesOpen);
   };
 
+  // Функция для закрытия мобильного меню
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setIsServicesOpen(false);
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <Link href="/">YotaX</Link>
+        <Link href="/" onClick={closeMobileMenu}>
+          YotaX
+        </Link>
       </div>
       <nav className={`${styles.nav} ${isMobileMenuOpen ? styles.active : ""}`}>
         <ul>
           <li>
-            <Link href="*">About</Link>
+            <Link href="/about" onClick={closeMobileMenu}>
+              About
+            </Link>
           </li>
           <li className={styles.servicesItem}>
             <a
@@ -81,6 +91,7 @@ const Header = () => {
                   key={service.href}
                   href={service.href}
                   className={styles.serviceLink}
+                  onClick={closeMobileMenu}
                 >
                   <span className={styles.serviceName}>{service.label}</span>
                   <span className={styles.serviceDesc}>
@@ -91,10 +102,14 @@ const Header = () => {
             </div>
           </li>
           <li>
-            <Link href="*">Careers</Link>
+            <Link href="/careers" onClick={closeMobileMenu}>
+              Careers
+            </Link>
           </li>
           <li>
-            <Link href="*">Contacts</Link>
+            <Link href="/contacts" onClick={closeMobileMenu}>
+              Contacts
+            </Link>
           </li>
         </ul>
         <div className={styles.mobileIcons}>
@@ -108,6 +123,7 @@ const Header = () => {
               }}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={closeMobileMenu}
             >
               <social.Icon size={24} />
             </a>

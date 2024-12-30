@@ -1,0 +1,323 @@
+.section {
+  padding: 100px 24px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(12, 12, 13, 0.2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  color: #a3a3a3;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.valuesSection,
+.teamSection,
+.cultureSection {
+  text-align: center;
+}
+
+.valuesSection h3,
+.teamSection h3,
+.cultureSection h3 {
+  color: white;
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.valueCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.valueCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+}
+
+.valueIcon {
+  width: 48px;
+  height: 48px;
+  background: rgba(50, 108, 229, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #326ce5;
+  font-size: 24px;
+  margin: 0 auto 16px;
+  position: relative;
+}
+
+.iconGlow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 108, 229, 0.2),
+    transparent 70%
+  );
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.valueCard:hover .iconGlow {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.valueCard h4 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.valueCard p {
+  color: #a3a3a3;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.teamCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.teamCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+  border-color: rgba(50, 108, 229, 0.3);
+}
+
+.teamIcon {
+  font-size: 32px;
+  color: #326ce5;
+  margin-bottom: 20px;
+}
+
+.roleCount {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.teamInfo h4 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.teamInfo p {
+  color: #a3a3a3;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.highlightCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.highlightCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(50, 108, 229, 0.3);
+}
+
+.highlightCard h4 {
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.highlightCard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.highlightCard li {
+  color: #a3a3a3;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  padding-left: 24px;
+  position: relative;
+}
+
+.highlightCard li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  border-radius: 50%;
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 108, 229, 0.05) 0%,
+    rgba(123, 66, 188, 0.05) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .content {
+    gap: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 20px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .teamGrid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .highlightsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .valuesSection h3,
+  .teamSection h3,
+  .cultureSection h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 40px 16px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .valueCard,
+  .teamCard,
+  .highlightCard {
+    padding: 20px;
+  }
+
+  .valueIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .roleCount {
+    font-size: 1.8rem;
+  }
+
+  .highlightCard li {
+    font-size: 0.9rem;
+    padding-left: 20px;
+  }
+
+  .highlightCard li::before {
+    width: 4px;
+    height: 4px;
+  }
+}
