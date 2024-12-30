@@ -2,6 +2,11 @@ import React from "react";
 import { Metadata } from "next";
 import FrontendHero from "../../../components/Frontend/FrontendHero/FrontendHero";
 import { Fon } from "../../../components/fon";
+import TechnologiesSection from "../../../components/Frontend/TechnologiesSection/TechnologiesSection";
+import ServicesSection from "../../../components/Frontend/ServicesSection/ServicesSection";
+import ProcessSection from "../../../components/Frontend/ProcessSection/ProcessSection";
+import FeaturesSection from "../../../components/Frontend/FeaturesSection/FeaturesSection";
+import CTASection from "../../../components/Frontend/CTASection/CTASection";
 
 export const metadata: Metadata = {
   title:
@@ -31,6 +36,11 @@ const page = () => {
     <div>
       <Fon />
       <FrontendHero />
+      <TechnologiesSection />
+      <ServicesSection />
+      <ProcessSection />
+      <FeaturesSection />
+      <CTASection />
     </div>
   );
 };

@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     },
   ],
   creator: "YotaX",
-  themeColor: "#ffffff",
   openGraph: {
     title: "YotaX | Web Application Development & DevOps Solutions",
     description:
@@ -54,12 +53,8 @@ export const metadata: Metadata = {
       "YotaX provides expert web application development and comprehensive DevOps solutions. Enhance your business with scalable, high-performance applications and streamlined operations.",
     images: ["https://yotax.com/twitter-image.jpg"],
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-  manifest: "/site.webmanifest",
+
+  // manifest: "/site.webmanifest",
   // Add additional metadata as needed
 };
 

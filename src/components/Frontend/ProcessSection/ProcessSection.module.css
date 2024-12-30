@@ -1,0 +1,223 @@
+.section {
+  padding: 100px 24px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(12, 12, 13, 0.2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.headerContent {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #03a9f4, #f441a5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sectionDescription {
+  color: #a3a3a3;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.processContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.processSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stepItem {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stepItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.stepItem.active {
+  background: rgba(3, 169, 244, 0.1);
+  border-color: rgba(3, 169, 244, 0.3);
+}
+
+.stepIcon {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  background: rgba(3, 169, 244, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #03a9f4;
+  flex-shrink: 0;
+}
+
+.connector {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, #03a9f4 30%, transparent);
+}
+
+.stepInfo {
+  flex-grow: 1;
+}
+
+.stepTitle {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.stepDescription {
+  color: #a3a3a3;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.stepDetails {
+  position: sticky;
+  top: 20px;
+}
+
+.detailsCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.detailsHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.detailsIcon {
+  width: 48px;
+  height: 48px;
+  background: rgba(3, 169, 244, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #03a9f4;
+}
+
+.detailsTitle {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.detailsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #d4d4d4;
+  margin-bottom: 16px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.checkIcon {
+  color: #03a9f4;
+  flex-shrink: 0;
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(3, 169, 244, 0.05) 0%,
+    rgba(244, 65, 165, 0.05) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .processContent {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .processContent {
+    grid-template-columns: 1fr;
+  }
+
+  .stepDetails {
+    position: relative;
+    top: 0;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 60px 16px;
+  }
+
+  .stepItem {
+    padding: 16px;
+  }
+
+  .detailsCard {
+    padding: 20px;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+}
