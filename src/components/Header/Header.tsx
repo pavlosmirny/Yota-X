@@ -9,6 +9,7 @@ import {
   FaGithub,
   FaTelegram,
   FaInstagram,
+  FaChevronDown,
 } from "react-icons/fa6";
 
 const socialLinks = [
@@ -20,11 +21,31 @@ const socialLinks = [
   { Icon: FaInstagram, href: "#", label: "Instagram" },
 ];
 
+const serviceLinks = [
+  {
+    href: "/services/frontend-development",
+    label: "Frontend Development",
+    description: "Modern web applications with React & Next.js",
+  },
+  {
+    href: "/services/devops-services",
+    label: "DevOps Services",
+    description: "Cloud infrastructure & automation solutions",
+  },
+];
+
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    if (isServicesOpen) setIsServicesOpen(false);
+  };
+
+  const toggleServices = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsServicesOpen(!isServicesOpen);
   };
 
   return (
@@ -37,8 +58,37 @@ const Header = () => {
           <li>
             <Link href="*">About</Link>
           </li>
-          <li>
-            <Link href="/services/frontend-development">Services</Link>
+          <li className={styles.servicesItem}>
+            <a
+              href="#"
+              onClick={toggleServices}
+              className={styles.servicesLink}
+            >
+              Services
+              <FaChevronDown
+                className={`${styles.chevron} ${
+                  isServicesOpen ? styles.rotate : ""
+                }`}
+              />
+            </a>
+            <div
+              className={`${styles.servicesDropdown} ${
+                isServicesOpen ? styles.show : ""
+              }`}
+            >
+              {serviceLinks.map((service) => (
+                <Link
+                  key={service.href}
+                  href={service.href}
+                  className={styles.serviceLink}
+                >
+                  <span className={styles.serviceName}>{service.label}</span>
+                  <span className={styles.serviceDesc}>
+                    {service.description}
+                  </span>
+                </Link>
+              ))}
+            </div>
           </li>
           <li>
             <Link href="*">Careers</Link>

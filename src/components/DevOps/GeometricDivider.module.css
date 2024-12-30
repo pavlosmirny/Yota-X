@@ -1,0 +1,81 @@
+.dividerWrapper {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.shapesContainer {
+  position: absolute;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.shape {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transform-origin: center;
+}
+
+.innerShape {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  animation: pulse 3s infinite ease-in-out;
+}
+
+.line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(50, 108, 229, 0.3) 20%,
+    rgba(123, 66, 188, 0.5) 50%,
+    rgba(50, 108, 229, 0.3) 80%,
+    transparent
+  );
+}
+
+.lineGlow {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: inherit;
+  filter: blur(2px);
+  transform: translateY(-50%);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@media (max-width: 768px) {
+  .dividerWrapper {
+    height: 60px;
+  }
+
+  .shapesContainer {
+    gap: 30px;
+  }
+
+  .shape {
+    width: 15px;
+    height: 15px;
+  }
+}

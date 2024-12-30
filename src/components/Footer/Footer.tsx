@@ -44,7 +44,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="*">DevOps Solutions</Link>
+                  <Link href="/services/devops-services">DevOps Solutions</Link>
                 </li>
                 <li>
                   <Link href="*">Cloud Services</Link>

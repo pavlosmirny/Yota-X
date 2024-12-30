@@ -21,7 +21,6 @@
   z-index: 2;
 }
 
-/* Текстовый контент */
 .textContent {
   padding-right: 40px;
 }
@@ -35,7 +34,7 @@
 
 .gradient {
   display: block;
-  background: linear-gradient(135deg, #03a9f4, #f441a5);
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -47,11 +46,11 @@
   line-height: 1.6;
 }
 
-/* Технологии */
 .techStack {
   display: flex;
   gap: 16px;
   margin-bottom: 40px;
+  flex-wrap: wrap;
 }
 
 .techIcon {
@@ -64,6 +63,7 @@
   justify-content: center;
   transition: all 0.3s ease;
   cursor: pointer;
+  backdrop-filter: blur(10px);
 }
 
 .techIcon:hover {
@@ -71,7 +71,6 @@
   transform: translateY(-2px);
 }
 
-/* Метрики */
 .metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -83,12 +82,8 @@
   padding: 16px;
   border-radius: 12px;
   text-align: center;
-  transition: all 0.3s ease;
-}
-
-.metric:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .metricValue {
@@ -102,12 +97,10 @@
   color: #a3a3a3;
 }
 
-/* Визуальный контент */
 .visualContent {
   position: relative;
 }
 
-/* Код */
 .codeContainer {
   background: #1e1e1e;
   border-radius: 16px;
@@ -115,8 +108,9 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   margin-bottom: 24px;
-  position: relative;
   overflow: hidden;
+  position: relative;
+  max-height: 380px; /* Ограничиваем высоту */
 }
 
 .codeBlock {
@@ -128,12 +122,39 @@
   word-break: break-word;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 16px;
 }
 
 .codeChar {
   opacity: 0;
   animation: fadeIn 0.1s forwards;
+  color: #abb2bf; /* Базовый цвет текста */
+}
+
+/* One Dark Pro цветовая схема */
+.comment {
+  color: #5c6370;
+  font-style: italic;
+}
+
+.keyword {
+  color: #c678dd;
+}
+
+.string {
+  color: #98c379;
+}
+
+.number {
+  color: #d19a66;
+}
+
+.operator {
+  color: #56b6c2;
+}
+
+/* Специальные слова Kubernetes */
+.kubernetesKey {
+  color: #61afef;
 }
 
 @keyframes fadeIn {
@@ -147,48 +168,10 @@
   }
 }
 
-/* Скроллбар для кода */
-.codeBlock::-webkit-scrollbar {
-  height: 6px;
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.codeBlock::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-}
-
-.codeBlock::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Декоративные элементы кода */
-.codeContainer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 30px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px 16px 0 0;
-}
-
-.codeContainer::after {
-  content: "●●●";
-  position: absolute;
-  top: 8px;
-  left: 12px;
-  color: rgba(255, 255, 255, 0.3);
-  letter-spacing: 2px;
-}
-
-/* Особенности */
 .features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-top: 24px;
 }
 
 .feature {
@@ -202,19 +185,20 @@
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .feature:hover {
   background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  border-color: rgba(50, 108, 229, 0.3);
 }
 
 .feature svg {
   font-size: 24px;
-  color: #03a9f4;
+  color: #326ce5;
 }
 
-/* Фоновые эффекты */
 .backgroundGlow {
   position: absolute;
   top: 50%;
@@ -224,15 +208,14 @@
   height: 100%;
   background: radial-gradient(
     circle at center,
-    rgba(3, 169, 244, 0.1) 0%,
-    rgba(244, 65, 165, 0.1) 50%,
+    rgba(50, 108, 229, 0.1) 0%,
+    rgba(123, 66, 188, 0.1) 50%,
     transparent 70%
   );
   pointer-events: none;
   z-index: 1;
 }
 
-/* Адаптивность */
 @media (max-width: 1024px) {
   .content {
     gap: 40px;
@@ -245,6 +228,19 @@
   .textContent {
     padding-right: 20px;
   }
+}
+
+.codeBlock {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #d4d4d4;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: 340px; /* Немного меньше, чем контейнер */
+  overflow-y: auto;
 }
 
 @media (max-width: 768px) {
@@ -273,6 +269,9 @@
 
   .description {
     font-size: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .techStack {
@@ -285,13 +284,12 @@
   }
 
   .codeContainer {
-    margin: 0 auto;
     max-width: 100%;
-    overflow-x: auto;
+    margin: 0 auto;
   }
 
   .features {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     max-width: 400px;
     margin: 24px auto 0;
   }
@@ -311,14 +309,12 @@
     gap: 12px;
   }
 
-  .techStack {
-    flex-wrap: wrap;
-    justify-content: center;
+  .features {
+    grid-template-columns: 1fr;
   }
 
   .codeContainer {
     padding: 16px;
-    border-radius: 12px;
   }
 
   .codeBlock {
@@ -328,54 +324,4 @@
   .feature {
     padding: 12px;
   }
-
-  .metricValue {
-    font-size: 20px;
-  }
-
-  .metricLabel {
-    font-size: 12px;
-  }
-}
-
-/* Дополнительные стили для анимации кода */
-.codeLine {
-  color: #d4d4d4;
-}
-
-.codeLine:nth-child(1),
-.codeLine:nth-child(5) {
-  color: #569cd6;
-}
-
-.codeComment {
-  color: #608b4e;
-}
-
-.codeString {
-  color: #ce9178;
-}
-
-.codeKeyword {
-  color: #569cd6;
-}
-
-.codePunctuation {
-  color: #d4d4d4;
-}
-
-.codeOperator {
-  color: #d4d4d4;
-}
-
-.codeFunction {
-  color: #dcdcaa;
-}
-
-.codeVariable {
-  color: #9cdcfe;
-}
-
-.codeType {
-  color: #4ec9b0;
 }
