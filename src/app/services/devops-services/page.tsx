@@ -4,6 +4,11 @@ import { NextPage } from "next";
 import DevOpsHero from "../../../components/DevOps/DevOpsHero/DevOpsHero";
 import { Fon } from "../../../components/fon";
 import DevOpsTechnologies from "../../../components/DevOps/DevOpsTechnologies/DevOpsTechnologies";
+import DevOpsServices from "../../../components/DevOps/DevOpsServices/DevOpsServices";
+import DevOpsProcess from "../../../components/DevOps/DevOpsProcess/DevOpsProcess";
+import DevOpsCases from "../../../components/DevOps/DevOpsCases/DevOpsCases";
+import DevOpsTestimonials from "../../../components/DevOps/DevOpsTestimonials/DevOpsTestimonials";
+import DevOpsContact from "../../../components/DevOps/DevOpsContact/DevOpsContact";
 
 // Импортируем остальные секции
 // import DevOpsTechnologies from '@/components/DevOps/DevOpsTechnologies';
@@ -105,10 +110,11 @@ const DevOpsPage: NextPage = () => {
       <Fon />
       <DevOpsHero />
       <DevOpsTechnologies />
-      {/* Добавляем остальные секции */}
-      {/* <DevOpsTechnologies /> */}
-      {/* <DevOpsServices /> */}
-      {/* и т.д. */}
+      <DevOpsServices />
+      <DevOpsProcess />
+      <DevOpsCases />
+      <DevOpsTestimonials />
+      <DevOpsContact />
     </main>
   );
 };

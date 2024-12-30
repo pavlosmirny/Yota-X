@@ -1,0 +1,379 @@
+.section {
+  padding: 100px 24px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(12, 12, 13, 0.2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  color: #a3a3a3;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 40px;
+}
+
+.formContainer {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.formGroup {
+  width: 100%;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #326ce5;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #a3a3a3;
+}
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23a3a3a3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.select option {
+  background: #1a1a1a;
+  color: white;
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(50, 108, 229, 0.3);
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.buttonIcon {
+  font-size: 0.9rem;
+}
+
+.successMessage {
+  text-align: center;
+  color: #4caf50;
+  padding: 12px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 12px;
+  margin-top: 16px;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.infoCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.infoCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.infoCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+  border-color: rgba(50, 108, 229, 0.3);
+}
+
+.infoIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(50, 108, 229, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #326ce5;
+  font-size: 20px;
+}
+
+.infoContent {
+  flex: 1;
+}
+
+.infoContent h3 {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.infoContent p {
+  color: #a3a3a3;
+  font-size: 0.9rem;
+}
+
+.socialLinks {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.socialLinks h3 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 16px;
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(50, 108, 229, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #326ce5;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.socialIcon:hover {
+  background: rgba(50, 108, 229, 0.2);
+  transform: translateY(-5px);
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 108, 229, 0.05) 0%,
+    rgba(123, 66, 188, 0.05) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    gap: 30px;
+  }
+
+  .formContainer {
+    padding: 30px;
+  }
+
+  .formGrid {
+    gap: 20px;
+  }
+
+  .infoCards {
+    gap: 16px;
+  }
+
+  .infoCard {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 20px;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .infoCards {
+    grid-template-columns: 1fr;
+  }
+
+  .socialLinks {
+    text-align: center;
+  }
+
+  .socialIcons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 40px 16px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .formContainer {
+    padding: 20px;
+  }
+
+  .input,
+  .select,
+  .textarea {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+
+  .submitButton {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+
+  .infoCard {
+    padding: 16px;
+  }
+
+  .infoIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .infoContent h3 {
+    font-size: 1rem;
+  }
+
+  .infoContent p {
+    font-size: 0.85rem;
+  }
+
+  .socialLinks {
+    padding: 20px;
+  }
+
+  .socialLinks h3 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+
+  .socialIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+}

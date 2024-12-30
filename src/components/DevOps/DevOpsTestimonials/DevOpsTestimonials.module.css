@@ -1,0 +1,366 @@
+.section {
+  padding: 100px 24px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(12, 12, 13, 0.2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  color: #a3a3a3;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.testimonialContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.testimonialWrapper {
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.testimonialCard {
+  position: absolute;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  cursor: grab;
+}
+
+.testimonialCard:active {
+  cursor: grabbing;
+}
+
+.quoteIcon {
+  color: #326ce5;
+  font-size: 32px;
+  margin-bottom: 24px;
+  opacity: 0.6;
+}
+
+.testimonialContent {
+  color: white;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.rating {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.star {
+  color: #ffd700;
+  font-size: 20px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tag {
+  background: rgba(50, 108, 229, 0.1);
+  color: #326ce5;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.companyIcon {
+  width: 48px;
+  height: 48px;
+  background: rgba(50, 108, 229, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #326ce5;
+  font-size: 24px;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.authorInfo strong {
+  color: white;
+  font-size: 1.1rem;
+}
+
+.authorInfo span {
+  color: #a3a3a3;
+  font-size: 0.9rem;
+}
+
+.navButton {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.navButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.paginationDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.paginationDot.active {
+  background: #326ce5;
+  transform: scale(1.2);
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 108, 229, 0.05) 0%,
+    rgba(123, 66, 188, 0.05) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .testimonialWrapper {
+    max-width: 700px;
+    height: 450px;
+  }
+
+  .testimonialCard {
+    padding: 30px;
+  }
+
+  .testimonialContent {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 20px;
+  }
+
+  .testimonialWrapper {
+    max-width: 100%;
+    height: 500px;
+  }
+
+  .testimonialCard {
+    padding: 24px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .testimonialContent {
+    font-size: 1rem;
+  }
+
+  .navButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 40px 16px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .testimonialWrapper {
+    height: 600px;
+  }
+
+  .testimonialCard {
+    padding: 20px;
+  }
+
+  .quoteIcon {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .testimonialContent {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .rating {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .star {
+    font-size: 16px;
+  }
+
+  .tags {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .tag {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+
+  .author {
+    gap: 12px;
+  }
+
+  .companyIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .authorInfo strong {
+    font-size: 1rem;
+  }
+
+  .authorInfo span {
+    font-size: 0.8rem;
+  }
+
+  .navButton {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .prev {
+    left: 8px;
+  }
+
+  .next {
+    right: 8px;
+  }
+
+  .pagination {
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .paginationDot {
+    width: 8px;
+    height: 8px;
+  }
+}

@@ -1,0 +1,79 @@
+.backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #326ce5;
+  cursor: pointer;
+  padding: 0;
+  z-index: 9999;
+  transition: all 0.3s ease;
+  overflow: visible;
+}
+
+.backToTop svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 108, 229, 0.2),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.backToTop:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(50, 108, 229, 0.3);
+  color: #fff;
+  transform: translateY(-5px);
+}
+
+.backToTop:hover .glow {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .backToTop {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .backToTop svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .backToTop {
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .backToTop svg {
+    width: 16px;
+    height: 16px;
+  }
+}

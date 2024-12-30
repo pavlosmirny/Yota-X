@@ -1,0 +1,375 @@
+.section {
+  padding: 100px 24px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(12, 12, 13, 0.2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  color: #a3a3a3;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.processContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.processSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stepItem {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.stepItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(5px);
+}
+
+.stepItem.active {
+  background: rgba(50, 108, 229, 0.1);
+  border-color: rgba(50, 108, 229, 0.3);
+}
+
+.stepIcon {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  background: rgba(50, 108, 229, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #326ce5;
+  flex-shrink: 0;
+}
+
+.connector {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(50, 108, 229, 0.3), transparent);
+}
+
+.stepInfo {
+  flex-grow: 1;
+}
+
+.stepInfo h3 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.stepInfo p {
+  color: #a3a3a3;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.stepDetails {
+  position: sticky;
+  top: 20px;
+}
+
+.detailsCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.detailsHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detailsIcon {
+  width: 48px;
+  height: 48px;
+  background: rgba(50, 108, 229, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #326ce5;
+}
+
+.detailsHeader h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.detailsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.detailsSection {
+  margin-bottom: 20px;
+}
+
+.detailsSection h4,
+.timelineSection h4 {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.detailsSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detailsSection li {
+  color: #d4d4d4;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.detailsSection li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  border-radius: 50%;
+}
+
+.timeline {
+  color: #326ce5;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  background: rgba(50, 108, 229, 0.1);
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.timelineSection {
+  margin-top: 10px;
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 108, 229, 0.05) 0%,
+    rgba(123, 66, 188, 0.05) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Анимация для активного состояния */
+.stepItem.active .stepIcon {
+  background: rgba(50, 108, 229, 0.2);
+}
+
+.stepItem.active .connector {
+  background: linear-gradient(to bottom, rgba(50, 108, 229, 0.5), transparent);
+}
+
+/* Hover эффекты */
+.detailsCard:hover {
+  border-color: rgba(50, 108, 229, 0.3);
+}
+
+.timeline:hover {
+  background: rgba(50, 108, 229, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .processContent {
+    gap: 30px;
+  }
+
+  .detailsCard {
+    padding: 24px;
+  }
+
+  .stepItem {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 20px;
+  }
+
+  .processContent {
+    grid-template-columns: 1fr;
+  }
+
+  .stepDetails {
+    position: relative;
+    top: 0;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .detailsCard {
+    padding: 20px;
+  }
+
+  .detailsHeader h3 {
+    font-size: 1.3rem;
+  }
+
+  .stepInfo h3 {
+    font-size: 1.1rem;
+  }
+
+  .connector {
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 40px 16px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .stepItem {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .stepIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .detailsIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .stepInfo h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .stepInfo p {
+    font-size: 0.85rem;
+  }
+
+  .detailsCard {
+    padding: 16px;
+  }
+
+  .detailsHeader {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .detailsHeader h3 {
+    font-size: 1.2rem;
+  }
+
+  .detailsSection h4,
+  .timelineSection h4 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .detailsSection li {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    padding-left: 16px;
+  }
+
+  .detailsSection li::before {
+    width: 4px;
+    height: 4px;
+  }
+
+  .timeline {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  .connector {
+    height: 24px;
+  }
+
+  .processContent {
+    gap: 20px;
+  }
+}
