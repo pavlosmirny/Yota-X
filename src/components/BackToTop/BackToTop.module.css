@@ -8,16 +8,14 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(18, 18, 18, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   color: #326ce5;
   cursor: pointer;
   padding: 0;
   z-index: 9999;
-  transition: all 0.3s ease;
-  overflow: visible;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .backToTop svg {
@@ -27,27 +25,41 @@
   z-index: 2;
 }
 
-.glow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at center,
-    rgba(50, 108, 229, 0.2),
-    transparent 70%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
+@media (min-width: 1025px) {
+  .backToTop {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .backToTop:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(50, 108, 229, 0.3);
+    color: #fff;
+    transform: translateY(-5px);
+  }
+
+  .backToTop:hover .glow {
+    opacity: 1;
+  }
+
+  .glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      rgba(50, 108, 229, 0.2),
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 }
 
-.backToTop:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(50, 108, 229, 0.3);
-  color: #fff;
-  transform: translateY(-5px);
-}
-
-.backToTop:hover .glow {
-  opacity: 1;
+@media (max-width: 1024px) {
+  .backToTop {
+    transition: none;
+  }
 }
 
 @media (max-width: 768px) {
