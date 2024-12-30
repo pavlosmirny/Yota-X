@@ -24,12 +24,12 @@ const socialLinks = [
 const serviceLinks = [
   {
     href: "/services/frontend-development",
-    label: "Frontend Development",
+    label: "Web Development",
     description: "Modern web applications with React & Next.js",
   },
   {
     href: "/services/devops-services",
-    label: "DevOps Services",
+    label: "DevOps Solutions",
     description: "Cloud infrastructure & automation solutions",
   },
 ];
