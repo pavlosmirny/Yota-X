@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import {
   FaXTwitter,
-  FaUpwork,
   FaFacebook,
   FaGithub,
   FaTelegram,
@@ -10,6 +10,7 @@ import {
   FaLocationDot,
   FaPhone,
   FaEnvelope,
+  FaLinkedin,
 } from "react-icons/fa6";
 import styles from "./Footer.module.css";
 
@@ -17,7 +18,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
-        {/* Разделитель с анимированной линией */}
+        {/* Разделитель */}
         <div className={styles.dividerContainer}>
           <div className={styles.divider}>
             <div className={styles.line} />
@@ -54,7 +55,6 @@ const Footer = () => {
                 <li>
                   <Link href="/about">About Us</Link>
                 </li>
-
                 <li>
                   <Link href="/careers">Careers</Link>
                 </li>
@@ -73,11 +73,15 @@ const Footer = () => {
             </div>
             <div className={styles.contactItem}>
               <FaPhone size={16} />
-              <span> +380 66 251 09 65</span>
+              <a href="tel:+380662510965" className={styles.contactLink}>
+                +380 66 251 09 65
+              </a>
             </div>
             <div className={styles.contactItem}>
               <FaEnvelope size={16} />
-              <span>cto@yota-x.com</span>
+              <a href="mailto:cto@yota-x.com" className={styles.contactLink}>
+                cto@yota-x.com
+              </a>
             </div>
           </div>
         </div>
@@ -85,23 +89,30 @@ const Footer = () => {
         <div className={styles.bottomSection}>
           <div className={styles.socialLinks}>
             <a
-              href="#"
+              href="https://www.linkedin.com/company/yota-x"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Twitter"
+              aria-label="LinkedIn"
             >
-              <FaXTwitter size={20} />
+              <FaLinkedin size={20} />
             </a>
             <a
-              href="#"
+              href="https://clutch.co/profile/yota-x/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Upwork"
+              aria-label="Clutch"
+              className={styles.socialIcon}
             >
-              <FaUpwork size={20} />
+              <Image
+                src="/clutch.png"
+                alt="Clutch"
+                width={20}
+                height={20}
+                className={styles.socialImage}
+              />
             </a>
             <a
-              href="#"
+              href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
@@ -109,7 +120,7 @@ const Footer = () => {
               <FaFacebook size={20} />
             </a>
             <a
-              href="#"
+              href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -117,7 +128,7 @@ const Footer = () => {
               <FaGithub size={20} />
             </a>
             <a
-              href="#"
+              href="https://t.me/Yota_X_Official/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Telegram"
@@ -125,12 +136,20 @@ const Footer = () => {
               <FaTelegram size={20} />
             </a>
             <a
-              href="#"
+              href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
             >
               <FaInstagram size={20} />
+            </a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
+              <FaXTwitter size={20} />
             </a>
           </div>
 

@@ -17,7 +17,6 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -177,6 +176,16 @@
   transform: translateY(-2px);
 }
 
+.socialImage {
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.socialIcon:hover .socialImage {
+  opacity: 1;
+}
+
 /* Мобильное меню */
 .burger {
   display: none;
@@ -250,39 +259,24 @@
     text-align: center;
     height: auto;
     display: flex;
-    justify-content: center; /* Добавляем центрирование */
+    justify-content: center;
   }
 
   .nav a {
     height: auto;
     justify-content: center;
-    width: 100%; /* Добавляем ширину 100% */
-    text-align: center; /* Добавляем центрирование текста */
-  }
-
-  .nav li.servicesItem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
     text-align: center;
-    height: auto;
   }
 
   .servicesLink {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 2px;
+    gap: 5px;
     padding: 0;
     margin: 0 auto;
     height: auto;
-  }
-
-  .chevron {
-    position: relative;
-    top: 1px;
-    margin-left: 5px;
   }
 
   .servicesDropdown {
@@ -403,10 +397,12 @@
   .nav li {
     margin: 12px 0;
   }
+
   .serviceLink {
     margin-left: 5px;
     gap: 0;
   }
+
   .chevron {
     margin-left: 0;
   }

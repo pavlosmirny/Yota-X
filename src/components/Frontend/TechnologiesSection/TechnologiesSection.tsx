@@ -1,9 +1,13 @@
-// TechnologiesSection.tsx
 "use client";
-
 import { motion } from "framer-motion";
 import { FaReact, FaCode } from "react-icons/fa";
-import { SiNextdotjs, SiTypescript } from "react-icons/si";
+import {
+  SiNextdotjs,
+  SiTypescript,
+  SiNestjs,
+  SiMongodb,
+  SiPostgresql,
+} from "react-icons/si";
 import styles from "./TechnologiesSection.module.css";
 
 interface TechnologyCardProps {
@@ -75,6 +79,33 @@ const TechnologiesSection: React.FC = () => {
         "Better Code Quality",
       ],
     },
+    {
+      icon: <SiNestjs size={40} />,
+      title: "NestJS",
+      description:
+        "Progressive Node.js framework for scalable server-side applications",
+      features: [
+        "Modular Architecture",
+        "Dependency Injection",
+        "TypeScript Support",
+      ],
+    },
+    {
+      icon: <SiPostgresql size={40} />,
+      title: "PostgreSQL",
+      description: "Advanced open-source relational database",
+      features: ["ACID Compliance", "Complex Queries", "Scalable Performance"],
+    },
+    {
+      icon: <SiMongodb size={40} />,
+      title: "MongoDB",
+      description: "Flexible NoSQL database for modern applications",
+      features: [
+        "Document-Based Storage",
+        "Horizontal Scaling",
+        "Schema Flexibility",
+      ],
+    },
   ];
 
   return (
@@ -96,7 +127,6 @@ const TechnologiesSection: React.FC = () => {
           Core Technologies
           <span className={styles.gradientText}>We Master</span>
         </motion.h2>
-
         <motion.p
           className={styles.sectionDescription}
           initial={{ opacity: 0, y: 20 }}
@@ -107,7 +137,6 @@ const TechnologiesSection: React.FC = () => {
           Leveraging cutting-edge technologies to deliver exceptional web
           experiences
         </motion.p>
-
         <div className={styles.cardsGrid}>
           {technologies.map((tech, index) => (
             <TechnologyCard key={tech.title} {...tech} delay={index * 0.2} />

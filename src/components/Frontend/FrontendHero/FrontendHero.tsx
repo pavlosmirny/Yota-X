@@ -1,29 +1,40 @@
-"use client"; // Убедитесь, что этот файл используется как клиентский компонент
+"use client";
 
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { FaReact, FaCode, FaMobile, FaRocket } from "react-icons/fa";
-import { SiNextdotjs, SiTypescript } from "react-icons/si";
+import { FaCode, FaDatabase, FaRocket } from "react-icons/fa";
+import {
+  SiNestjs,
+  SiMongodb,
+  SiPostgresql,
+  SiNextdotjs,
+  SiTypescript,
+} from "react-icons/si";
+import { FaReact } from "react-icons/fa";
 import styles from "./FrontendHero.module.css";
 
 const CodeAnimation: React.FC = () => {
   const codeRef = useRef<HTMLDivElement>(null);
   const code = `
-interface Props {
-  title: string;
-  onAction: () => void;
+// Frontend Component
+const App = () => {
+  const [data, setData] = useState<Data[]>([]);
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return <DataGrid data={data} />;
 }
 
-const Component = ({ title, onAction }: Props) => {
-  return (
-    <div className="container">
-      <h1>{title}</h1>
-      <button onClick={onAction}>
-        Click me
-      </button>
-    </div>
-  );
-};`.split("");
+// Backend Controller
+@Controller('api')
+export class AppController {
+  @Get('/data')
+  async getData(): Promise<Data[]> {
+    return this.service.findAll();
+  }
+}`.split("");
 
   useEffect(() => {
     let index = 0;
@@ -34,19 +45,17 @@ const Component = ({ title, onAction }: Props) => {
       currentIndex: number,
       fullCodeStr: string
     ) => {
-      // Определяем цвета для разных элементов кода
-      if (fullCodeStr.slice(currentIndex - 9, currentIndex) === "interface")
+      if (fullCodeStr.slice(currentIndex - 10, currentIndex) === "@Controller")
         return "#ff79c6";
       if (fullCodeStr.slice(currentIndex - 5, currentIndex) === "const")
-        return "#ff79c6";
-      if (fullCodeStr.slice(currentIndex - 6, currentIndex) === "return")
         return "#ff79c6";
       if (char === "{" || char === "}") return "#f8f8f2";
       if (char === "(" || char === ")") return "#f8f8f2";
       if (char === ":" || char === ";" || char === "=" || char === ">")
         return "#ff79c6";
-      if (char === '"') return "#f1fa8c";
-      return "#f8f8f2"; // Базовый цвет для остального текста
+      if (char === "'") return "#f1fa8c";
+      if (char === "/") return "#6272a4";
+      return "#f8f8f2";
     };
 
     const interval = setInterval(() => {
@@ -59,7 +68,6 @@ const Component = ({ title, onAction }: Props) => {
           const span = document.createElement("span");
           span.textContent = char;
           span.style.color = getColor(char, index, fullCode);
-          // Добавляем класс для анимации через CSS
           span.classList.add(styles.codeChar);
           codeRef.current.appendChild(span);
         }
@@ -95,7 +103,7 @@ const Metric: React.FC<MetricProps> = ({ value, label, color }) => (
   </motion.div>
 );
 
-const FrontendHero: React.FC = () => {
+const FullstackHero: React.FC = () => {
   return (
     <section className={styles.hero}>
       <div className={styles.content}>
@@ -105,8 +113,8 @@ const FrontendHero: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            Frontend Development
-            <span className={styles.gradient}>Excellence</span>
+            Full-Stack
+            <span className={styles.gradient}> Mastery</span>
           </motion.h1>
 
           <motion.p
@@ -115,8 +123,9 @@ const FrontendHero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Creating exceptional user experiences with modern web technologies.
-            From responsive designs to high-performance applications.
+            Delivering end-to-end solutions with modern technologies. From
+            responsive frontends to scalable backends, we build complete, robust
+            applications.
           </motion.p>
 
           <div className={styles.techStack}>
@@ -141,12 +150,33 @@ const FrontendHero: React.FC = () => {
             >
               <SiTypescript size={24} color="#3178C6" />
             </motion.div>
+            <motion.div
+              className={styles.techIcon}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <SiNestjs size={24} color="#E0234E" />
+            </motion.div>
+            <motion.div
+              className={styles.techIcon}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <SiPostgresql size={24} color="#336791" />
+            </motion.div>
+            <motion.div
+              className={styles.techIcon}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <SiMongodb size={24} color="#47A248" />
+            </motion.div>
           </div>
 
           <div className={styles.metrics}>
-            <Metric value="98+" label="Performance Score" color="#03a9f4" />
-            <Metric value="100%" label="SEO Optimized" color="#f441a5" />
-            <Metric value="2s" label="Load Time" color="#00ff9d" />
+            <Metric value="100%" label="End-to-End" color="#03a9f4" />
+            <Metric value="Full" label="Stack Coverage" color="#f441a5" />
+            <Metric value="A+" label="Performance" color="#00ff9d" />
           </div>
         </div>
 
@@ -158,11 +188,11 @@ const FrontendHero: React.FC = () => {
           <div className={styles.features}>
             <motion.div className={styles.feature} whileHover={{ scale: 1.05 }}>
               <FaCode />
-              <span>Clean Code</span>
+              <span>Full Stack</span>
             </motion.div>
             <motion.div className={styles.feature} whileHover={{ scale: 1.05 }}>
-              <FaMobile />
-              <span>Responsive</span>
+              <FaDatabase />
+              <span>Scalable</span>
             </motion.div>
             <motion.div className={styles.feature} whileHover={{ scale: 1.05 }}>
               <FaRocket />
@@ -177,4 +207,4 @@ const FrontendHero: React.FC = () => {
   );
 };
 
-export default FrontendHero;
+export default FullstackHero;

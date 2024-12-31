@@ -1,24 +1,62 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./Header.module.css";
 import {
   FaXTwitter,
-  FaUpwork,
   FaFacebook,
   FaGithub,
   FaTelegram,
   FaInstagram,
   FaChevronDown,
+  FaLinkedin,
 } from "react-icons/fa6";
 
 const socialLinks = [
-  { Icon: FaXTwitter, href: "#", label: "Twitter" },
-  { Icon: FaUpwork, href: "#", label: "Upwork" },
-  { Icon: FaFacebook, href: "#", label: "Facebook" },
-  { Icon: FaGithub, href: "#", label: "GitHub" },
-  { Icon: FaTelegram, href: "#", label: "Telegram" },
-  { Icon: FaInstagram, href: "#", label: "Instagram" },
+  {
+    Icon: FaLinkedin,
+    href: "https://www.linkedin.com/company/yota-x",
+    label: "LinkedIn",
+    type: "icon",
+  },
+  {
+    type: "image",
+    href: "https://clutch.co/profile/yota-x/",
+    label: "Clutch",
+    src: "/clutch.png",
+  },
+  {
+    Icon: FaFacebook,
+    href: "https://facebook.com",
+    label: "Facebook",
+    type: "icon",
+  },
+  {
+    Icon: FaGithub,
+    href: "https://github.com",
+    label: "GitHub",
+    type: "icon",
+  },
+  {
+    Icon: FaTelegram,
+    href: "https://t.me/Yota_X_Official/",
+    label: "Telegram",
+    type: "icon",
+  },
+  {
+    Icon: FaInstagram,
+    href: "https://instagram.com",
+    label: "Instagram",
+    type: "icon",
+  },
+  {
+    Icon: FaXTwitter,
+    href: "https://twitter.com",
+    label: "Twitter",
+    type: "icon",
+  },
 ];
 
 const serviceLinks = [
@@ -48,10 +86,24 @@ const Header = () => {
     setIsServicesOpen(!isServicesOpen);
   };
 
-  // Функция для закрытия мобильного меню
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsServicesOpen(false);
+  };
+
+  const renderSocialIcon = (social: any, size: number) => {
+    if (social.type === "icon") {
+      return <social.Icon size={size} />;
+    }
+    return (
+      <Image
+        src={social.src}
+        alt={social.label}
+        width={size}
+        height={size}
+        className={styles.socialImage}
+      />
+    );
   };
 
   return (
@@ -128,7 +180,7 @@ const Header = () => {
                 rel="noopener noreferrer"
                 onClick={closeMobileMenu}
               >
-                <social.Icon size={24} />
+                {renderSocialIcon(social, 24)}
               </a>
             ))}
           </div>
@@ -143,7 +195,7 @@ const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <social.Icon size={20} />
+              {renderSocialIcon(social, 20)}
             </a>
           ))}
         </div>

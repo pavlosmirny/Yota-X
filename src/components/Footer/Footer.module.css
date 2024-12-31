@@ -12,7 +12,6 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  /* padding: 0 1rem; */
 }
 
 /* Разделитель */
@@ -159,6 +158,16 @@
   font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
+.contactLink {
+  color: #a8a8a8;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.contactLink:hover {
+  color: #ffffff;
+}
+
 .contactItem:hover {
   color: #ffffff;
 }
@@ -192,6 +201,23 @@
 
 .socialLinks a:hover {
   color: #ffffff;
+  transform: scale(1.2);
+}
+
+.socialImage {
+  filter: brightness(0) invert(0.7);
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialIcon:hover .socialImage {
+  filter: brightness(0) invert(1);
   transform: scale(1.2);
 }
 
