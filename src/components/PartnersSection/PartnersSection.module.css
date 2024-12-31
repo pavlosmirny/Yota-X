@@ -1,8 +1,10 @@
+/* Основной контейнер */
 .partnersSection {
   padding: 100px 24px;
   position: relative;
   overflow: hidden;
   background: rgba(12, 12, 13, 0.2);
+  min-height: 40vh;
 }
 
 .container {
@@ -13,12 +15,24 @@
   z-index: 2;
 }
 
+/* Заголовок */
 .title {
   text-align: center;
   font-size: 2.5rem;
   color: white;
   margin-bottom: 60px;
   position: relative;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, #03a9f4, #f441a5);
 }
 
 .titleHighlight {
@@ -28,13 +42,29 @@
   position: relative;
 }
 
+/* Контейнер слайдера */
 .sliderContainer {
   position: relative;
   width: 100%;
   overflow: hidden;
   padding: 40px 0;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
 }
 
+/* Градиенты по краям */
 .sliderContainer::before,
 .sliderContainer::after {
   content: "";
@@ -56,6 +86,7 @@
   background: linear-gradient(-90deg, rgba(12, 12, 13, 0.95), transparent);
 }
 
+/* Слайдер */
 .slider {
   display: flex;
   gap: 40px;
@@ -67,9 +98,10 @@
   -ms-overflow-style: none;
   touch-action: pan-x;
   cursor: grab;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
+  transition: all 0.3s ease;
+  will-change: transform;
+  padding: 10px 0;
+  animation: slideProgress 30s linear infinite;
 }
 
 .slider::-webkit-scrollbar {
@@ -78,8 +110,10 @@
 
 .slider:active {
   cursor: grabbing;
+  scale: 0.98;
 }
 
+/* Слайды */
 .slide {
   flex: 0 0 200px;
   height: 120px;
@@ -92,50 +126,63 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  pointer-events: auto;
+  transform-origin: center center;
+  will-change: transform;
+  animation: fadeIn 0.5s ease forwards;
 }
 
+/* Эффект при наведении на слайд */
 .slide::before {
   content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(
     circle at center,
-    rgba(50, 108, 229, 0.1),
-    transparent 70%
+    rgba(255, 255, 255, 0.1),
+    transparent
   );
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
+/* Изображения партнеров */
+.partnerImage {
+  max-width: 80%;
+  max-height: 80%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.7;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(0) invert(1);
+  transform-origin: center center;
+  will-change: transform, opacity, filter;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Эффекты при наведении */
 .slide:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(50, 108, 229, 0.3);
   transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .slide:hover::before {
   opacity: 1;
 }
 
-.slide img {
-  max-width: 80%;
-  max-height: 80%;
-  object-fit: contain;
-  opacity: 0.7;
-  transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out;
-  filter: brightness(0) invert(1);
-  pointer-events: none;
-}
-
-.slide:hover img {
+.slide:hover .partnerImage {
   opacity: 1;
   filter: brightness(1) invert(0);
+  transform: scale(1.05);
 }
 
+/* Фоновое свечение */
 .backgroundGlow {
   position: absolute;
   top: 50%;
@@ -151,8 +198,31 @@
   );
   pointer-events: none;
   z-index: 1;
+  opacity: 0.8;
 }
 
+/* Анимации */
+@keyframes slideProgress {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Медиа-запросы */
 @media (max-width: 1024px) {
   .slide {
     flex: 0 0 180px;
@@ -183,7 +253,7 @@
 
   .sliderContainer::before,
   .sliderContainer::after {
-    width: 60px;
+    width: 70px;
   }
 }
 
@@ -205,6 +275,46 @@
 
   .sliderContainer::before,
   .sliderContainer::after {
-    width: 40px;
+    width: 60px;
   }
+}
+
+/* Адаптация для тач-устройств */
+@media (hover: none) {
+  .slide:hover {
+    transform: none;
+  }
+
+  .partnerImage {
+    opacity: 0.9;
+  }
+
+  .slider {
+    scroll-snap-type: x mandatory;
+  }
+
+  .slide {
+    scroll-snap-align: center;
+  }
+}
+
+/* Оптимизация для высокопроизводительных экранов */
+@media (min-resolution: 192dpi) {
+  .partnerImage {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+.partnerLink {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.slide:hover .partnerLink {
+  transform: scale(1.05);
 }

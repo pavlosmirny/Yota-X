@@ -1,77 +1,87 @@
 "use client";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./PartnersSection.module.css";
+import Link from "next/link";
+
+const partners = [
+  {
+    src: "/partners/logo.svg",
+    alt: "spacecore",
+    href: "https://spacecore.pro/en/",
+  },
+  {
+    src: "/partners/around-web.svg",
+    alt: "Around Web",
+    href: "https://around-web.com/",
+  },
+  {
+    src: "/partners/amida2.png",
+    alt: "amida",
+    href: "https://amida.software/",
+  },
+  {
+    src: "/partners/boosting.svg",
+    alt: "boosting",
+    href: "https://boostinglead.com/",
+  },
+  {
+    src: "/partners/eva.svg",
+    alt: "eva",
+    href: "https://evacodes.com",
+  },
+];
 
 const PartnersSection: React.FC = () => {
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const requestRef = useRef<number | null>(null);
-  const isDraggingRef = useRef(false);
-  const SCROLL_SPEED = 0.5;
-
-  const animate = () => {
-    const slider = sliderRef.current;
-    if (slider && !isDraggingRef.current) {
-      slider.scrollLeft += SCROLL_SPEED;
-      if (slider.scrollLeft >= slider.scrollWidth / 2) {
-        slider.scrollLeft = 0;
-      }
-    }
-    requestRef.current = requestAnimationFrame(animate);
-  };
 
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
 
-    // Дублируем контент для бесконечной прокрутки
-    const content = slider.innerHTML;
-    slider.innerHTML = content + content;
+    let position = 0;
+    const totalWidth = slider.scrollWidth;
 
-    // Запускаем анимацию
+    const animate = () => {
+      position += 1; // Скорость прокрутки
+      if (position >= totalWidth / 2) {
+        position = 0;
+        slider.scrollLeft = 0;
+      } else {
+        slider.scrollLeft = position;
+      }
+      requestRef.current = requestAnimationFrame(animate);
+    };
+
     requestRef.current = requestAnimationFrame(animate);
-
-    // Обработчики для touch событий
-    const handleTouchStart = () => {
-      isDraggingRef.current = true;
-    };
-
-    const handleTouchEnd = () => {
-      isDraggingRef.current = false;
-    };
-
-    // Обработчики для mouse событий
-    const handleMouseDown = () => {
-      isDraggingRef.current = true;
-    };
-
-    const handleMouseUp = () => {
-      isDraggingRef.current = false;
-    };
-
-    const handleMouseLeave = () => {
-      isDraggingRef.current = false;
-    };
-
-    // Добавляем слушатели событий
-    slider.addEventListener("touchstart", handleTouchStart, { passive: true });
-    slider.addEventListener("touchend", handleTouchEnd);
-    slider.addEventListener("mousedown", handleMouseDown);
-    slider.addEventListener("mouseup", handleMouseUp);
-    slider.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       if (requestRef.current) {
         cancelAnimationFrame(requestRef.current);
       }
-      // Удаляем слушатели событий
-      slider.removeEventListener("touchstart", handleTouchStart);
-      slider.removeEventListener("touchend", handleTouchEnd);
-      slider.removeEventListener("mousedown", handleMouseDown);
-      slider.removeEventListener("mouseup", handleMouseUp);
-      slider.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
+
+  const renderSlide = (partner: (typeof partners)[0], key: string) => (
+    <motion.div key={key} className={styles.slide} whileHover={{ y: -5 }}>
+      <Link
+        href={partner.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.partnerLink}
+      >
+        <Image
+          src={partner.src}
+          alt={partner.alt}
+          width={200}
+          height={120}
+          className={styles.partnerImage}
+        />
+      </Link>
+    </motion.div>
+  );
 
   return (
     <section className={styles.partnersSection}>
@@ -87,18 +97,14 @@ const PartnersSection: React.FC = () => {
         </motion.h2>
         <div className={styles.sliderContainer}>
           <div className={styles.slider} ref={sliderRef}>
-            <motion.div className={styles.slide} whileHover={{ y: -5 }}>
-              <img src="./partners/amida2.png" alt="Partner 1" />
-            </motion.div>
-            <motion.div className={styles.slide} whileHover={{ y: -5 }}>
-              <img src="./partners/boosting.svg" alt="Partner 3" />
-            </motion.div>
-            <motion.div className={styles.slide} whileHover={{ y: -5 }}>
-              <img src="./partners/compass.svg" alt="Partner 4" />
-            </motion.div>
-            <motion.div className={styles.slide} whileHover={{ y: -5 }}>
-              <img src="./partners/eva.svg" alt="Partner 5" />
-            </motion.div>
+            {/* Первый набор слайдов */}
+            {partners.map((partner, index) =>
+              renderSlide(partner, `original-${index}`)
+            )}
+            {/* Дублированный набор для бесконечной прокрутки */}
+            {partners.map((partner, index) =>
+              renderSlide(partner, `duplicate-${index}`)
+            )}
           </div>
         </div>
       </div>
