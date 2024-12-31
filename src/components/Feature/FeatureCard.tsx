@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { Technology } from "../types/types";
 import styles from "./FeatureCard.module.css";

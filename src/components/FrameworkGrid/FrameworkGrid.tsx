@@ -9,7 +9,6 @@ import {
   FaAws,
   FaGitAlt,
   FaGithub,
-  FaNpm,
   FaJenkins,
   FaNodeJs,
 } from "react-icons/fa";
@@ -33,6 +32,8 @@ import {
   SiTailwindcss,
   SiPrisma,
   SiGraphql,
+  SiMysql,
+  SiNestjs,
 } from "react-icons/si";
 import styles from "./FrameworkGrid.module.css";
 
@@ -142,40 +143,46 @@ const FrameworkGrid = (): JSX.Element => {
       name: "Node.js",
     },
     {
-      Icon: SiGraphql,
+      Icon: SiNestjs,
       position: [2, 4],
+      color: "#E0234E",
+      name: "NestJS",
+    },
+    {
+      Icon: SiGraphql,
+      position: [2, 5],
       color: "#E10098",
       name: "GraphQL",
     },
     {
       Icon: SiPostgresql,
-      position: [2, 5],
+      position: [2, 6],
       color: "#4169E1",
       name: "PostgreSQL",
     },
     {
       Icon: SiMongodb,
-      position: [2, 6],
+      position: [2, 7],
       color: "#47A248",
       name: "MongoDB",
     },
     {
       Icon: SiRedis,
-      position: [2, 7],
+      position: [2, 8],
       color: "#DC382D",
       name: "Redis",
     },
     {
       Icon: SiPrisma,
-      position: [2, 8],
+      position: [2, 9],
       color: "#2D3748",
       name: "Prisma",
     },
     {
-      Icon: FaNpm,
-      position: [2, 9],
-      color: "#CB3837",
-      name: "NPM",
+      Icon: SiMysql,
+      position: [2, 10],
+      color: "#4479A1",
+      name: "MySQL",
     },
 
     // DevOps Row (Row 3)

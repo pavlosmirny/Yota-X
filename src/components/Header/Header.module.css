@@ -249,11 +249,15 @@
     width: 100%;
     text-align: center;
     height: auto;
+    display: flex;
+    justify-content: center; /* Добавляем центрирование */
   }
 
   .nav a {
     height: auto;
     justify-content: center;
+    width: 100%; /* Добавляем ширину 100% */
+    text-align: center; /* Добавляем центрирование текста */
   }
 
   .nav li.servicesItem {
@@ -269,7 +273,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 2px;
     padding: 0;
     margin: 0 auto;
     height: auto;
@@ -398,6 +402,13 @@
 
   .nav li {
     margin: 12px 0;
+  }
+  .serviceLink {
+    margin-left: 5px;
+    gap: 0;
+  }
+  .chevron {
+    margin-left: 0;
   }
 
   .mobileIcons {

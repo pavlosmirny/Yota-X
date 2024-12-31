@@ -130,6 +130,7 @@
   transition-duration: 0.3s, 3s;
   transition-property: transform, box-shadow;
   transition-timing-function: ease-out;
+  cursor: pointer;
 }
 
 .cell:hover {

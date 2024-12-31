@@ -19,6 +19,9 @@ import {
   SiKubernetes,
   SiTerraform,
   SiGrafana,
+  SiNestjs,
+  SiPostgresql,
+  SiMysql,
 } from "react-icons/si";
 import { AnimatedMetric } from "./AnimatedMetric";
 import { LineChart } from "./LineChart";
@@ -148,8 +151,11 @@ const FeatureSection: React.FC = () => {
         "Scalable server solutions with high performance and security",
       technologies: [
         { icon: FaNodeJs, name: "Node.js", color: "#339933" },
+        { icon: SiNestjs, name: "NestJS", color: "#E0234E" },
         { icon: SiPython, name: "Python", color: "#3776AB" },
         { icon: SiMongodb, name: "MongoDB", color: "#47A248" },
+        { icon: SiPostgresql, name: "PostgreSQL", color: "#336791" },
+        { icon: SiMysql, name: "MySQL", color: "#4479A1" },
       ],
       metrics: [
         { value: 99.9, label: "Uptime", suffix: "%" },
