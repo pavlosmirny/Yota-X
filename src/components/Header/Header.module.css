@@ -269,14 +269,25 @@
     text-align: center;
   }
 
+  .nav li.servicesItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    height: auto;
+  }
+
   .servicesLink {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
     padding: 0;
-    margin: 0 auto;
+    margin: 0;
     height: auto;
+    width: 100%;
   }
 
   .servicesDropdown {
