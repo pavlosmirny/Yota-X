@@ -1,10 +1,11 @@
+// Hero.tsx
 "use client";
-import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import { QuizModal } from "./QuizModal";
 import styles from "./Hero.module.css";
 
 const Hero = () => {
-  const router = useRouter();
+  const [showQuiz, setShowQuiz] = useState(false);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -15,7 +16,6 @@ const Hero = () => {
         contentRef.current.classList.add(styles.visible);
       }
     }, 100);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -25,10 +25,8 @@ const Hero = () => {
       if (headlineRef.current) {
         const { clientX, clientY } = e;
         const { innerWidth, innerHeight } = window;
-
         const moveX = (clientX - innerWidth / 2) / 50;
         const moveY = (clientY - innerHeight / 2) / 50;
-
         headlineRef.current.style.transform = `translate(${moveX}px, ${moveY}px)`;
       }
     };
@@ -52,24 +50,18 @@ const Hero = () => {
             Digital Journey
           </h1>
         </div>
-
         <p className={styles.subheadline}>
           Full-Stack Web Development & DevOps Solutions
           <br />
           Tailored for Your Success
         </p>
-
         <p className={styles.supportingText}>
           From intuitive web applications to seamless DevOps integration,
           <br />
           we deliver end-to-end solutions that drive your business forward.
         </p>
-
         <div className={styles.container}>
-          <button
-            className={styles.button}
-            onClick={() => router.push("/contacts")}
-          >
+          <button className={styles.button} onClick={() => setShowQuiz(true)}>
             Get Started
             <span className={styles.buttonGlow}></span>
           </button>
@@ -93,6 +85,9 @@ const Hero = () => {
           <div key={i} className={styles.line} />
         ))}
       </div>
+
+      {/* Квиз модальное окно */}
+      {showQuiz && <QuizModal onClose={() => setShowQuiz(false)} />}
     </section>
   );
 };

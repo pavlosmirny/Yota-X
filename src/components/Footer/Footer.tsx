@@ -30,7 +30,7 @@ const Footer = () => {
 
         <div className={styles.topSection}>
           <div className={styles.companyInfo}>
-            <h3>YotaX</h3>
+            <h3>Yota-X</h3>
             <p>Transforming ideas into exceptional digital experiences</p>
           </div>
 

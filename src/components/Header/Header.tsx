@@ -56,104 +56,108 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
-        <Link href="/" onClick={closeMobileMenu}>
-          YotaX
-        </Link>
-      </div>
-      <nav className={`${styles.nav} ${isMobileMenuOpen ? styles.active : ""}`}>
-        <ul>
-          <li>
-            <Link href="/about" onClick={closeMobileMenu}>
-              About
-            </Link>
-          </li>
-          <li className={styles.servicesItem}>
-            <a
-              href="#"
-              onClick={toggleServices}
-              className={styles.servicesLink}
-            >
-              Services
-              <FaChevronDown
-                className={`${styles.chevron} ${
-                  isServicesOpen ? styles.rotate : ""
+      <div className={styles.headerContent}>
+        <div className={styles.logo}>
+          <Link href="/" onClick={closeMobileMenu}>
+            Yota-X
+          </Link>
+        </div>
+        <nav
+          className={`${styles.nav} ${isMobileMenuOpen ? styles.active : ""}`}
+        >
+          <ul>
+            <li>
+              <Link href="/about" onClick={closeMobileMenu}>
+                About
+              </Link>
+            </li>
+            <li className={styles.servicesItem}>
+              <a
+                href="#"
+                onClick={toggleServices}
+                className={styles.servicesLink}
+              >
+                Services
+                <FaChevronDown
+                  className={`${styles.chevron} ${
+                    isServicesOpen ? styles.rotate : ""
+                  }`}
+                />
+              </a>
+              <div
+                className={`${styles.servicesDropdown} ${
+                  isServicesOpen ? styles.show : ""
                 }`}
-              />
-            </a>
-            <div
-              className={`${styles.servicesDropdown} ${
-                isServicesOpen ? styles.show : ""
-              }`}
-            >
-              {serviceLinks.map((service) => (
-                <Link
-                  key={service.href}
-                  href={service.href}
-                  className={styles.serviceLink}
-                  onClick={closeMobileMenu}
-                >
-                  <span className={styles.serviceName}>{service.label}</span>
-                  <span className={styles.serviceDesc}>
-                    {service.description}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </li>
-          <li>
-            <Link href="/careers" onClick={closeMobileMenu}>
-              Careers
-            </Link>
-          </li>
-          <li>
-            <Link href="/contacts" onClick={closeMobileMenu}>
-              Contacts
-            </Link>
-          </li>
-        </ul>
-        <div className={styles.mobileIcons}>
-          {socialLinks.map((social, index) => (
+              >
+                {serviceLinks.map((service) => (
+                  <Link
+                    key={service.href}
+                    href={service.href}
+                    className={styles.serviceLink}
+                    onClick={closeMobileMenu}
+                  >
+                    <span className={styles.serviceName}>{service.label}</span>
+                    <span className={styles.serviceDesc}>
+                      {service.description}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </li>
+            <li>
+              <Link href="/careers" onClick={closeMobileMenu}>
+                Careers
+              </Link>
+            </li>
+            <li>
+              <Link href="/contacts" onClick={closeMobileMenu}>
+                Contacts
+              </Link>
+            </li>
+          </ul>
+          <div className={styles.mobileIcons}>
+            {socialLinks.map((social, index) => (
+              <a
+                key={social.label}
+                href={social.href}
+                className={styles.socialIcon}
+                style={{
+                  animationDelay: `${index * 0.1}s`,
+                }}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMobileMenu}
+              >
+                <social.Icon size={24} />
+              </a>
+            ))}
+          </div>
+        </nav>
+        <div className={styles.desktopIcons}>
+          <div className={styles.divider} />
+          {socialLinks.map((social) => (
             <a
               key={social.label}
               href={social.href}
               className={styles.socialIcon}
-              style={{
-                animationDelay: `${index * 0.1}s`,
-              }}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={closeMobileMenu}
             >
-              <social.Icon size={24} />
+              <social.Icon size={20} />
             </a>
           ))}
         </div>
-      </nav>
-      <div className={styles.desktopIcons}>
-        <div className={styles.divider} />
-        {socialLinks.map((social) => (
-          <a
-            key={social.label}
-            href={social.href}
-            className={styles.socialIcon}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <social.Icon size={20} />
-          </a>
-        ))}
-      </div>
-      <div className={styles.burger} onClick={toggleMobileMenu}>
-        <div
-          className={`${styles.line} ${isMobileMenuOpen ? styles.open : ""}`}
-        ></div>
-        <div
-          className={`${styles.line} ${isMobileMenuOpen ? styles.open : ""}`}
-        ></div>
-        <div
-          className={`${styles.line} ${isMobileMenuOpen ? styles.open : ""}`}
-        ></div>
+        <div className={styles.burger} onClick={toggleMobileMenu}>
+          <div
+            className={`${styles.line} ${isMobileMenuOpen ? styles.open : ""}`}
+          ></div>
+          <div
+            className={`${styles.line} ${isMobileMenuOpen ? styles.open : ""}`}
+          ></div>
+          <div
+            className={`${styles.line} ${isMobileMenuOpen ? styles.open : ""}`}
+          ></div>
+        </div>
       </div>
     </header>
   );

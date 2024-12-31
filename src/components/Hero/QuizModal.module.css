@@ -1,0 +1,271 @@
+/* QuizModal.module.css */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal {
+  background: rgba(18, 18, 18, 0.95);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+/* Question Styles */
+.questionContainer {
+  text-align: center;
+}
+
+.questionTitle {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  line-height: 1.4;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.optionButton {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px 20px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.optionButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(3, 169, 244, 0.3);
+}
+
+.progress {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+/* Result Styles */
+.resultContainer {
+  text-align: center;
+}
+
+.resultIcon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.resultTitle {
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #03a9f4, #f441a5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.resultDescription {
+  color: #a3a3a3;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.featuresList {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.featureItem {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #d0d0d0;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.actionButton {
+  width: 100%;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #03a9f4, #f441a5);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.actionButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #03a9f4, #f441a5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.actionButton:hover::before {
+  opacity: 0.2;
+}
+
+.actionButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(3, 169, 244, 0.3);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Медиа запросы */
+@media (max-width: 768px) {
+  .modal {
+    padding: 30px;
+  }
+
+  .questionTitle {
+    font-size: 1.3rem;
+  }
+
+  .optionButton {
+    padding: 14px 16px;
+  }
+
+  .resultTitle {
+    font-size: 1.5rem;
+  }
+
+  .featureItem {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay {
+    padding: 16px;
+  }
+
+  .modal {
+    padding: 20px;
+  }
+
+  .questionTitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .optionButton {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  .resultIcon {
+    font-size: 40px;
+  }
+
+  .resultTitle {
+    font-size: 1.3rem;
+  }
+
+  .resultDescription {
+    font-size: 0.9rem;
+  }
+
+  .featureItem {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .actionButton {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+
+  .closeButton {
+    top: 15px;
+    right: 15px;
+    width: 25px;
+    height: 25px;
+    font-size: 18px;
+  }
+}
+
+/* Стили для темы с высоким контрастом */
+@media (prefers-contrast: high) {
+  .modal {
+    background: rgba(0, 0, 0, 0.95);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .optionButton,
+  .featureItem {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .resultTitle {
+    background: none;
+    color: white;
+  }
+}
