@@ -14,7 +14,7 @@ import {
 import styles from "./DevOpsContact.module.css";
 
 const BOT_TOKEN = "7722075237:AAFcS-CxOtsg5qI0uwantK9_GcPcEk3xy_M";
-const CHAT_ID = "609689270";
+const CHAT_ID = "1301013001";
 
 interface FormData {
   name: string;
