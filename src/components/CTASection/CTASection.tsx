@@ -3,16 +3,65 @@ import React, { useState } from "react";
 import { FaRocket, FaArrowRight } from "react-icons/fa";
 import styles from "./CTASection.module.css";
 
+const BOT_TOKEN = "7722075237:AAFcS-CxOtsg5qI0uwantK9_GcPcEk3xy_M";
+const CHAT_ID = "609689270";
+
 const CTASection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setStatus("loading");
+
+    // Формируем сообщение для главной страницы
+    const text = `
+🌟 Новая заявка на консультацию!
+
+👤 Имя клиента: ${formData.name}
+📧 Email: ${formData.email}
+
+💼 О проекте:
+${formData.message}
+
+📌 Отправлено с: Главная страница (CTA секция)
+    `;
+
+    try {
+      const response = await fetch(
+        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text,
+            parse_mode: "HTML",
+          }),
+        }
+      );
+
+      if (!response.ok) throw new Error("Ошибка отправки");
+
+      setStatus("success");
+      // Очищаем форму после успешной отправки
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Ошибка:", error);
+      setStatus("error");
+    }
   };
 
   const processSteps = [
@@ -41,7 +90,6 @@ const CTASection = () => {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.overlay} />
-
       <div className={styles.content}>
         <h2 className={styles.title}>
           Ready to Transform Your Digital Future?
@@ -49,9 +97,7 @@ const CTASection = () => {
         <p className={styles.subtitle}>
           Schedule a free consultation and let&apos;s discuss your project
         </p>
-
         <div className={styles.container}>
-          {/* Форма */}
           <div className={styles.formContainer}>
             <form onSubmit={handleSubmit} className={styles.form}>
               <div className={styles.inputGroup}>
@@ -89,17 +135,33 @@ const CTASection = () => {
                   className={styles.textarea}
                 />
               </div>
-              <button type="submit" className={styles.submitButton}>
-                Get Started <FaArrowRight className={styles.buttonIcon} />
+              <button
+                type="submit"
+                className={`${styles.submitButton} ${
+                  status === "loading" ? styles.loading : ""
+                }`}
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? "Sending..." : "Get Started"}
+                <FaArrowRight className={styles.buttonIcon} />
               </button>
+
+              {status === "success" && (
+                <div className={styles.successMessage}>
+                  Message sent successfully! We&apos;ll contact you soon.
+                </div>
+              )}
+              {status === "error" && (
+                <div className={styles.errorMessage}>
+                  Error sending message. Please try again.
+                </div>
+              )}
             </form>
           </div>
 
-          {/* Процесс работы */}
           <div className={styles.processContainer}>
             <h3 className={styles.processTitle}>
-              <FaRocket className={styles.processIcon} />
-              How We Work
+              <FaRocket className={styles.processIcon} /> How We Work
             </h3>
             <div className={styles.processList}>
               {processSteps.map((step, index) => (

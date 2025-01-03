@@ -1,9 +1,11 @@
-// CTASection.tsx
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaPaperPlane, FaRocket, FaClock } from "react-icons/fa";
 import styles from "./CTASection.module.css";
+
+const BOT_TOKEN = "7722075237:AAFcS-CxOtsg5qI0uwantK9_GcPcEk3xy_M";
+const CHAT_ID = "609689270";
 
 interface FormData {
   name: string;
@@ -31,24 +33,73 @@ const CTASection: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Имитация отправки формы
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const getBudgetRange = (budget: string) => {
+      switch (budget) {
+        case "small":
+          return "$5k - $10k";
+        case "medium":
+          return "$10k - $25k";
+        case "large":
+          return "$25k+";
+        default:
+          return "Не указан";
+      }
+    };
 
-    setIsSubmitting(false);
-    setShowSuccess(true);
+    const text = `
+🚀 Новая заявка на Frontend проект!
 
-    // Сброс формы через некоторое время
-    setTimeout(() => {
-      setShowSuccess(false);
-      setFormData({
-        name: "",
-        email: "",
-        projectType: "",
-        description: "",
-        timeline: "",
-        budget: "",
-      });
-    }, 3000);
+👤 Клиент:
+▫️ Имя: ${formData.name}
+▫️ Email: ${formData.email}
+
+🎯 Детали проекта:
+▫️ Тип проекта: ${formData.projectType}
+▫️ Сроки: ${formData.timeline}
+▫️ Бюджет: ${getBudgetRange(formData.budget)}
+
+📝 Описание проекта:
+${formData.description}
+
+📍 Отправлено со страницы: Frontend Development
+`;
+
+    try {
+      const response = await fetch(
+        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text,
+            parse_mode: "HTML",
+          }),
+        }
+      );
+
+      if (!response.ok) throw new Error("Ошибка отправки");
+
+      setIsSubmitting(false);
+      setShowSuccess(true);
+
+      setTimeout(() => {
+        setShowSuccess(false);
+        setFormData({
+          name: "",
+          email: "",
+          projectType: "",
+          description: "",
+          timeline: "",
+          budget: "",
+        });
+      }, 3000);
+    } catch (error) {
+      console.error("Ошибка:", error);
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (

@@ -249,3 +249,19 @@
     text-align: center;
   }
 }
+.successMessage {
+  color: #22c55e;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.errorMessage {
+  color: #ef4444;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

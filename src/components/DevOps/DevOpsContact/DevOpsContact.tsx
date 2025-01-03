@@ -1,4 +1,3 @@
-// DevOpsContact.tsx
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -13,6 +12,9 @@ import {
   FaPaperPlane,
 } from "react-icons/fa";
 import styles from "./DevOpsContact.module.css";
+
+const BOT_TOKEN = "7722075237:AAFcS-CxOtsg5qI0uwantK9_GcPcEk3xy_M";
+const CHAT_ID = "609689270";
 
 interface FormData {
   name: string;
@@ -38,22 +40,69 @@ const DevOpsContact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Имитация отправки формы
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const getServiceName = (service: string) => {
+      const services: { [key: string]: string } = {
+        infrastructure: "Cloud Infrastructure",
+        cicd: "CI/CD Implementation",
+        kubernetes: "Kubernetes Management",
+        monitoring: "Monitoring & Analytics",
+        security: "Security Implementation",
+      };
+      return services[service] || service;
+    };
 
-    setIsSubmitting(false);
-    setShowSuccess(true);
+    const text = `
+🔧 Новая заявка на DevOps услуги!
 
-    setTimeout(() => {
-      setShowSuccess(false);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        service: "",
-        message: "",
-      });
-    }, 3000);
+👤 Информация о клиенте:
+▫️ Имя: ${formData.name}
+▫️ Email: ${formData.email}
+▫️ Компания: ${formData.company || "Не указана"}
+
+🛠 Запрашиваемая услуга:
+${getServiceName(formData.service)}
+
+💬 Сообщение:
+${formData.message}
+
+📍 Отправлено со страницы: DevOps Services
+`;
+
+    try {
+      const response = await fetch(
+        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text,
+            parse_mode: "HTML",
+          }),
+        }
+      );
+
+      if (!response.ok) throw new Error("Ошибка отправки");
+
+      setIsSubmitting(false);
+      setShowSuccess(true);
+
+      setTimeout(() => {
+        setShowSuccess(false);
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          service: "",
+          message: "",
+        });
+      }, 3000);
+    } catch (error) {
+      console.error("Ошибка:", error);
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
