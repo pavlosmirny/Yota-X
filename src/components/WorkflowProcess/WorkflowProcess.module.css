@@ -1,9 +1,9 @@
 .workflowSection {
-  padding: 80px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 100px 24px;
   position: relative;
-  z-index: 1;
+  background: rgba(12, 12, 13, 0.2);
+  min-height: 100vh;
+  overflow: hidden;
 }
 
 .title {
@@ -17,183 +17,234 @@
 .title::after {
   content: "";
   position: absolute;
-  bottom: -15px;
+  bottom: -12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;
+  width: 120px;
   height: 2px;
   background: linear-gradient(90deg, #03a9f4, #f441a5);
 }
 
-.timeline {
+.workflowContainer {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
   position: relative;
   z-index: 2;
 }
 
-/* Step styles */
-.step {
-  background: rgba(31, 31, 35, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 25px;
-  transition: all 0.3s ease;
-  cursor: pointer;
+/* Контейнер ступенек */
+.stepsContainer {
   position: relative;
-  overflow: hidden;
-}
-
-.step:hover {
-  background: rgba(31, 31, 35, 0.95);
-  transform: translateX(10px);
-}
-
-.step.active {
-  border-color: rgba(3, 169, 244, 0.3);
-  background: rgba(31, 31, 35, 0.98);
-}
-
-.stepHeader {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
+  width: 40%; /* Оставляем 40% для ступенек */
+}
+
+/* Стили для ступенек */
+.step {
+  display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  width: calc(
+    40% + (var(--step-index, 0) * 10%)
+  ); /* Переменная ширина ступенек */
+  margin-left: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.expandIcon {
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 20px;
-  transition: transform 0.3s ease;
+.step:nth-child(1) {
+  --step-index: 6; /* Самая маленькая ступенька после разворота */
 }
 
-.rotated {
-  transform: rotate(180deg);
-  color: #03a9f4;
+.step:nth-child(2) {
+  --step-index: 5;
 }
 
-.stepIcon {
-  width: 50px;
-  height: 50px;
+.step:nth-child(3) {
+  --step-index: 4;
+}
+
+.step:nth-child(4) {
+  --step-index: 3;
+}
+
+.step:nth-child(5) {
+  --step-index: 2;
+}
+
+.step:nth-child(6) {
+  --step-index: 1;
+}
+
+.step:nth-child(7) {
+  --step-index: 0; /* Самая большая ступенька после разворота */
+}
+
+/* Активная ступенька */
+.step.activeStep {
   background: rgba(3, 169, 244, 0.1);
-  border-radius: 50%;
+  border-color: #03a9f4;
+  z-index: 2;
+  box-shadow: 0 0 20px rgba(3, 169, 244, 0.2);
+}
+
+/* Соединительные линии между ступеньками */
+.step::after {
+  content: "";
+  position: absolute;
+  top: -20px; /* Изменено для разворота */
+  right: 50%; /* Центрируем линию с другой стороны */
+  transform: translateX(50%);
+  width: 2px;
+  height: 20px;
+  background: rgba(3, 169, 244, 0.3);
+}
+
+.step:first-child::after {
+  display: none;
+}
+
+/* Иконка шага */
+.stepIcon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  background: rgba(3, 169, 244, 0.1);
+  border-radius: 10px;
   color: #03a9f4;
-  margin-right: 20px;
+  font-size: 20px;
+  margin-right: 16px;
   transition: all 0.3s ease;
 }
 
 .step:hover .stepIcon {
   transform: scale(1.1);
+  background: rgba(3, 169, 244, 0.2);
 }
 
-.stepContent {
+/* Информация о шаге */
+.stepInfo {
   flex: 1;
+  min-width: 0;
 }
 
-.stepTitle {
-  font-size: 1.5rem;
+.stepNumber {
+  font-size: 0.8rem;
+  color: #03a9f4;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.step h3 {
   color: white;
-  margin: 0;
-}
-
-.stepDescription {
-  color: #a3a3a3;
-  margin: 10px 0;
+  margin: 4px 0 0;
   font-size: 1rem;
-}
-
-/* Details section */
-.stepDetails {
+  white-space: nowrap;
   overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  text-overflow: ellipsis;
 }
 
-.detailsContent {
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 20px;
+/* Контейнер с описанием */
+.detailsContainer {
+  width: 600px; /* Фиксированная ширина */
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+  overflow: hidden; /* Предотвращает изменение размера */
 }
 
+.stepDetails h2 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.description {
+  color: #a3a3a3;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* Ограничение количества строк */
+  -webkit-box-orient: vertical;
+}
+
+/* Технологии */
 .technologies {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
 }
 
-.technology {
+.techBadge {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
+  padding: 8px 16px;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 6px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideIn 0.5s ease forwards;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.techBadge:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .techIcon {
-  font-size: 20px;
   color: #03a9f4;
+  font-size: 1.2rem;
 }
 
 .techName {
-  color: white;
-  font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 .detailsList {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
 }
 
 .detailsList li {
   color: #a3a3a3;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideIn 0.5s ease forwards;
+  margin-bottom: 16px;
+  padding-left: 24px;
+  position: relative;
 }
 
 .detailsList li::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  background: linear-gradient(45deg, #03a9f4, #f441a5);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-/* Decorative elements */
-.decorativeLine {
+  content: "→";
   position: absolute;
-  left: 50px;
-  top: 200px;
-  bottom: 100px;
-  width: 2px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(3, 169, 244, 0.3),
-    rgba(244, 65, 165, 0.3),
-    transparent
-  );
-  z-index: 1;
+  left: 0;
+  color: #03a9f4;
 }
 
-.glowEffect {
+/* Фоновое свечение */
+.backgroundGlow {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -202,199 +253,104 @@
   height: 100%;
   background: radial-gradient(
     circle at center,
-    rgba(3, 169, 244, 0.1) 0%,
-    rgba(244, 65, 165, 0.1) 50%,
+    rgba(3, 169, 244, 0.05) 0%,
+    rgba(244, 65, 165, 0.05) 50%,
     transparent 70%
   );
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
-@keyframes slideIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+/* Эффекты при наведении */
+.step:hover {
+  transform: translateX(-10px); /* Изменено направление */
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .workflowContainer {
+    gap: 40px;
+  }
+
+  .stepsContainer {
+    width: 35%;
+  }
+
+  .detailsContainer {
+    width: 500px;
+    padding: 30px;
   }
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
-  .workflowSection {
-    padding: 60px 15px;
+  .workflowContainer {
+    flex-direction: column;
   }
 
-  .title {
-    font-size: 2rem;
-    margin-bottom: 40px;
+  .stepsContainer {
+    width: 100%;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
   }
 
   .step {
+    width: calc(
+      100% / 2 + (var(--step-index, 0) * 5%)
+    ); /* Уменьшение ширины для мобильных */
+    margin-bottom: 20px;
+  }
+
+  .detailsContainer {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 40px;
+    position: static;
     padding: 20px;
   }
 
-  .stepTitle {
-    font-size: 1.25rem;
+  .stepDetails h2 {
+    font-size: 1.5rem;
   }
 
-  .decorativeLine {
-    display: none;
-  }
-
-  .detailsList {
-    grid-template-columns: 1fr;
+  .description {
+    font-size: 1rem;
+    -webkit-line-clamp: 4; /* Уменьшение количества строк на мобильных */
   }
 }
 
 @media (max-width: 480px) {
+  .workflowSection {
+    padding: 60px 16px;
+  }
+
   .title {
-    font-size: 1.75rem;
+    font-size: 1.8rem;
   }
 
-  .technologies {
-    gap: 8px;
-  }
-
-  .technology {
-    padding: 6px 10px;
-  }
-
-  .techIcon {
-    font-size: 16px;
-  }
-
-  .techName {
-    font-size: 0.8rem;
-  }
-
-  .stepDescription {
-    font-size: 0.9rem;
-  }
-
-  .step:hover {
-    transform: translateX(5px);
+  .step {
+    padding: 12px;
+    width: 100%; /* Полная ширина для мобильных */
+    transform: none; /* Удаление трансформации */
   }
 
   .stepIcon {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    font-size: 14px;
   }
 
-  .detailsList li {
-    font-size: 0.9rem;
-  }
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Additional hover effects */
-.step:hover .stepIcon {
-  background: rgba(3, 169, 244, 0.2);
-  transform: scale(1.1) rotate(5deg);
-}
-
-.step.active .stepIcon {
-  background: linear-gradient(
-    135deg,
-    rgba(3, 169, 244, 0.2),
-    rgba(244, 65, 165, 0.2)
-  );
-  transform: scale(1.1);
-}
-
-.technology:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
-}
-
-.technology:hover .techIcon {
-  transform: scale(1.1);
-}
-
-/* Focus states for accessibility */
-.step:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(3, 169, 244, 0.5);
-}
-
-.step:focus:not(:focus-visible) {
-  box-shadow: none;
-}
-
-/* Enhanced transitions */
-.step {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.stepDetails {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.technology {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Print styles */
-@media print {
-  .workflowSection {
+  .detailsContainer {
     padding: 20px;
   }
 
-  .step {
-    break-inside: avoid;
-    border: 1px solid #ccc;
+  .techBadge {
+    padding: 6px 12px;
+    font-size: 0.8rem;
   }
 
-  .glowEffect,
-  .decorativeLine {
-    display: none;
-  }
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-  .step {
-    border: 2px solid white;
-  }
-
-  .technology {
-    border: 1px solid white;
-  }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .step,
-  .stepDetails,
-  .technology,
-  .stepIcon {
-    transition: none;
-  }
-
-  .step:hover {
-    transform: none;
-  }
-
-  .technology:hover {
-    transform: none;
+  .description {
+    -webkit-line-clamp: 3; /* Ещё меньше строк на маленьких экранах */
   }
 }

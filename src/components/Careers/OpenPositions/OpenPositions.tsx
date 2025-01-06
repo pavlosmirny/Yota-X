@@ -1,7 +1,6 @@
 // OpenPositions.tsx
 "use client";
-// OpenPositions.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaCode,
@@ -11,7 +10,9 @@ import {
   FaMapMarkerAlt,
   FaClock,
   FaArrowRight,
+  FaSpinner,
 } from "react-icons/fa";
+import axios from "axios";
 import styles from "./OpenPositions.module.css";
 
 interface Position {
@@ -27,87 +28,77 @@ interface Position {
 
 const departments = [
   { id: "all", label: "All Positions", icon: null },
-  { id: "development", label: "Development", icon: <FaCode /> },
-  { id: "devops", label: "DevOps", icon: <FaServer /> },
-  { id: "design", label: "Design", icon: <FaPaintBrush /> },
-  { id: "product", label: "Product", icon: <FaChartLine /> },
+  { id: "Development", label: "Development", icon: <FaCode /> },
+  { id: "Devops", label: "DevOps", icon: <FaServer /> },
+  { id: "Design", label: "Design", icon: <FaPaintBrush /> },
+  { id: "Product Management", label: "Product", icon: <FaChartLine /> },
 ];
+
+const api = axios.create({
+  // baseURL: "http://localhost:5002/api/v1",
+  baseURL: "https://yota-x-backend.onrender.com/api/v1",
+});
 
 const OpenPositions: React.FC = () => {
   const [selectedDepartment, setSelectedDepartment] = useState("all");
   const [expandedPosition, setExpandedPosition] = useState<string | null>(null);
+  const [positions, setPositions] = useState<Position[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const positions: Position[] = [
-    {
-      id: "pos1",
-      title: "Senior Frontend Developer",
-      department: "development",
-      type: "Full-time",
-      location: "Remote",
-      experience: "5+ years",
-      description:
-        "We're looking for an experienced Frontend Developer to join our team and help build exceptional user experiences.",
-      requirements: [
-        "Expert knowledge of React and TypeScript",
-        "Experience with Next.js and modern frontend tools",
-        "Strong understanding of web performance optimization",
-        "Experience with responsive design and cross-browser compatibility",
-      ],
-    },
-    {
-      id: "pos2",
-      title: "DevOps Engineer",
-      department: "devops",
-      type: "Full-time",
-      location: "Remote",
-      experience: "3+ years",
-      description:
-        "Join our DevOps team to help build and maintain our cloud infrastructure and deployment pipelines.",
-      requirements: [
-        "Experience with AWS, Kubernetes, and Docker",
-        "Strong knowledge of CI/CD practices",
-        "Infrastructure as Code experience (Terraform)",
-        "Monitoring and logging systems experience",
-      ],
-    },
-    {
-      id: "pos3",
-      title: "UI/UX Designer",
-      department: "design",
-      type: "Full-time",
-      location: "Remote",
-      experience: "4+ years",
-      description:
-        "We're seeking a talented UI/UX Designer to create beautiful and functional interfaces for our products.",
-      requirements: [
-        "Strong portfolio of web and mobile designs",
-        "Experience with Figma and modern design tools",
-        "Understanding of user-centered design principles",
-        "Experience working with development teams",
-      ],
-    },
-    {
-      id: "pos4",
-      title: "Product Manager",
-      department: "product",
-      type: "Full-time",
-      location: "Remote",
-      experience: "5+ years",
-      description:
-        "Looking for an experienced Product Manager to drive our product vision and strategy.",
-      requirements: [
-        "Experience managing complex tech products",
-        "Strong analytical and problem-solving skills",
-        "Excellent communication and leadership abilities",
-        "Agile methodology experience",
-      ],
-    },
-  ];
+  useEffect(() => {
+    const fetchPositions = async () => {
+      try {
+        setLoading(true);
+        setError(null);
 
-  const filteredPositions = positions.filter(
-    (position) =>
-      selectedDepartment === "all" || position.department === selectedDepartment
-  );
+        const params =
+          selectedDepartment === "all"
+            ? {}
+            : { department: selectedDepartment };
+        const { data } = await api.get("/positions", { params });
+
+        // Transform response data if needed
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const transformedPositions = data.map((pos: any) => ({
+          id: pos._id,
+          title: pos.title,
+          department: pos.department,
+          type: pos.type,
+          location: pos.location,
+          experience: pos.experience,
+          description: pos.description,
+          requirements: pos.requirements,
+        }));
+
+        setPositions(transformedPositions);
+      } catch (err) {
+        console.error("Error fetching positions:", err);
+        setError("Failed to load positions. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPositions();
+  }, [selectedDepartment]);
+
+  // Filter is now handled by the API
+  const filteredPositions = positions;
+
+  if (error) {
+    return (
+      <div className={styles.error}>
+        <p>{error}</p>
+        <button
+          onClick={() => setSelectedDepartment(selectedDepartment)}
+          className={styles.retryButton}
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
 
   return (
     <section className={styles.section}>
@@ -154,7 +145,17 @@ const OpenPositions: React.FC = () => {
 
         <div className={styles.positionsGrid}>
           <AnimatePresence mode="wait">
-            {filteredPositions.length === 0 ? (
+            {loading ? (
+              <motion.div
+                className={styles.loading}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <FaSpinner className={styles.spinner} />
+                <p>Loading positions...</p>
+              </motion.div>
+            ) : filteredPositions.length === 0 ? (
               <motion.div
                 className={styles.noPositions}
                 initial={{ opacity: 0, y: 20 }}

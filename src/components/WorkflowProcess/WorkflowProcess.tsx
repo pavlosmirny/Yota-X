@@ -1,5 +1,6 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { IconType } from "react-icons";
 import {
   FaLightbulb,
@@ -9,7 +10,7 @@ import {
   FaServer,
   FaCogs,
   FaChartLine,
-  FaChevronDown,
+  FaReact,
 } from "react-icons/fa";
 import {
   SiNextdotjs,
@@ -20,6 +21,16 @@ import {
   SiKubernetes,
   SiGithubactions,
   SiGrafana,
+  SiFigma,
+  SiAdobexd,
+  SiAdobephotoshop,
+  SiSketch,
+  SiTailwindcss,
+  SiTypescript,
+  SiJira,
+  SiTrello,
+  SiMiro,
+  SiNotion,
 } from "react-icons/si";
 import styles from "./WorkflowProcess.module.css";
 
@@ -37,100 +48,47 @@ interface WorkflowStep {
   details: string[];
 }
 
-interface StepIconProps {
-  icon: IconType;
-  className?: string;
-}
+// Компонент иконки с анимацией
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const AnimatedIcon: React.FC<{ icon: IconType; className?: string }> = ({
+  icon: Icon,
+  className,
+}) => (
+  <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+    <Icon className={className} />
+  </motion.div>
+);
 
-const StepIcon: React.FC<StepIconProps> = ({ icon: Icon, className }) => {
-  return <Icon className={className} />;
-};
-
-interface StepProps {
-  step: WorkflowStep;
-  isActive: boolean;
-  onClick: () => void;
-}
-
-const Step: React.FC<StepProps> = ({ step, isActive, onClick }) => {
-  const detailsRef = useRef<HTMLDivElement>(null);
-  const [contentHeight, setContentHeight] = useState<number>(0);
-
-  useEffect(() => {
-    if (detailsRef.current) {
-      const height = detailsRef.current.scrollHeight;
-      setContentHeight(isActive ? height : 0);
-    }
-  }, [isActive]);
-
-  return (
-    <div
-      className={`${styles.step} ${isActive ? styles.active : ""}`}
-      onClick={onClick}
-      role="button"
-      tabIndex={0}
-      aria-expanded={isActive}
-    >
-      <div className={styles.stepIcon}>
-        <StepIcon icon={step.mainIcon} />
-      </div>
-      <div className={styles.stepContent}>
-        <div className={styles.stepHeader}>
-          <h3 className={styles.stepTitle}>{step.title}</h3>
-          <FaChevronDown
-            className={`${styles.expandIcon} ${isActive ? styles.rotated : ""}`}
-          />
-        </div>
-        <p className={styles.stepDescription}>{step.description}</p>
-        <div
-          className={styles.stepDetails}
-          ref={detailsRef}
-          style={{ maxHeight: `${contentHeight}px` }}
-        >
-          <div className={styles.detailsContent}>
-            <div className={styles.technologies}>
-              {step.technologies.map((tech, index) => (
-                <div
-                  key={index}
-                  className={styles.technology}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <StepIcon icon={tech.icon} className={styles.techIcon} />
-                  <span className={styles.techName}>{tech.name}</span>
-                </div>
-              ))}
-            </div>
-            <ul className={styles.detailsList}>
-              {step.details.map((detail, index) => (
-                <li
-                  key={index}
-                  style={{
-                    animationDelay: `${
-                      (index + step.technologies.length) * 0.1
-                    }s`,
-                  }}
-                >
-                  {detail}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+// Компонент для отображения технологий
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const TechnologyBadge: React.FC<{ tech: Technology }> = ({ tech }) => (
+  <motion.div
+    className={styles.techBadge}
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    whileHover={{ y: -5 }}
+  >
+    <tech.icon className={styles.techIcon} />
+    <span className={styles.techName}>{tech.name}</span>
+  </motion.div>
+);
 
 const WorkflowProcess: React.FC = () => {
-  const [activeStep, setActiveStep] = useState<number>(1);
+  const [activeStep, setActiveStep] = useState(1);
 
+  // Данные о шагах процесса
   const steps: WorkflowStep[] = [
     {
       id: 1,
       title: "Discovery & Planning",
       description: "Understanding your vision and planning the architecture",
       mainIcon: FaLightbulb,
-      technologies: [],
+      technologies: [
+        { icon: SiJira, name: "Jira" },
+        { icon: SiTrello, name: "Trello" },
+        { icon: SiMiro, name: "Miro" },
+        { icon: SiNotion, name: "Notion" },
+      ],
       details: [
         "Requirements gathering",
         "Technical specification",
@@ -143,7 +101,12 @@ const WorkflowProcess: React.FC = () => {
       title: "Design & Prototyping",
       description: "Creating the visual design and interactive prototypes",
       mainIcon: FaPencilRuler,
-      technologies: [{ icon: SiNextdotjs, name: "Next.js" }],
+      technologies: [
+        { icon: SiFigma, name: "Figma" },
+        { icon: SiAdobexd, name: "Adobe XD" },
+        { icon: SiAdobephotoshop, name: "Photoshop" },
+        { icon: SiSketch, name: "Sketch" },
+      ],
       details: [
         "UI/UX design",
         "Responsive layouts",
@@ -154,9 +117,14 @@ const WorkflowProcess: React.FC = () => {
     {
       id: 3,
       title: "Frontend Development",
-      description: "Building the user interface with Next.js",
+      description: "Building the user interface with modern technologies",
       mainIcon: FaCode,
-      technologies: [{ icon: SiNextdotjs, name: "Next.js" }],
+      technologies: [
+        { icon: FaReact, name: "React" },
+        { icon: SiNextdotjs, name: "Next.js" },
+        { icon: SiTypescript, name: "TypeScript" },
+        { icon: SiTailwindcss, name: "Tailwind CSS" },
+      ],
       details: [
         "Component development",
         "State management",
@@ -229,21 +197,99 @@ const WorkflowProcess: React.FC = () => {
     },
   ];
 
+  // Автоматическое переключение шагов
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev % steps.length) + 1);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [steps.length]);
+
   return (
     <section className={styles.workflowSection}>
-      <h2 className={styles.title}>Our Development Process</h2>
-      <div className={styles.timeline}>
-        {steps.map((step) => (
-          <Step
-            key={step.id}
-            step={step}
-            isActive={activeStep === step.id}
-            onClick={() => setActiveStep(step.id)}
-          />
-        ))}
+      <motion.h2
+        className={styles.title}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        Our Development Process
+      </motion.h2>
+
+      <div className={styles.workflowContainer}>
+        {/* Верхняя часть - ступеньки горизонтально */}
+        <div className={styles.stepsContainer}>
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.id}
+              className={`${styles.step} ${
+                activeStep === step.id ? styles.activeStep : ""
+              }`}
+              onClick={() => setActiveStep(step.id)}
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: step.id * 0.1 }}
+              style={{ "--step-index": index } as React.CSSProperties}
+            >
+              <div className={styles.stepIcon}>
+                <step.mainIcon />
+              </div>
+              <div className={styles.stepInfo}>
+                <span className={styles.stepNumber}>Step {step.id}</span>
+                <h3>{step.title}</h3>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Правая часть - детальное описание */}
+        <motion.div
+          className={styles.detailsContainer}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          key={activeStep}
+        >
+          {steps.map(
+            (step) =>
+              step.id === activeStep && (
+                <div key={step.id} className={styles.stepDetails}>
+                  <h2>{step.title}</h2>
+                  <p className={styles.description}>{step.description}</p>
+
+                  <div className={styles.technologies}>
+                    {step.technologies.map((tech, index) => (
+                      <motion.div
+                        key={index}
+                        className={styles.techBadge}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                      >
+                        <tech.icon />
+                        <span>{tech.name}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  <ul className={styles.detailsList}>
+                    {step.details.map((detail, index) => (
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 + 0.3 }}
+                      >
+                        {detail}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              )
+          )}
+        </motion.div>
       </div>
-      <div className={styles.decorativeLine} />
-      <div className={styles.glowEffect} />
+
+      <div className={styles.backgroundGlow} />
     </section>
   );
 };
