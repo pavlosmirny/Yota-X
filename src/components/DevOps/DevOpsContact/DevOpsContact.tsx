@@ -52,20 +52,20 @@ const DevOpsContact: React.FC = () => {
     };
 
     const text = `
-🔧 Новая заявка на DevOps услуги!
+🔧 Нова заявка на DevOps послуги!
 
-👤 Информация о клиенте:
-▫️ Имя: ${formData.name}
+👤 Інформація про клієнта:
+▫️ Ім'я: ${formData.name}
 ▫️ Email: ${formData.email}
-▫️ Компания: ${formData.company || "Не указана"}
+▫️ Компанія: ${formData.company || "Не вказано"}
 
-🛠 Запрашиваемая услуга:
+🛠 Запитувана послуга:
 ${getServiceName(formData.service)}
 
-💬 Сообщение:
+💬 Повідомлення:
 ${formData.message}
 
-📍 Отправлено со страницы: DevOps Services
+📍 Відправлено зі сторінки: DevOps Services
 `;
 
     try {

@@ -47,21 +47,21 @@ const CTASection: React.FC = () => {
     };
 
     const text = `
-🚀 Новая заявка на Frontend проект!
+🚀 Нова заявка на Frontend проект!
 
-👤 Клиент:
-▫️ Имя: ${formData.name}
-▫️ Email: ${formData.email}
+👤 Клієнт:
+ ▫️ Ім'я: ${formData.name}
+ ▫️ Email: ${formData.email}
 
-🎯 Детали проекта:
-▫️ Тип проекта: ${formData.projectType}
-▫️ Сроки: ${formData.timeline}
-▫️ Бюджет: ${getBudgetRange(formData.budget)}
+🎯 Деталі проекту:
+  ▫️ Тип проекту: ${formData.projectType}
+  ▫️ Терміни: ${formData.timeline} 
+  ▫️ Бюджет: ${getBudgetRange(formData.budget)}
 
-📝 Описание проекта:
-${formData.description}
+📝 Опис проекту: ${formData.description}
 
-📍 Отправлено со страницы: Frontend Development
+
+📍 Відправлено зі сторінки: Frontend Development
 `;
 
     try {
