@@ -1,9 +1,15 @@
 .workflowSection {
-  padding: 100px 24px;
   position: relative;
+  padding: 100px 0;
   background: rgba(12, 12, 13, 0.2);
-  min-height: 100vh;
-  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
 }
 
 .title {
@@ -11,190 +17,141 @@
   font-size: 2.5rem;
   color: white;
   margin-bottom: 60px;
-  position: relative;
 }
 
-.title::after {
-  content: "";
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 2px;
-  background: linear-gradient(90deg, #03a9f4, #f441a5);
+.gradient {
+  background: linear-gradient(135deg, #326ce5, #7b42bc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+/* Главный контейнер с колонками */
 .workflowContainer {
-  display: flex;
-  gap: 60px;
-  max-width: 1200px;
-  margin: 0 auto;
   position: relative;
-  z-index: 2;
+  display: flex;
+  gap: 40px;
 }
 
-/* Контейнер ступенек */
+/* Левая колонка */
 .stepsContainer {
-  position: relative;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 40%; /* Оставляем 40% для ступенек */
 }
 
-/* Стили для ступенек */
+/* Обертка для шага и его деталей */
+.stepWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Стиль шага */
 .step {
   display: flex;
-  align-items: center;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.05);
+  gap: 10px;
+  padding: 10px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   cursor: pointer;
   transition: all 0.3s ease;
-  position: relative;
-  width: calc(
-    40% + (var(--step-index, 0) * 10%)
-  ); /* Переменная ширина ступенек */
-  margin-left: 0;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.step:nth-child(1) {
-  --step-index: 6; /* Самая маленькая ступенька после разворота */
+.step:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(5px);
 }
 
-.step:nth-child(2) {
-  --step-index: 5;
-}
-
-.step:nth-child(3) {
-  --step-index: 4;
-}
-
-.step:nth-child(4) {
-  --step-index: 3;
-}
-
-.step:nth-child(5) {
-  --step-index: 2;
-}
-
-.step:nth-child(6) {
-  --step-index: 1;
-}
-
-.step:nth-child(7) {
-  --step-index: 0; /* Самая большая ступенька после разворота */
-}
-
-/* Активная ступенька */
 .step.activeStep {
-  background: rgba(3, 169, 244, 0.1);
-  border-color: #03a9f4;
-  z-index: 2;
-  box-shadow: 0 0 20px rgba(3, 169, 244, 0.2);
+  background: rgba(50, 108, 229, 0.1);
+  border-color: rgba(50, 108, 229, 0.3);
 }
 
-/* Соединительные линии между ступеньками */
-.step::after {
-  content: "";
-  position: absolute;
-  top: -20px; /* Изменено для разворота */
-  right: 50%; /* Центрируем линию с другой стороны */
-  transform: translateX(50%);
-  width: 2px;
-  height: 20px;
-  background: rgba(3, 169, 244, 0.3);
-}
-
-.step:first-child::after {
-  display: none;
-}
-
-/* Иконка шага */
 .stepIcon {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
+  width: 48px;
+  height: 48px;
+  background: rgba(50, 108, 229, 0.1);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(3, 169, 244, 0.1);
-  border-radius: 10px;
-  color: #03a9f4;
-  font-size: 20px;
-  margin-right: 16px;
-  transition: all 0.3s ease;
+  color: #326ce5;
+  flex-shrink: 0;
 }
 
-.step:hover .stepIcon {
-  transform: scale(1.1);
-  background: rgba(3, 169, 244, 0.2);
-}
-
-/* Информация о шаге */
 .stepInfo {
-  flex: 1;
-  min-width: 0;
+  flex-grow: 1;
 }
 
 .stepNumber {
-  font-size: 0.8rem;
-  color: #03a9f4;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: #326ce5;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  display: block;
 }
 
-.step h3 {
+.stepInfo h3 {
   color: white;
-  margin: 4px 0 0;
   font-size: 1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin: 0 0 8px;
 }
 
-/* Контейнер с описанием */
+.stepInfo p {
+  color: #a3a3a3;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Правая колонка - контейнер для sticky блока */
+.rightColumn {
+  width: 500px;
+  height: 100%;
+  position: relative;
+}
+
+/* Sticky контейнер с деталями */
 .detailsContainer {
-  width: 600px; /* Фиксированная ширина */
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  padding: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
   position: sticky;
   top: 100px;
-  height: fit-content;
-  overflow: hidden; /* Предотвращает изменение размера */
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  width: 100%;
 }
 
-.stepDetails h2 {
-  color: white;
-  font-size: 2rem;
-  margin-bottom: 16px;
-}
+/* Мобильная версия деталей */
+.mobileDetails {
+  display: none; /* Скрыто по умолчанию */
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
 
-.description {
-  color: #a3a3a3;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 6; /* Ограничение количества строк */
-  -webkit-box-orient: vertical;
 }
 
-/* Технологии */
+/* Стили для деталей (общие для desktop и mobile) */
+.detailsHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.detailsHeader h2 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
 .technologies {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .techBadge {
@@ -206,21 +163,17 @@
   border-radius: 8px;
   color: white;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
 }
 
-.techBadge:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
-}
-
-.techIcon {
-  color: #03a9f4;
+.techBadge svg {
+  color: #326ce5;
   font-size: 1.2rem;
 }
 
-.techName {
-  white-space: nowrap;
+.detailsContent h4 {
+  color: white;
+  font-size: 1.1rem;
+  margin: 0 0 16px;
 }
 
 .detailsList {
@@ -230,127 +183,148 @@
 }
 
 .detailsList li {
-  color: #a3a3a3;
-  margin-bottom: 16px;
-  padding-left: 24px;
+  color: #d4d4d4;
+  margin-bottom: 12px;
+  padding-left: 20px;
   position: relative;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .detailsList li::before {
-  content: "→";
+  content: "";
   position: absolute;
   left: 0;
-  color: #03a9f4;
-}
-
-/* Фоновое свечение */
-.backgroundGlow {
-  position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at center,
-    rgba(3, 169, 244, 0.05) 0%,
-    rgba(244, 65, 165, 0.05) 50%,
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 1;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: #326ce5;
+  border-radius: 50%;
 }
 
-/* Эффекты при наведении */
-.step:hover {
-  transform: translateX(-10px); /* Изменено направление */
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* Адаптивность */
+/* Медиа-запросы */
 @media (max-width: 1024px) {
-  .workflowContainer {
-    gap: 40px;
-  }
-
-  .stepsContainer {
-    width: 35%;
+  .rightColumn {
+    width: 400px;
   }
 
   .detailsContainer {
-    width: 500px;
-    padding: 30px;
+    padding: 24px;
   }
 }
 
 @media (max-width: 768px) {
+  .workflowSection {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
   .workflowContainer {
     flex-direction: column;
   }
 
-  .stepsContainer {
-    width: 100%;
-    flex-direction: row-reverse;
-    flex-wrap: wrap;
+  .rightColumn {
+    display: none; /* Скрываем десктопную версию */
+  }
+
+  .mobileDetails {
+    display: block; /* Показываем мобильную версию */
+    /* padding: 20px; */
+    margin-top: -5px;
+  }
+
+  .stepWrapper {
+    /* margin-bottom: 15px; */
   }
 
   .step {
-    width: calc(
-      100% / 2 + (var(--step-index, 0) * 5%)
-    ); /* Уменьшение ширины для мобильных */
-    margin-bottom: 20px;
+    padding: 15px;
   }
 
-  .detailsContainer {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 40px;
-    position: static;
-    padding: 20px;
+  /* Стили для мобильной версии деталей */
+  .mobileDetails .stepDetails {
+    padding: 15px;
   }
 
-  .stepDetails h2 {
-    font-size: 1.5rem;
+  .mobileDetails .technologies {
+    gap: 8px;
+    /* margin-bottom: 20px; */
   }
 
-  .description {
+  .mobileDetails .techBadge {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .mobileDetails .techBadge svg {
+    font-size: 1.1rem;
+  }
+
+  .mobileDetails .detailsContent h4 {
     font-size: 1rem;
-    -webkit-line-clamp: 4; /* Уменьшение количества строк на мобильных */
+    margin-bottom: 12px;
+  }
+
+  .mobileDetails .detailsList li {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
   }
 }
 
 @media (max-width: 480px) {
   .workflowSection {
-    padding: 60px 16px;
+    padding: 40px 0;
+  }
+
+  .container {
+    padding: 0 16px;
   }
 
   .title {
     font-size: 1.8rem;
+    margin-bottom: 30px;
   }
 
   .step {
     padding: 12px;
-    width: 100%; /* Полная ширина для мобильных */
-    transform: none; /* Удаление трансформации */
+    gap: 8px;
   }
 
   .stepIcon {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    font-size: 14px;
+    width: 40px;
+    height: 40px;
   }
 
-  .detailsContainer {
-    padding: 20px;
+  .stepInfo h3 {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
   }
 
-  .techBadge {
-    padding: 6px 12px;
+  .stepInfo p {
     font-size: 0.8rem;
   }
 
-  .description {
-    -webkit-line-clamp: 3; /* Ещё меньше строк на маленьких экранах */
+  .mobileDetails {
+    /* margin-left: 16px; */
+    /* padding: 15px; */
+  }
+
+  .mobileDetails .techBadge {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+  }
+
+  .mobileDetails .detailsList li {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
   }
 }

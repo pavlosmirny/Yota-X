@@ -75,6 +75,25 @@ const TechnologyBadge: React.FC<{ tech: Technology }> = ({ tech }) => (
 
 const WorkflowProcess: React.FC = () => {
   const [activeStep, setActiveStep] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Определение мобильного устройства
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobileQuery = window.matchMedia("(max-width: 768px)");
+      setIsMobile(mobileQuery.matches);
+    };
+
+    // Начальная проверка
+    checkMobile();
+
+    // Слушатель изменения размера окна
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
 
   // Данные о шагах процесса
   const steps: WorkflowStep[] = [
@@ -197,99 +216,162 @@ const WorkflowProcess: React.FC = () => {
     },
   ];
 
-  // Автоматическое переключение шагов
+  // Автоматическое переключение шагов только для десктопа
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveStep((prev) => (prev % steps.length) + 1);
-    }, 5000);
+    if (!isMobile) {
+      const interval = setInterval(() => {
+        setActiveStep((prev) => (prev % steps.length) + 1);
+      }, 5000);
 
-    return () => clearInterval(interval);
-  }, [steps.length]);
+      return () => clearInterval(interval);
+    }
+  }, [steps.length, isMobile]);
 
   return (
     <section className={styles.workflowSection}>
-      <motion.h2
-        className={styles.title}
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        Our Development Process
-      </motion.h2>
-
-      <div className={styles.workflowContainer}>
-        {/* Верхняя часть - ступеньки горизонтально */}
-        <div className={styles.stepsContainer}>
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.id}
-              className={`${styles.step} ${
-                activeStep === step.id ? styles.activeStep : ""
-              }`}
-              onClick={() => setActiveStep(step.id)}
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: step.id * 0.1 }}
-              style={{ "--step-index": index } as React.CSSProperties}
-            >
-              <div className={styles.stepIcon}>
-                <step.mainIcon />
-              </div>
-              <div className={styles.stepInfo}>
-                <span className={styles.stepNumber}>Step {step.id}</span>
-                <h3>{step.title}</h3>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Правая часть - детальное описание */}
+      <div className={styles.container}>
         <motion.div
-          className={styles.detailsContainer}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          key={activeStep}
+          className={styles.header}
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
         >
-          {steps.map(
-            (step) =>
-              step.id === activeStep && (
-                <div key={step.id} className={styles.stepDetails}>
-                  <h2>{step.title}</h2>
-                  <p className={styles.description}>{step.description}</p>
-
-                  <div className={styles.technologies}>
-                    {step.technologies.map((tech, index) => (
-                      <motion.div
-                        key={index}
-                        className={styles.techBadge}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <tech.icon />
-                        <span>{tech.name}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  <ul className={styles.detailsList}>
-                    {step.details.map((detail, index) => (
-                      <motion.li
-                        key={index}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 + 0.3 }}
-                      >
-                        {detail}
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-              )
-          )}
+          <h2 className={styles.title}>
+            Our Development
+            <span className={styles.gradient}> Process</span>
+          </h2>
         </motion.div>
-      </div>
 
-      <div className={styles.backgroundGlow} />
+        <div className={styles.workflowContainer}>
+          {/* Левая колонка */}
+          <div className={styles.stepsContainer}>
+            {steps.map((step, index) => (
+              <div key={step.id} className={styles.stepWrapper}>
+                <motion.div
+                  className={`${styles.step} ${
+                    activeStep === step.id ? styles.activeStep : ""
+                  }`}
+                  onClick={() => setActiveStep(step.id)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <div className={styles.stepIcon}>
+                    <step.mainIcon />
+                  </div>
+                  <div className={styles.stepInfo}>
+                    <span className={styles.stepNumber}>Step {step.id}</span>
+                    <h3>{step.title}</h3>
+                    <p>{step.description}</p>
+                  </div>
+                </motion.div>
+
+                {/* Мобильная версия деталей */}
+                <motion.div
+                  className={styles.mobileDetails}
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{
+                    height: activeStep === step.id ? "auto" : 0,
+                    opacity: activeStep === step.id ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {activeStep === step.id && (
+                    <div className={styles.stepDetails}>
+                      <div className={styles.technologies}>
+                        {step.technologies.map((tech, index) => (
+                          <motion.div
+                            key={index}
+                            className={styles.techBadge}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                          >
+                            <tech.icon />
+                            <span>{tech.name}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      <div className={styles.detailsContent}>
+                        <h4>Key Activities</h4>
+                        <ul className={styles.detailsList}>
+                          {step.details.map((detail, index) => (
+                            <motion.li
+                              key={index}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: index * 0.1 }}
+                            >
+                              {detail}
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              </div>
+            ))}
+          </div>
+
+          {/* Правая колонка - только для десктопа */}
+          <div className={styles.rightColumn}>
+            <motion.div
+              className={styles.detailsContainer}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              key={activeStep}
+            >
+              {steps.map(
+                (step) =>
+                  step.id === activeStep && (
+                    <div key={step.id} className={styles.stepDetails}>
+                      <div className={styles.detailsHeader}>
+                        <div className={styles.stepIcon}>
+                          <step.mainIcon />
+                        </div>
+                        <h2>{step.title}</h2>
+                      </div>
+
+                      <div className={styles.technologies}>
+                        {step.technologies.map((tech, index) => (
+                          <motion.div
+                            key={index}
+                            className={styles.techBadge}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                          >
+                            <tech.icon />
+                            <span>{tech.name}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      <div className={styles.detailsContent}>
+                        <h4>Key Activities</h4>
+                        <ul className={styles.detailsList}>
+                          {step.details.map((detail, index) => (
+                            <motion.li
+                              key={index}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: index * 0.1 }}
+                            >
+                              {detail}
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )
+              )}
+            </motion.div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
