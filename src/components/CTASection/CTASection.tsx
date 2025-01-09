@@ -88,7 +88,7 @@ ${formData.message}
   ];
 
   return (
-    <section className={styles.ctaSection}>
+    <section id="contact" className={styles.ctaSection}>
       <div className={styles.overlay} />
       <div className={styles.content}>
         <h2 className={styles.title}>

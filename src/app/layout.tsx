@@ -13,30 +13,30 @@ const geistSans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "YotaX | Web Application Development & DevOps Solutions",
+  title: "Yota-X | Web Application Development & DevOps Solutions",
   description:
-    "YotaX provides expert web application development and comprehensive DevOps solutions. Enhance your business with scalable, high-performance applications and streamlined operations.",
+    "Yota-X provides expert web application development and comprehensive DevOps solutions. Enhance your business with scalable, high-performance applications and streamlined operations.",
   keywords:
     "web development, DevOps, web applications, cloud solutions, CI/CD, infrastructure as code, automation, scalable applications, high-performance web apps, Next.js, React, TypeScript, Docker, Kubernetes, continuous integration, continuous deployment",
   authors: [
     {
-      name: "YotaX",
+      name: "Yota-X",
       url: "https://yotax.com",
     },
   ],
-  creator: "YotaX",
+  creator: "Yota-X",
   openGraph: {
-    title: "YotaX | Web Application Development & DevOps Solutions",
+    title: "Yota-X | Web Application Development & DevOps Solutions",
     description:
-      "YotaX provides expert web application development and comprehensive DevOps solutions. Enhance your business with scalable, high-performance applications and streamlined operations.",
-    url: "https://yotax.com",
-    siteName: "YotaX",
+      "Yota-X provides expert web application development and comprehensive DevOps solutions. Enhance your business with scalable, high-performance applications and streamlined operations.",
+    url: "https://yota-x.com",
+    siteName: "Yota-X",
     images: [
       {
-        url: "https://yotax.com/og-image.svg",
+        url: "https://yota-x.com/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "YotaX | Web Application Development & DevOps Solutions",
+        alt: "Yota-X | Web Application Development & DevOps Solutions",
       },
     ],
     locale: "en_US",
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "YotaX | Web Application Development & DevOps Solutions",
+    title: "Yota-X | Web Application Development & DevOps Solutions",
     description:
-      "YotaX provides expert web application development and comprehensive DevOps solutions. Enhance your business with scalable, high-performance applications and streamlined operations.",
-    images: ["https://yotax.com/twitter-image.jpg"],
+      "Yota-X provides expert web application development and comprehensive DevOps solutions. Enhance your business with scalable, high-performance applications and streamlined operations.",
+    images: ["https://yota-x.com/twitter-image.jpeg"],
   },
 
   // manifest: "/site.webmanifest",

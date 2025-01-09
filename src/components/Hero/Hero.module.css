@@ -1,51 +1,21 @@
 .hero {
   position: relative;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 40px 80px;
-  min-height: 100vh;
+  justify-content: center;
+  padding: clamp(20px, 5vw, 60px);
+  background: transparent;
+  min-height: 90vh;
   overflow: hidden;
-}
-
-/* Анимированный фон */
-.backgroundAnimation {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0.1;
-  background: radial-gradient(
-      circle at 0% 0%,
-      rgba(3, 169, 244, 0.2),
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 100% 100%,
-      rgba(244, 65, 165, 0.2),
-      transparent 40%
-    );
-  animation: backgroundPulse 8s ease-in-out infinite alternate;
 }
 
-@keyframes backgroundPulse {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
-
-/* Контент */
 .content {
-  max-width: 600px;
+  width: 100%;
+  max-width: 1200px;
   opacity: 0;
   transform: translateY(20px);
-  transition: all 1s ease-out;
+  transition: all 0.8s ease-out;
+  z-index: 2;
 }
 
 .content.visible {
@@ -53,215 +23,279 @@
   transform: translateY(0);
 }
 
-/* Заголовок */
-.headlineWrapper {
-  position: relative;
-  margin-bottom: 30px;
+.contentInner {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: clamp(16px, 2vw, 24px);
+  padding: clamp(20px, 4vw, 60px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(3, 169, 244, 0.1);
+  border-radius: 100px;
+  color: #03a9f4;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  justify-content: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Главный контент */
+.mainContent {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .headline {
-  font-size: 4rem;
+  font-size: 3rem;
   line-height: 1.2;
   font-weight: 700;
   color: #ffffff;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease;
+  margin-bottom: 24px;
 }
 
-.gradientText {
+.gradient {
   background: linear-gradient(45deg, #03a9f4, #f441a5);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  position: relative;
-  display: inline-block;
-}
-
-.gradientText::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  filter: blur(20px);
-  opacity: 0.5;
-  z-index: -1;
+  display: inline;
+  white-space: normal;
 }
 
 .subheadline {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #f0f0f0;
-  line-height: 1.4;
-  opacity: 0;
-  animation: fadeIn 0.6s ease forwards 0.4s;
-}
-
-.supportingText {
-  font-size: 1.1rem;
-  margin-bottom: 40px;
+  font-size: 1.4rem;
   color: #d0d0d0;
   line-height: 1.6;
-  opacity: 0;
-  animation: fadeIn 0.6s ease forwards 0.6s;
+  margin-bottom: 40px;
 }
 
-/* Кнопка */
-.container {
-  position: relative;
-  padding: 2px;
+/* Преимущества */
+.benefits {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.benefit:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.benefit svg {
+  color: #03a9f4;
+  width: 20px;
+  height: 20px;
+}
+
+/* CTA */
+.cta {
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
   background: linear-gradient(90deg, #03a9f4, #f441a5);
   border-radius: 12px;
-  transition: all 0.4s ease;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
   width: fit-content;
-  opacity: 0;
-  animation: fadeIn 0.6s ease forwards 0.8s;
 }
 
-.container::before {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  background: linear-gradient(90deg, #03a9f4, #f441a5);
-  border-radius: 14px;
-  filter: blur(10px);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(3, 169, 244, 0.2);
 }
 
-.container:hover::before {
-  opacity: 1;
+.primaryButton:hover svg {
+  transform: translateX(5px);
 }
 
-.button {
-  position: relative;
-  font-size: 1.4em;
-  padding: 0.8em 1.6em;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(0, 0, 0, 0.95);
-  color: #fff;
-  cursor: pointer;
-  overflow: hidden;
-  transition: transform 0.2s ease;
-}
-
-.button:hover {
-  transform: scale(1.02);
-}
-
-.buttonGlow {
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.1) 0%,
-    transparent 70%
-  );
-  transform: translate(-100%, -100%);
-  transition: transform 0.5s ease;
-}
-
-.button:hover .buttonGlow {
-  transform: translate(0, 0);
-}
-
-/* Изображение */
-.imageContainer {
-  max-width: 500px;
-  position: relative;
-  opacity: 0;
-  animation: slideIn 1s ease forwards 0.4s;
-}
-
-.imageWrapper {
-  position: relative;
-  transform-style: preserve-3d;
+.primaryButton svg {
   transition: transform 0.3s ease;
 }
 
-.imageWrapper:hover {
-  transform: translateZ(20px) rotateY(-5deg);
+/* Showcase section */
+.showcase {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.heroImage {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 0 20px rgba(3, 169, 244, 0.2));
+.showcaseHeader {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.glowEffect {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(3, 169, 244, 0.2),
-    transparent 70%
-  );
-  mix-blend-mode: screen;
-  pointer-events: none;
+.showcaseHeader h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
 }
 
-/* Декоративные линии */
-.decorativeLines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
+.showcaseContent {
+  margin: 0 -60px;
 }
 
-.line {
-  position: absolute;
-  width: 1px;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(255, 255, 255, 0.1) 20%,
-    rgba(255, 255, 255, 0.1) 80%,
-    transparent
-  );
-  animation: lineMove 8s linear infinite;
-}
-
-.line:nth-child(1) {
-  left: 20%;
-  animation-delay: 0s;
-}
-.line:nth-child(2) {
-  left: 40%;
-  animation-delay: -2s;
-}
-.line:nth-child(3) {
-  left: 60%;
-  animation-delay: -4s;
-}
-.line:nth-child(4) {
-  left: 80%;
-  animation-delay: -6s;
-}
-
-@keyframes lineMove {
-  0% {
-    transform: translateY(-100%);
+/* Адаптивные брейки */
+@media (max-width: 1024px) {
+  .headline {
+    font-size: 2.5rem;
   }
-  100% {
-    transform: translateY(100%);
+
+  .subheadline {
+    font-size: 1.2rem;
+  }
+
+  .showcaseContent {
+    margin: 0 -40px;
   }
 }
 
+@media (max-width: 768px) {
+  .contentInner {
+    padding: 30px;
+  }
+
+  .headline {
+    font-size: 2.2rem;
+  }
+
+  .benefits {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .benefit {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .primaryButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .showcaseContent {
+    margin: 0 -30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 20px;
+  }
+
+  .contentInner {
+    padding: 20px;
+  }
+
+  .headline {
+    font-size: 1.8rem;
+    padding: 0 10px;
+  }
+
+  .gradient {
+    font-size: 1.7rem;
+    display: block;
+    margin-top: 5px;
+  }
+
+  .subheadline {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .badge {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .badge svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .benefit {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  .benefit svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .primaryButton {
+    font-size: 1rem;
+    padding: 12px 24px;
+  }
+
+  .showcaseHeader h3 {
+    font-size: 1.3rem;
+  }
+
+  .showcaseContent {
+    margin: 0 -20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .headline {
+    font-size: 1.6rem;
+  }
+
+  .gradient {
+    font-size: 1.5rem;
+  }
+
+  .contentInner {
+    padding: 15px;
+  }
+
+  .badge {
+    width: fit-content;
+    font-size: 0.75rem;
+  }
+}
+
+/* Анимации */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -270,71 +304,5 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Адаптивность */
-@media (max-width: 1200px) {
-  .headline {
-    font-size: 3.5rem;
-  }
-
-  .subheadline {
-    font-size: 1.6rem;
-  }
-}
-
-@media (max-width: 968px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 100px 20px 60px;
-  }
-
-  .content {
-    max-width: 100%;
-    margin-bottom: 60px;
-  }
-
-  .container {
-    margin: 0 auto;
-  }
-
-  .imageContainer {
-    max-width: 400px;
-  }
-
-  .decorativeLines {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .headline {
-    font-size: 2.5rem;
-  }
-
-  .subheadline {
-    font-size: 1.3rem;
-  }
-
-  .supportingText {
-    font-size: 1rem;
-  }
-
-  .button {
-    font-size: 1.2em;
-    padding: 0.6em 1.2em;
   }
 }

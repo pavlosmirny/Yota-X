@@ -18,23 +18,27 @@ import DevOpsContact from "../../../components/DevOps/DevOpsContact/DevOpsContac
 // Метаданные страницы
 export const metadata: Metadata = {
   title:
-    "Enterprise DevOps Services & Solutions | Cloud Infrastructure & Automation",
+    "Enterprise DevOps Services & Solutions | Cloud Infrastructure & Automation | Yota-X",
   description:
     "Transform your development workflow with our enterprise DevOps solutions. Expertise in CI/CD, Cloud Infrastructure, Kubernetes, Docker, and automation. Get 24/7 support and scalable solutions.",
   keywords:
     "DevOps services, Cloud Infrastructure, CI/CD pipeline, Kubernetes management, Docker containers, Infrastructure as Code, DevOps automation, Cloud native solutions",
   openGraph: {
-    title: "Enterprise DevOps Services & Solutions | Cloud Infrastructure",
+    title:
+      "Enterprise DevOps Services & Solutions | Cloud Infrastructure | Yota-X",
     description:
       "Transform your development workflow with our enterprise DevOps solutions. Expert services in CI/CD, Cloud Infrastructure, Kubernetes, and automation.",
+    url: "https://yota-x.com/services//devops-services",
+
     images: [
       {
-        url: "/images/devops-services-og.jpg", // Путь к OG изображению
+        url: "https://yota-x.com/Vector.png", // Путь к OG изображению
         width: 1200,
         height: 630,
         alt: "DevOps Services and Solutions",
       },
     ],
+    locale: "en_US",
     type: "website",
   },
   twitter: {
@@ -42,10 +46,10 @@ export const metadata: Metadata = {
     title: "Enterprise DevOps Services & Solutions",
     description:
       "Professional DevOps services including CI/CD, Cloud Infrastructure, and automation solutions.",
-    images: ["/images/devops-services-og.jpg"],
+    images: ["https://yota-x.com/twitter-image.jpeg"],
   },
   alternates: {
-    canonical: "https://yourwebsite.com/devops-services",
+    canonical: "https://yota-x.com/services/devops-services",
   },
 };
 

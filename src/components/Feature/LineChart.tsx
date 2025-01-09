@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useId } from "react";
 import styles from "./LineChart.module.css";
 
 interface ChartData {
@@ -32,17 +32,20 @@ export const LineChart: React.FC<LineChartProps> = ({
 }) => {
   const [activePoint, setActivePoint] = useState<number | null>(null);
 
+  // Используем useId для генерации стабильных id
+  const gradientId = useId();
+  const lineGradientId = `${gradientId}-line`;
+  const areaGradientId = `${gradientId}-area`;
+
   // Calculate chart values
   const maxValue = Math.max(...data.map((d) => d.value));
   const minValue = Math.min(...data.map((d) => d.value));
   const valueRange = maxValue - minValue;
   const padding = valueRange * 0.1; // Add 10% padding to top and bottom
 
-  // Normalize values with padding
   const normalizeValue = (value: number) =>
     ((value - (minValue - padding)) / (valueRange + 2 * padding)) * 100;
 
-  // Generate points for the line
   const points = data
     .map((d, i) => {
       const x = (i / (data.length - 1)) * 100;
@@ -50,14 +53,6 @@ export const LineChart: React.FC<LineChartProps> = ({
       return `${x},${y}`;
     })
     .join(" ");
-
-  // Create unique gradient IDs
-  const lineGradientId = `lineGradient-${Math.random()
-    .toString(36)
-    .substr(2, 9)}`;
-  const areaGradientId = `areaGradient-${Math.random()
-    .toString(36)
-    .substr(2, 9)}`;
 
   return (
     <div className={styles.chartContainer} style={{ height: `${height}px` }}>
