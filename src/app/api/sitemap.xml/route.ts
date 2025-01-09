@@ -1,14 +1,11 @@
-// pages/api/sitemap.ts
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export async function GET() {
   const baseUrl = "https://yota-x.com";
 
-  // Пример: динамически формируем список URL.
-  // На практике получите URL из базы данных, CMS или автоматически соберите маршруты.
   const urls = [
     { loc: "/", lastmod: "2025-01-09", changefreq: "daily", priority: "1.0" },
     {
@@ -41,7 +38,7 @@ export default async function handler(
       changefreq: "weekly",
       priority: "0.8",
     },
-    // Добавьте или получайте дополнительные URL динамически
+    // Добавьте другие URL по мере необходимости
   ];
 
   const sitemapEntries = urls
@@ -62,6 +59,7 @@ export default async function handler(
     ${sitemapEntries}
   </urlset>`;
 
-  res.setHeader("Content-Type", "text/xml");
-  res.status(200).send(sitemap);
+  return new NextResponse(sitemap, {
+    headers: { "Content-Type": "text/xml" },
+  });
 }
