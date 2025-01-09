@@ -24,7 +24,7 @@ import {
   SiMysql,
 } from "react-icons/si";
 import { AnimatedMetric } from "./AnimatedMetric";
-import { LineChart } from "./LineChart";
+
 import styles from "./FeatureSection.module.css";
 
 interface MetricData {
@@ -64,7 +64,6 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   technologies,
   metrics,
   features,
-  chartData,
 }) => {
   return (
     <motion.div
@@ -93,13 +92,6 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
             />
           ))}
         </div>
-
-        {chartData && (
-          <div className={styles.chartContainer}>
-            <LineChart data={chartData} />
-          </div>
-        )}
-
         <div className={styles.featuresList}>
           {features.map((feature) => (
             <div key={feature} className={styles.featureItem}>
@@ -173,16 +165,16 @@ const FeatureSection: React.FC = () => {
       title: "DevOps & Cloud",
       description: "Automated deployment and infrastructure management",
       technologies: [
+        { icon: FaAws, name: "AWS", color: "#FF9900" },
         { icon: FaDocker, name: "Docker", color: "#2496ED" },
         { icon: SiKubernetes, name: "Kubernetes", color: "#326CE5" },
-        { icon: FaAws, name: "AWS", color: "#FF9900" },
         { icon: SiTerraform, name: "Terraform", color: "#7B42BC" },
         { icon: SiGrafana, name: "Grafana", color: "#F46800" },
       ],
       metrics: [
         { value: 100, label: "Automation", suffix: "%" },
         { value: 99.9, label: "Availability", suffix: "%" },
-        { value: 5, label: "Deploy Time", suffix: "min" },
+        { value: 2, label: "Deploy Time", suffix: "min" },
       ],
       features: [
         "CI/CD Pipeline",

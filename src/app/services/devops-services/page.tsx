@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "Enterprise DevOps Services & Solutions | Cloud Infrastructure | Yota-X",
     description:
       "Transform your development workflow with our enterprise DevOps solutions. Expert services in CI/CD, Cloud Infrastructure, Kubernetes, and automation.",
-    url: "https://yota-x.com/services//devops-services",
+    url: "https://yota-x.com/services/devops-services",
 
     images: [
       {
