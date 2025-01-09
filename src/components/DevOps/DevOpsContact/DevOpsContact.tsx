@@ -121,19 +121,19 @@ ${formData.message}
     {
       icon: <FaEnvelope />,
       title: "Email Us",
-      content: "contact@devops.com",
-      link: "mailto:contact@devops.com",
+      content: "cto@yota-x.com",
+      link: "mailto:cto@yota-x.com",
     },
     {
       icon: <FaPhone />,
       title: "Call Us",
-      content: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      content: "+380 66 251 09 65",
+      link: "tel:+380662510965",
     },
     {
       icon: <FaMapMarkerAlt />,
       title: "Location",
-      content: "New York, NY",
+      content: "Lviv, Ukraine",
       link: "#",
     },
     {
@@ -145,9 +145,17 @@ ${formData.message}
   ];
 
   const socialLinks = [
-    { icon: <FaGithub />, link: "#", label: "GitHub" },
-    { icon: <FaLinkedin />, link: "#", label: "LinkedIn" },
-    { icon: <FaTelegram />, link: "#", label: "Telegram" },
+    { icon: <FaGithub />, link: "https://github.com/Yota-X", label: "GitHub" },
+    {
+      icon: <FaLinkedin />,
+      link: "https://www.linkedin.com/company/yota-x",
+      label: "LinkedIn",
+    },
+    {
+      icon: <FaTelegram />,
+      link: "https://t.me/Yota_X_Official/",
+      label: "Telegram",
+    },
   ];
 
   return (
@@ -310,6 +318,8 @@ ${formData.message}
                     className={styles.socialIcon}
                     whileHover={{ y: -5 }}
                     aria-label={social.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {social.icon}
                   </motion.a>

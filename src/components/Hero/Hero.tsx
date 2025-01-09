@@ -2,7 +2,13 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaRocket, FaClock, FaAward, FaArrowRight } from "react-icons/fa";
+import {
+  FaRocket,
+  FaClock,
+  FaAward,
+  FaArrowRight,
+  FaCheck,
+} from "react-icons/fa";
 import styles from "./Hero.module.css";
 import PartnersSection from "../PartnersSection/PartnersSection";
 
@@ -19,18 +25,16 @@ const Hero = () => {
     <section className={styles.hero}>
       <div className={styles.content} ref={contentRef}>
         <div className={styles.contentInner}>
-          {/* Главный заголовок */}
-          <div className={styles.mainContent}>
-            <div className={styles.headingWrapper}>
+          <div className={styles.gridContainer}>
+            {/* Левая колонка */}
+            <div className={styles.mainColumn}>
               <motion.div
                 className={styles.badge}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <FaAward className={styles.badgeIcon} />
-                <span className={styles.badgeText}>
-                  Trusted by 50+ Companies
-                </span>
+                <FaAward />
+                <span>Trusted by 50+ Companies</span>
               </motion.div>
 
               <motion.h1
@@ -39,7 +43,6 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
               >
                 Transform Your Business with
-                <br className={styles.mobileBreak} />
                 <span className={styles.gradient}> Expert Web Development</span>
               </motion.h1>
 
@@ -49,37 +52,64 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
               >
-                Get a modern, high-performance website in 4 weeks or less.
-                <br className={styles.desktopBreak} /> No surprises.
+                Get a modern, high-performance website in 4 weeks or less. No
+                surprises, guaranteed results.
               </motion.p>
 
-              {/* Преимущества */}
               <motion.div
-                className={styles.benefits}
+                className={styles.featuresList}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <div className={styles.benefit}>
-                  <FaRocket className={styles.benefitIcon} />
-                  <span>Fast Development</span>
+                <div className={styles.featureItem}>
+                  <FaCheck />
+                  <span>Optimized Performance</span>
                 </div>
-                <div className={styles.benefit}>
-                  <FaClock className={styles.benefitIcon} />
-                  <span>24/7 Support</span>
+                <div className={styles.featureItem}>
+                  <FaCheck />
+                  <span>Responsive Design</span>
+                </div>
+                <div className={styles.featureItem}>
+                  <FaCheck />
+                  <span>SEO Friendly</span>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Правая колонка */}
+            <div className={styles.statsColumn}>
+              <motion.div
+                className={styles.statsGrid}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <div className={styles.statCard}>
+                  <FaRocket className={styles.statIcon} />
+                  <div className={styles.statInfo}>
+                    <div className={styles.statValue}>4 weeks</div>
+                    <div className={styles.statLabel}>Average Delivery</div>
+                  </div>
+                </div>
+                <div className={styles.statCard}>
+                  <FaClock className={styles.statIcon} />
+                  <div className={styles.statInfo}>
+                    <div className={styles.statValue}>24/7</div>
+                    <div className={styles.statLabel}>Support Available</div>
+                  </div>
                 </div>
               </motion.div>
 
-              {/* CTA */}
               <motion.div
-                className={styles.cta}
+                className={styles.ctaContainer}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.4 }}
               >
                 <Link href="#contact" className={styles.primaryButton}>
                   <span>Schedule Free Consultation</span>
-                  <FaArrowRight className={styles.buttonIcon} />
+                  <FaArrowRight />
                 </Link>
               </motion.div>
             </div>
@@ -93,7 +123,7 @@ const Hero = () => {
             transition={{ delay: 0.5 }}
           >
             <div className={styles.showcaseHeader}>
-              <h3>Our Partners</h3>
+              <h3>Our Trusted Partners</h3>
             </div>
             <div className={styles.showcaseContent}>
               <PartnersSection />

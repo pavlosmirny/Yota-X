@@ -1,15 +1,16 @@
-// DevOpsHero.tsx
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { FaDocker, FaCloud, FaServer, FaCogs } from "react-icons/fa";
+import { FaDocker, FaCloud, FaCogs, FaAws } from "react-icons/fa";
 import { SiAnsible, SiTerraform, SiKubernetes } from "react-icons/si";
 import styles from "./DevOpsHero.module.css";
 
 const CodeAnimation: React.FC = () => {
   const codeRef = useRef<HTMLDivElement>(null);
-  const code = `
-# Kubernetes Deployment
+  const [currentCodeIndex, setCurrentCodeIndex] = useState(0);
+
+  const codeSnippets = [
+    `# Kubernetes Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -28,30 +29,49 @@ spec:
       - name: web-app
         image: webapp:latest
         ports:
-        - containerPort: 80`.split("");
+        - containerPort: 80`,
+
+    `# AWS CloudFormation Template
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-12345678
+      SecurityGroups:
+        - MySecurityGroup
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          yum update -y
+          yum install -y docker
+          service docker start`,
+  ];
 
   useEffect(() => {
+    const code = codeSnippets[currentCodeIndex].split("");
     let index = 0;
-    const codeStr = code.join("");
+
+    if (codeRef.current) {
+      codeRef.current.innerHTML = "";
+    }
 
     const interval = setInterval(() => {
-      if (index < codeStr.length && codeRef.current) {
-        const char = codeStr[index];
+      if (index < code.length && codeRef.current) {
+        const char = code[index];
         const span = document.createElement("span");
-
-        // Проверяем предыдущие символы для определения контекста
-        const prevText = codeStr.slice(0, index);
+        const prevText = code.slice(0, index).join("");
         const currentLine = prevText.split("\n").pop() || "";
 
         if (char === "#") {
           span.className = `${styles.codeChar} ${styles.comment}`;
-        } else if (char === ":" || char === "-") {
+        } else if (char === ":" || char === "-" || char === "|") {
           span.className = `${styles.codeChar} ${styles.operator}`;
         } else if (
-          currentLine.trim().startsWith("apiVersion") ||
-          currentLine.trim().startsWith("kind") ||
-          currentLine.trim().startsWith("metadata") ||
-          currentLine.trim().startsWith("spec")
+          currentLine.trim().startsWith("Type") ||
+          currentLine.trim().startsWith("Resources") ||
+          currentLine.trim().startsWith("Properties") ||
+          currentLine.trim().startsWith("Fn::Base64")
         ) {
           span.className = `${styles.codeChar} ${styles.keyword}`;
         } else if (!isNaN(Number(char))) {
@@ -72,11 +92,14 @@ spec:
         index++;
       } else {
         clearInterval(interval);
+        setTimeout(() => {
+          setCurrentCodeIndex((prev) => (prev + 1) % codeSnippets.length);
+        }, 5000);
       }
     }, 50);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [currentCodeIndex]);
 
   return <div ref={codeRef} className={styles.codeBlock} />;
 };
@@ -103,10 +126,17 @@ const DevOpsHero: React.FC = () => {
             transition={{ delay: 0.2 }}
           >
             Streamline your development pipeline with automated deployment,
-            scalable infrastructure, and continuous integration practices.
+            scalable cloud infrastructure, and continuous integration practices.
           </motion.p>
 
           <div className={styles.techStack}>
+            <motion.div
+              className={styles.techIcon}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaAws size={24} color="#FF9900" />
+            </motion.div>
             <motion.div
               className={styles.techIcon}
               whileHover={{ scale: 1.1 }}
@@ -181,12 +211,12 @@ const DevOpsHero: React.FC = () => {
 
           <div className={styles.features}>
             <motion.div className={styles.feature} whileHover={{ scale: 1.05 }}>
-              <FaCloud />
-              <span>Cloud Native</span>
+              <FaAws />
+              <span>AWS Infrastructure</span>
             </motion.div>
             <motion.div className={styles.feature} whileHover={{ scale: 1.05 }}>
-              <FaServer />
-              <span>Infrastructure as Code</span>
+              <FaCloud />
+              <span>Cloud Native</span>
             </motion.div>
             <motion.div className={styles.feature} whileHover={{ scale: 1.05 }}>
               <FaCogs />
