@@ -41,7 +41,7 @@ export const LineChart: React.FC<LineChartProps> = ({
   const maxValue = Math.max(...data.map((d) => d.value));
   const minValue = Math.min(...data.map((d) => d.value));
   const valueRange = maxValue - minValue;
-  const padding = valueRange * 0.1; // Add 10% padding to top and bottom
+  const padding = valueRange * 0.1; // Add 10% padding to top and bottom шычаоирмлвыоиамлоиыщвамт ывдмоитдывом лд ОВЛМ
 
   const normalizeValue = (value: number) =>
     ((value - (minValue - padding)) / (valueRange + 2 * padding)) * 100;
