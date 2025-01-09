@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/sitemap.xml",
-        destination: "/api/sitemap", // Аналогично для sitemap, если потребуется
+        destination: "/api/sitemap.xml", // Аналогично для sitemap, если потребуется
       },
       // Добавьте другие правила при необходимости
     ];
