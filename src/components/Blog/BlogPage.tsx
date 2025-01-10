@@ -1,11 +1,10 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaSearch, FaClock, FaUser, FaTags } from "react-icons/fa";
-
+import { FaSearch, FaClock, FaUser, FaFolder } from "react-icons/fa";
 import Link from "next/link";
 import styles from "./BlogPage.module.css";
-import { Article, ArticlesParams } from "../types/article";
+import { Article, ArticlesParams, Category } from "../types/article";
 import { ArticlesService } from "./articles";
 
 const ITEMS_PER_PAGE = 6;
@@ -15,10 +14,12 @@ const BlogPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedTag, setSelectedTag] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState<"All" | Category>(
+    "All"
+  );
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-  const [tags, setTags] = useState<{ tag: string; count: number }[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const loadArticles = useCallback(async () => {
     setLoading(true);
@@ -29,7 +30,10 @@ const BlogPage = () => {
         limit: ITEMS_PER_PAGE,
         published: true,
         searchTerm: searchTerm || undefined,
-        tag: selectedTag === "All" ? undefined : selectedTag,
+        category:
+          selectedCategory === "All"
+            ? undefined
+            : (selectedCategory as Category),
       };
 
       const data = await ArticlesService.getArticles(params);
@@ -41,14 +45,14 @@ const BlogPage = () => {
     } finally {
       setLoading(false);
     }
-  }, [page, selectedTag, searchTerm]);
+  }, [page, selectedCategory, searchTerm]);
 
-  const loadTags = async () => {
+  const loadCategories = async () => {
     try {
-      const tagsData = await ArticlesService.getTags();
-      setTags(tagsData);
+      const data = await ArticlesService.getCategories();
+      setCategories(data);
     } catch (err) {
-      console.error("Error loading tags:", err);
+      console.error("Error loading categories:", err);
     }
   };
 
@@ -57,16 +61,15 @@ const BlogPage = () => {
   }, [loadArticles]);
 
   useEffect(() => {
-    loadTags();
+    loadCategories();
   }, []);
 
-  // Debounced search
   useEffect(() => {
     const timer = setTimeout(() => {
       if (page === 1) {
         loadArticles();
       } else {
-        setPage(1); // This will trigger loadArticles via dependency
+        setPage(1);
       }
     }, 300);
 
@@ -77,8 +80,8 @@ const BlogPage = () => {
     setSearchTerm(e.target.value);
   };
 
-  const handleTagSelect = (tag: string) => {
-    setSelectedTag(tag);
+  const handleCategorySelect = (category: "All" | Category) => {
+    setSelectedCategory(category);
     setPage(1);
   };
 
@@ -113,23 +116,22 @@ const BlogPage = () => {
         <div className={styles.categoryWrapper}>
           <button
             className={`${styles.categoryBtn} ${
-              selectedTag === "All" ? styles.active : ""
+              selectedCategory === "All" ? styles.active : ""
             }`}
-            onClick={() => handleTagSelect("All")}
+            onClick={() => handleCategorySelect("All")}
           >
             All
           </button>
-          {tags.map(({ tag, count }) => (
+          {categories.map((category) => (
             <button
-              key={tag}
+              key={category}
               className={`${styles.categoryBtn} ${
-                selectedTag === tag ? styles.active : ""
+                selectedCategory === category ? styles.active : ""
               }`}
-              onClick={() => handleTagSelect(tag)}
+              onClick={() => handleCategorySelect(category)}
             >
-              <FaTags className={styles.tagIcon} />
-              {tag}
-              <span className={styles.tagCount}>({count})</span>
+              <FaFolder className={styles.categoryIcon} />
+              {category}
             </button>
           ))}
         </div>
@@ -182,6 +184,9 @@ const BlogPage = () => {
                       <span className={styles.readTime}>
                         <FaClock />{" "}
                         {`${Math.ceil(article.content.length / 1000)} min read`}
+                      </span>
+                      <span className={styles.category}>
+                        <FaFolder /> {article.category}
                       </span>
                     </div>
                     <h2 className={styles.articleTitle}>{article.title}</h2>

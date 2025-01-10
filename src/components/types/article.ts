@@ -1,3 +1,7 @@
+import { PREDEFINED_CATEGORIES } from "../constants/categories";
+
+export type Category = (typeof PREDEFINED_CATEGORIES)[number];
+
 export interface SEO {
   _id: string;
   metaTitle: string;
@@ -12,10 +16,15 @@ export interface Article {
   content: string;
   description: string;
   tags: string[];
+  category: Category;
   author: string;
   published: boolean;
   imageUrl: string;
   seo: SEO;
+  createdAt: string;
+  updatedAt: string;
+  relatedTags: { [key: string]: number };
+  tagViews: { [key: string]: number };
 }
 
 export interface ArticlesResponse {
@@ -30,6 +39,22 @@ export interface ArticlesParams {
   limit?: number;
   published?: boolean;
   tag?: string;
+  category?: Category;
   author?: string;
   searchTerm?: string;
+}
+
+export interface CategoryStats {
+  category: Category;
+  count: number;
+}
+
+export interface TagCount {
+  tag: string;
+  count: number;
+}
+
+export interface TagViews {
+  tag: string;
+  views: number;
 }

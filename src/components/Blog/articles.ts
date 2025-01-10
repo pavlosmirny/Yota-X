@@ -1,8 +1,14 @@
 import axios from "axios";
-import { Article, ArticlesParams, ArticlesResponse } from "../types/article";
+import {
+  Article,
+  ArticlesParams,
+  ArticlesResponse,
+  Category,
+} from "../types/article";
 
 export const api = axios.create({
-  baseURL: "https://yota-x-backend.onrender.com/api/v1",
+  // baseURL: "https://yota-x-backend.onrender.com/api/v1",
+  baseURL: "http://localhost:5002/api/v1",
   headers: {
     "Content-Type": "application/json",
   },
@@ -25,6 +31,24 @@ export const ArticlesService = {
 
   async getArticleBySlug(slug: string): Promise<Article> {
     const { data } = await api.get<Article>(`/articles/${slug}`);
+    return data;
+  },
+
+  async getCategories(): Promise<Category[]> {
+    const { data } = await api.get<Category[]>("/articles/categories");
+    return data;
+  },
+
+  async getArticlesByCategory(
+    category: Category,
+    limit?: number
+  ): Promise<Article[]> {
+    const { data } = await api.get<Article[]>(
+      `/articles/category/${category}`,
+      {
+        params: { limit },
+      }
+    );
     return data;
   },
 
