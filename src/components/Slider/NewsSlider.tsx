@@ -9,7 +9,7 @@ const AutoSlider = () => {
   const slides = [
     {
       id: 1,
-      title: "Custom Web Development by YotaX",
+      title: "Custom Web Development by Yota-X",
       text: `Tailored frontend and backend solutions to build seamless and scalable applications, ensuring your business stands out online.`,
       icon: <FaLaptopCode size={60} color="#1a73e8" />,
     },

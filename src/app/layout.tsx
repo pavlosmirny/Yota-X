@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "Yota-X",
-      url: "https://yotax.com",
+      url: "https://yota-x.com",
     },
   ],
   creator: "Yota-X",

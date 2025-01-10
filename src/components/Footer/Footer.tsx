@@ -59,7 +59,7 @@ const Footer = () => {
                   <Link href="/careers">Careers</Link>
                 </li>
                 <li>
-                  <Link href="*">Blog</Link>
+                  <Link href="/blog">Blog</Link>
                 </li>
               </ul>
             </div>
@@ -154,7 +154,7 @@ const Footer = () => {
           </div>
 
           <div className={styles.copyright}>
-            <p>© {new Date().getFullYear()} YotaX. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Yota-X. All rights reserved.</p>
           </div>
         </div>
       </div>

@@ -1,0 +1,316 @@
+/* BlogPage.module.css */
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 48px);
+  min-height: 100vh;
+  background: rgba(13, 13, 13, 0.98);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: clamp(32px, 5vw, 64px);
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  background: linear-gradient(45deg, #03a9f4, #f441a5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #a0aec0;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Поисковая строка и фильтры */
+.filters {
+  margin-bottom: clamp(32px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.searchBox {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4a5568;
+  font-size: 1.2rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 16px 16px 16px 48px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #03a9f4;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.categoryWrapper {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 8px 4px;
+  margin: 0 -4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  position: relative;
+}
+
+.categoryWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.categoryBtn {
+  padding: 10px 20px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a0aec0;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.categoryBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.categoryBtn.active {
+  background: rgba(3, 169, 244, 0.15);
+  border-color: #03a9f4;
+  color: #03a9f4;
+}
+
+.tagIcon {
+  font-size: 0.9em;
+}
+
+.tagCount {
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+/* Сетка статей */
+.articlesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: clamp(24px, 3vw, 32px);
+}
+
+.articleCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.articleCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(3, 169, 244, 0.3);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.articleImage {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.articleImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.articleCard:hover .articleImage img {
+  transform: scale(1.05);
+}
+
+.articleContent {
+  padding: 24px;
+}
+
+.articleMeta {
+  display: flex;
+  gap: 16px;
+  color: #a0aec0;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.author,
+.readTime {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.articleTitle {
+  font-size: 1.4rem;
+  color: white;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.articleDescription {
+  color: #a0aec0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tag {
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  color: #a0aec0;
+  font-size: 0.8rem;
+}
+
+.readMore {
+  color: #03a9f4;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.3s ease;
+}
+
+.readMore:hover {
+  gap: 12px;
+}
+
+/* Состояния загрузки и ошибки */
+.loading,
+.error,
+.noResults {
+  text-align: center;
+  padding: 48px;
+  color: #a0aec0;
+  font-size: 1.1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.error {
+  color: #f87171;
+  border-color: rgba(248, 113, 113, 0.2);
+}
+
+/* Пагинация */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 48px;
+}
+
+.pageButton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a0aec0;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pageButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pageButton.activePage {
+  background: rgba(3, 169, 244, 0.15);
+  border-color: #03a9f4;
+  color: #03a9f4;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .articlesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .articleTitle {
+    font-size: 1.2rem;
+  }
+
+  .categoryBtn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .articleContent {
+    padding: 16px;
+  }
+
+  .articleMeta {
+    font-size: 0.85rem;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+  }
+}
