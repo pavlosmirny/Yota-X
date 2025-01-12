@@ -1,0 +1,293 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  margin-top: 200px;
+}
+
+.navigation {
+  margin-bottom: 2rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #a0aec0;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.backLink:hover {
+  color: #03a9f4;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.category {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(3, 169, 244, 0.15);
+  border-radius: 100px;
+  color: #03a9f4;
+  margin-bottom: 1rem;
+}
+
+.header h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin: 1rem 0;
+  background: linear-gradient(45deg, #03a9f4, #f441a5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.meta {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  color: #a0aec0;
+}
+
+.featuredImage {
+  margin: 2rem 0;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.featuredImage img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #e2e8f0;
+}
+
+.tags {
+  margin: 3rem 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  color: #a0aec0;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+/* components/Blog/ArticleView.module.css */
+/* ... предыдущие стили ... */
+
+.imageWrapper {
+  width: 100%;
+  position: relative;
+  margin: 2rem auto;
+  max-width: 1200px;
+  border-radius: 1rem;
+  overflow: hidden;
+  aspect-ratio: 1920 / 1080;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Добавляем легкий эффект затемнения */
+.imageWrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+/* Стили для related статей */
+.relatedArticles {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.relatedArticles h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  background: linear-gradient(45deg, #03a9f4, #f441a5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.relatedCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.relatedCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(3, 169, 244, 0.3);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.relatedImage {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.relatedCard:hover .relatedImage {
+  transform: scale(1.05);
+}
+
+.relatedContent {
+  padding: 1.5rem;
+}
+
+.relatedContent h3 {
+  color: #fff;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.relatedContent p {
+  color: #a0aec0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category,
+.title,
+.meta,
+.imageWrapper,
+.tags,
+.relatedArticles {
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.category {
+  animation-delay: 0.1s;
+}
+.title {
+  animation-delay: 0.2s;
+}
+.meta {
+  animation-delay: 0.3s;
+}
+.imageWrapper {
+  animation-delay: 0.4s;
+}
+.tags {
+  animation-delay: 0.5s;
+}
+.relatedArticles {
+  animation-delay: 0.6s;
+}
+
+/* Медиа-запросы */
+@media (max-width: 1200px) {
+  .imageWrapper {
+    border-radius: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .imageWrapper {
+    border-radius: 0.5rem;
+    margin: 1.5rem auto;
+  }
+
+  .relatedGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .relatedContent h3 {
+    font-size: 1.1rem;
+  }
+
+  .relatedContent p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Загрузочное состояние */
+.imageWrapper.loading {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

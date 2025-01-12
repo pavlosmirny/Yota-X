@@ -1,13 +1,42 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaSearch, FaClock, FaUser, FaFolder } from "react-icons/fa";
+
 import Link from "next/link";
 import styles from "./BlogPage.module.css";
 import { Article, ArticlesParams, Category } from "../types/article";
 import { ArticlesService } from "./articles";
+import {
+  FaSearch,
+  FaClock,
+  FaUser,
+  FaFolder,
+  FaReact, // Frontend
+  FaServer, // Backend
+  FaCloud, // Cloud Computing
+  FaMobile, // Mobile Development
+  FaTools, // DevOps
+  FaPaintBrush, // Web Design
+  FaDatabase, // Database
+  FaShieldAlt, // Security
+  FaCheckCircle, // Best Practices
+  FaCubes, // Architecture
+} from "react-icons/fa";
 
 const ITEMS_PER_PAGE = 6;
+
+const categoryIcons = {
+  "Frontend Development": FaReact,
+  "Backend Development": FaServer,
+  DevOps: FaTools,
+  "Web Design": FaPaintBrush,
+  "Mobile Development": FaMobile,
+  "Cloud Computing": FaCloud,
+  Database: FaDatabase,
+  Security: FaShieldAlt,
+  "Best Practices": FaCheckCircle,
+  Architecture: FaCubes,
+} as const;
 
 const BlogPage = () => {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -102,38 +131,64 @@ const BlogPage = () => {
       </motion.div>
 
       <div className={styles.filters}>
-        <div className={styles.searchBox}>
-          <FaSearch className={styles.searchIcon} />
-          <input
-            type="text"
-            placeholder="Search articles..."
-            value={searchTerm}
-            onChange={handleSearch}
-            className={styles.searchInput}
-          />
-        </div>
+        <div className={styles.filterContainer}>
+          <div className={styles.searchBox}>
+            <FaSearch className={styles.searchIcon} />
+            <input
+              type="text"
+              placeholder="Search articles..."
+              value={searchTerm}
+              onChange={handleSearch}
+              className={styles.searchInput}
+            />
+          </div>
 
-        <div className={styles.categoryWrapper}>
-          <button
-            className={`${styles.categoryBtn} ${
-              selectedCategory === "All" ? styles.active : ""
-            }`}
-            onClick={() => handleCategorySelect("All")}
-          >
-            All
-          </button>
-          {categories.map((category) => (
-            <button
-              key={category}
-              className={`${styles.categoryBtn} ${
-                selectedCategory === category ? styles.active : ""
-              }`}
-              onClick={() => handleCategorySelect(category)}
-            >
-              <FaFolder className={styles.categoryIcon} />
-              {category}
-            </button>
-          ))}
+          <div className={styles.categoryFilter}>
+            <div className={styles.popularCategories}>
+              <button
+                className={`${styles.categoryChip} ${
+                  selectedCategory === "All" ? styles.active : ""
+                }`}
+                onClick={() => handleCategorySelect("All")}
+              >
+                <FaFolder className={styles.categoryIcon} />
+                All Articles
+              </button>
+              {categories.slice(0, 4).map((category) => {
+                const Icon = categoryIcons[category];
+                return (
+                  <button
+                    key={category}
+                    className={`${styles.categoryChip} ${
+                      selectedCategory === category ? styles.active : ""
+                    }`}
+                    onClick={() => handleCategorySelect(category)}
+                  >
+                    <Icon className={styles.categoryIcon} />
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className={styles.categoryDropdown}>
+              <select
+                value={selectedCategory}
+                onChange={(e) =>
+                  handleCategorySelect(e.target.value as "All" | Category)
+                }
+                className={styles.categorySelect}
+              >
+                <option value="All">All Categories</option>
+                {categories.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+              <FaFolder className={styles.selectIcon} />
+            </div>
+          </div>
         </div>
       </div>
 

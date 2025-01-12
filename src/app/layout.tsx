@@ -1,5 +1,3 @@
-// app/layout.tsx
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
@@ -8,9 +6,28 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import BackToTop from "../components/BackToTop/BackToTop";
 
-const geistSans = Inter({
-  variable: "--font-geist-sans",
+// Оптимизированная загрузка шрифта Inter
+const inter = Inter({
   subsets: ["latin"],
+  display: "swap", // Используем swap для быстрой отрисовки
+  preload: true, // Включаем предзагрузку
+  variable: "--font-geist-sans",
+  // Указываем конкретные начертания, которые используются
+  weight: ["400", "500", "600", "700"],
+  // Добавляем fallback шрифты
+  fallback: [
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    "sans-serif",
+  ],
 });
 
 export const metadata: Metadata = {
@@ -50,9 +67,6 @@ export const metadata: Metadata = {
       "Yota-X provides expert web application development and comprehensive DevOps solutions. Enhance your business with scalable, high-performance applications and streamlined operations.",
     images: ["https://yota-x.com/twitter-image.jpeg"],
   },
-
-  // manifest: "/site.webmanifest",
-  // Add additional metadata as needed
 };
 
 export default function RootLayout({
@@ -61,8 +75,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <head>
+        {/* Предзагрузка критических ресурсов */}
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+
+        {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-5LXQCPMKTC"
@@ -80,9 +107,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${geistSans.variable} `}>
+      <body>
         <Header />
-        {children}
+        <main>{children}</main>
         <BackToTop />
         <Footer />
       </body>

@@ -6,6 +6,7 @@
   padding: clamp(24px, 5vw, 48px);
   min-height: 100vh;
   background: rgba(13, 13, 13, 0.98);
+  margin-top: 50px;
 }
 
 .header {
@@ -34,15 +35,18 @@
 /* Поисковая строка и фильтры */
 .filters {
   margin-bottom: clamp(32px, 4vw, 48px);
+}
+
+.filterContainer {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .searchBox {
   position: relative;
-  max-width: 600px;
-  margin: 0 auto;
   width: 100%;
 }
 
@@ -72,22 +76,19 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
-.categoryWrapper {
+.categoryFilter {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.popularCategories {
   display: flex;
   gap: 12px;
-  overflow-x: auto;
-  padding: 8px 4px;
-  margin: 0 -4px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  position: relative;
+  flex-wrap: wrap;
 }
 
-.categoryWrapper::-webkit-scrollbar {
-  display: none;
-}
-
-.categoryBtn {
+.categoryChip {
   padding: 10px 20px;
   border-radius: 100px;
   background: rgba(255, 255, 255, 0.05);
@@ -99,18 +100,54 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  white-space: nowrap;
 }
 
-.categoryBtn:hover {
+.categoryChip:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
 }
 
-.categoryBtn.active {
+.categoryChip.active {
   background: rgba(3, 169, 244, 0.15);
   border-color: #03a9f4;
   color: #03a9f4;
+}
+
+.categoryIcon {
+  font-size: 0.9em;
+}
+
+.categoryDropdown {
+  display: none;
+}
+
+.categorySelect {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  appearance: none;
+  transition: all 0.3s ease;
+}
+
+.categorySelect:focus {
+  outline: none;
+  border-color: #03a9f4;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+  .popularCategories {
+    display: none;
+  }
+
+  .categoryDropdown {
+    display: block;
+  }
 }
 
 .tagIcon {
@@ -313,4 +350,60 @@
   .pagination {
     flex-wrap: wrap;
   }
+  .filterContainer {
+    gap: 16px;
+  }
+
+  .searchInput {
+    padding: 12px 12px 12px 40px;
+    font-size: 0.95rem;
+  }
+
+  .categorySelect {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+}
+.categoryChip {
+  padding: 10px 20px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a0aec0;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.categoryIcon {
+  font-size: 1.1em;
+  transition: transform 0.3s ease;
+}
+
+.categoryChip:hover .categoryIcon {
+  transform: scale(1.1);
+}
+
+.categoryChip.active .categoryIcon {
+  color: #03a9f4;
+}
+
+.categoryDropdown {
+  position: relative;
+}
+
+.selectIcon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4a5568;
+  pointer-events: none;
+}
+
+.categorySelect {
+  padding-right: 40px; /* Место для иконки */
 }
