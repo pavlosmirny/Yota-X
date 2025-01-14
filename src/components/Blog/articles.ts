@@ -7,8 +7,8 @@ import {
 } from "../types/article";
 
 export const api = axios.create({
-  // baseURL: "https://yota-x-backend.onrender.com/api/v1",
-  baseURL: "http://localhost:5002/api/v1",
+  baseURL: "https://yota-x-backend.onrender.com/api/v1",
+  // baseURL: "http://localhost:5002/api/v1",
   headers: {
     "Content-Type": "application/json",
   },
